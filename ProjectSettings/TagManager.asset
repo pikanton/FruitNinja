@@ -11,11 +11,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Background
-  - Blots
-  - Shadows
-  - Fruit
-  - Effects
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -38,9 +38,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 4970081
+    locked: 0
+  - name: Blots
+    uniqueID: 2988599233
+    locked: 0
+  - name: Shadows
+    uniqueID: 1359222827
+    locked: 0
+  - name: Fruit
+    uniqueID: 1450259163
+    locked: 0
+  - name: Effects
+    uniqueID: 91066525
+    locked: 0
+  - name: UI
+    uniqueID: 3903020275
+    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background
-    uniqueID: 1391056915
     locked: 0
