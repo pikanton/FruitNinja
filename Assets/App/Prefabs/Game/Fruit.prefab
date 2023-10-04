@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6124328215520909529}
   - component: {fileID: 6705846137355209160}
   - component: {fileID: 5168158349399883410}
+  - component: {fileID: 8200192509248166537}
   m_Layer: 0
   m_Name: Fruit
   m_TagString: Untagged
@@ -99,3 +100,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialSpeed: 14
   gravity: 9.8
+--- !u!114 &8200192509248166537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2815196516063243091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8108f60adf143b641ac8995dc1aaa1d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fruitSprites:
+  - {fileID: 21300000, guid: 50d1e7bb104540d4baa130951855ce38, type: 3}
+  - {fileID: 21300000, guid: af1adaad39bd8ce438385681e2b2c9b8, type: 3}
+  - {fileID: 21300000, guid: d1dda5d7d5c4e6b428510fdbd7a5d792, type: 3}
+  - {fileID: 21300000, guid: 5f9685c99e9a004429e69f07a217ad74, type: 3}
+  - {fileID: 21300000, guid: db7e4c24f5662234eb6cad70f16e62b8, type: 3}
+  - {fileID: 21300000, guid: 2ebd57b6147f2054c8d887a2ecd5d2e9, type: 3}
+  - {fileID: 21300000, guid: 824818a307a422f4d8da944e8065bf7f, type: 3}
+  - {fileID: 21300000, guid: 1c1fe4d16de5395418cb8aaa31948b9c, type: 3}
+  fruirRotateAngle: 2.5
