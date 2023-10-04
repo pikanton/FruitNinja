@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FruitSpawnManager : MonoBehaviour
 {
@@ -24,15 +26,27 @@ public class FruitSpawnManager : MonoBehaviour
 
     private void Start()
     {
+        var mainCamera = Camera.main;
+        if (mainCamera is null)
+            throw new Exception("Cannot find camera.");
+        _screenHeight = mainCamera.orthographicSize * 2f;
+        _screenWidth = _screenHeight * mainCamera.aspect;
+        
         _nextSpawnTime = Time.time + spawnRateSeconds;
-        _screenHeight = Camera.main.orthographicSize * 2f;
-        _screenWidth = _screenHeight * Camera.main.aspect;
     }
 
     private void Update()
     {
         if (Time.time < _nextSpawnTime)
             return;
+        
+        SpawnFruit();
+        
+        _nextSpawnTime = Time.time + spawnRateSeconds;
+    }
+
+    private GameObject SpawnFruit()
+    {
         float x, y;
         float angle;
         float percent = Random.value;
@@ -67,6 +81,7 @@ public class FruitSpawnManager : MonoBehaviour
         Vector2 spawnPosition = new Vector3(x, y);
         GameObject newFruit = Instantiate(blockPrefab, spawnPosition, Quaternion.identity);
         newFruit.GetComponent<FruitMovement>().SetLaunchAngle(angle);
-        _nextSpawnTime = Time.time + spawnRateSeconds;
+
+        return newFruit;
     }
 }

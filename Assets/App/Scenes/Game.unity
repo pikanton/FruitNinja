@@ -189,7 +189,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &399062768
 GameObject:
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 399062771}
   - component: {fileID: 399062770}
   - component: {fileID: 399062776}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,7 +278,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 4970081
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &399062774
@@ -294,7 +294,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -413,69 +413,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1026763647
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2815196516063243091, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-      propertyPath: m_Name
-      value: Fruit
-      objectReference: {fileID: 0}
-    - target: {fileID: 2815196516063243091, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124328215520909529, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124328215520909529, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124328215520909529, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124328215520909529, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124328215520909529, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124328215520909529, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124328215520909529, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124328215520909529, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124328215520909529, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124328215520909529, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6124328215520909529, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
 --- !u!1 &1596418461
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,8 +448,8 @@ MonoBehaviour:
   bottomSpawnPercent: 0.8
   bottomLeftBorder: 0.2
   bottomRightBorder: 0.8
-  bottomFirstAngle: 45
-  bottomSecondAngle: 85
+  bottomFirstAngle: 60
+  bottomSecondAngle: 90
   lateralLowerBorder: 0.2
   lateralHigherBorder: 0.4
   lateralFirstAngle: 20
@@ -529,5 +468,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

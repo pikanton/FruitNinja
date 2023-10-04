@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class FruitMovement : MonoBehaviour
@@ -16,6 +17,8 @@ public class FruitMovement : MonoBehaviour
     private void Start()
     {
         var mainCamera = Camera.main;
+        if (mainCamera is null)
+            throw new Exception("Cannot find camera.");
         _screenHeight = mainCamera.orthographicSize * 2f;
         _screenWidth = _screenHeight * mainCamera.aspect;
 
