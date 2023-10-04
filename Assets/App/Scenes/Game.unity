@@ -454,7 +454,13 @@ MonoBehaviour:
   lateralHigherBorder: 0.4
   lateralFirstAngle: 20
   lateralSecondAngle: 40
-  spawnRateSeconds: 0.5
+  minFruitCountInStack: 2
+  maxFruitCountInStack: 5
+  difficultyIncreaseTime: 10
+  spawnReductionTimeFactor: 0.1
+  stackSpawnTime: 4
+  fruitSpawnTime: 0.4
+  startSpawnDelay: 1
 --- !u!4 &1596418463
 Transform:
   m_ObjectHideFlags: 0

@@ -17,12 +17,29 @@ public class FruitSpawnManager : MonoBehaviour
     [Range(-90f, 90f)] public float lateralFirstAngle = 20f;
     [Range(-90f, 90f)] public float lateralSecondAngle = 40f;
 
-    public float spawnRateSeconds = 1f;
+    public int minFruitCountInStack = 2;
+    public int maxFruitCountInStack = 5;
 
+    public float difficultyIncreaseTime = 10f;
+    public float spawnReductionTimeFactor = 0.1f;
+    public float stackSpawnTime = 4f;
+    public float fruitSpawnTime = 0.4f;
+    public float startSpawnDelay = 1f;
+    
     private const float SpawnAreaScale = 1.1f;
-    private float _nextSpawnTime;
+    
     private float _screenHeight;
     private float _screenWidth;
+    
+    private int _currentFruitCountInStack;
+    private int _spawnedFruitCount = 0;
+
+    private float _nextDifficultyIncreaseTime;
+    private float _currentReductionTimeFactor = 1f;
+    private float _spawnRateReductionFactor;
+    private float _nextStackSpawnTime;
+    private float _nextFruitSpawnTime;
+
 
     private void Start()
     {
@@ -31,18 +48,37 @@ public class FruitSpawnManager : MonoBehaviour
             throw new Exception("Cannot find camera.");
         _screenHeight = mainCamera.orthographicSize * 2f;
         _screenWidth = _screenHeight * mainCamera.aspect;
+
+        _currentFruitCountInStack = minFruitCountInStack;
         
-        _nextSpawnTime = Time.time + spawnRateSeconds;
+        _nextStackSpawnTime = Time.time + startSpawnDelay;
+        _nextDifficultyIncreaseTime = Time.time + startSpawnDelay + difficultyIncreaseTime;
     }
 
     private void Update()
     {
-        if (Time.time < _nextSpawnTime)
+        if (_currentFruitCountInStack < maxFruitCountInStack && Time.time > _nextDifficultyIncreaseTime)
+        {
+            MakeMoreDifficult();
+        }
+        
+        if (Time.time < _nextStackSpawnTime)
+            return;
+        
+        if (_spawnedFruitCount >= _currentFruitCountInStack)
+        {
+            _nextStackSpawnTime = Time.time + stackSpawnTime * _currentReductionTimeFactor;
+            _spawnedFruitCount = 0;
+            return;
+        }
+
+        if (Time.time < _nextFruitSpawnTime)
             return;
         
         SpawnFruit();
+        _spawnedFruitCount++;
         
-        _nextSpawnTime = Time.time + spawnRateSeconds;
+        _nextFruitSpawnTime = Time.time + fruitSpawnTime * _currentReductionTimeFactor;
     }
 
     private GameObject SpawnFruit()
@@ -83,5 +119,12 @@ public class FruitSpawnManager : MonoBehaviour
         newFruit.GetComponent<FruitMovement>().SetLaunchAngle(angle);
 
         return newFruit;
+    }
+
+    private void MakeMoreDifficult()
+    {
+        _currentFruitCountInStack++;
+        _currentReductionTimeFactor -= spawnReductionTimeFactor;
+        _nextDifficultyIncreaseTime = Time.time + difficultyIncreaseTime;
     }
 }
