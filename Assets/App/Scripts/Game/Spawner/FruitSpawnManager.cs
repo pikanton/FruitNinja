@@ -32,10 +32,10 @@ public class FruitSpawnManager : MonoBehaviour
     private float _screenWidth;
     
     private int _currentFruitCountInStack;
-    private int _spawnedFruitCount = 0;
+    private int _spawnedFruitCount;
 
     private float _nextDifficultyIncreaseTime;
-    private float _currentReductionTimeFactor = 1f;
+    private float _currentReductionTimeFactor;
     private float _spawnRateReductionFactor;
     private float _nextStackSpawnTime;
     private float _nextFruitSpawnTime;
@@ -50,35 +50,17 @@ public class FruitSpawnManager : MonoBehaviour
         _screenWidth = _screenHeight * mainCamera.aspect;
 
         _currentFruitCountInStack = minFruitCountInStack;
-        
+        _spawnedFruitCount = 0;
+
+        _currentReductionTimeFactor = 1f;
         _nextStackSpawnTime = Time.time + startSpawnDelay;
         _nextDifficultyIncreaseTime = Time.time + startSpawnDelay + difficultyIncreaseTime;
     }
 
     private void Update()
     {
-        if (_currentFruitCountInStack < maxFruitCountInStack && Time.time > _nextDifficultyIncreaseTime)
-        {
-            MakeMoreDifficult();
-        }
-        
-        if (Time.time < _nextStackSpawnTime)
-            return;
-        
-        if (_spawnedFruitCount >= _currentFruitCountInStack)
-        {
-            _nextStackSpawnTime = Time.time + stackSpawnTime * _currentReductionTimeFactor;
-            _spawnedFruitCount = 0;
-            return;
-        }
-
-        if (Time.time < _nextFruitSpawnTime)
-            return;
-        
-        SpawnFruit();
-        _spawnedFruitCount++;
-        
-        _nextFruitSpawnTime = Time.time + fruitSpawnTime * _currentReductionTimeFactor;
+        MakeMoreDifficult();
+        SpawnStacks();
     }
 
     private GameObject SpawnFruit()
@@ -121,10 +103,34 @@ public class FruitSpawnManager : MonoBehaviour
         return newFruit;
     }
 
+    private void SpawnStacks()
+    {
+        if (Time.time < _nextStackSpawnTime)
+            return;
+        
+        if (_spawnedFruitCount >= _currentFruitCountInStack)
+        {
+            _nextStackSpawnTime = Time.time + stackSpawnTime * _currentReductionTimeFactor;
+            _spawnedFruitCount = 0;
+            return;
+        }
+
+        if (Time.time < _nextFruitSpawnTime)
+            return;
+        
+        SpawnFruit();
+        _spawnedFruitCount++;
+        
+        _nextFruitSpawnTime = Time.time + fruitSpawnTime * _currentReductionTimeFactor;
+    }
+    
     private void MakeMoreDifficult()
     {
-        _currentFruitCountInStack++;
-        _currentReductionTimeFactor -= spawnReductionTimeFactor;
-        _nextDifficultyIncreaseTime = Time.time + difficultyIncreaseTime;
+        if (_currentFruitCountInStack < maxFruitCountInStack && _nextDifficultyIncreaseTime < Time.time)
+        {
+            _currentFruitCountInStack++;
+            _currentReductionTimeFactor -= spawnReductionTimeFactor;
+            _nextDifficultyIncreaseTime = Time.time + difficultyIncreaseTime;
+        }
     }
 }
