@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FruitAnimation : MonoBehaviour
+public class BlockAnimation : MonoBehaviour
 {
-    public List<Sprite> fruitSprites;
+    public List<Sprite> blockSprites;
     public float rotateAngle = 2.0f;
     
     public float targetIncreaseScale = 1.2f;
@@ -18,7 +18,7 @@ public class FruitAnimation : MonoBehaviour
     
     private void Start()
     {
-        SetRandomFruitSprite();
+        SetRandomBlockSprite();
 
         _initialScale = transform.localScale;
         _scalingStartTime = Time.time;
@@ -32,10 +32,10 @@ public class FruitAnimation : MonoBehaviour
         SelectRandomAnimation();        
     }
 
-    private void SetRandomFruitSprite()
+    private void SetRandomBlockSprite()
     {
-        int randomSpriteIndex = Random.Range(0, fruitSprites.Count);
-        Sprite selectedSprite = fruitSprites[randomSpriteIndex];
+        int randomSpriteIndex = Random.Range(0, blockSprites.Count);
+        Sprite selectedSprite = blockSprites[randomSpriteIndex];
         gameObject.GetComponent<SpriteRenderer>().sprite = selectedSprite;
     }
 

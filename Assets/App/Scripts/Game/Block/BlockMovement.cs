@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class FruitMovement : MonoBehaviour
+public class BlockMovement : MonoBehaviour
 {
     public float initialSpeed = 14f;
     public float gravity = 9.8f;

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class FruitSpawnManager : MonoBehaviour
+public class SpawnManager : MonoBehaviour
 {
     public GameObject blockPrefab;
 
@@ -17,13 +17,13 @@ public class FruitSpawnManager : MonoBehaviour
     [Range(-90f, 90f)] public float lateralFirstAngle = 20f;
     [Range(-90f, 90f)] public float lateralSecondAngle = 40f;
 
-    public int minFruitCountInStack = 2;
-    public int maxFruitCountInStack = 5;
+    public int minBlockCountInStack = 2;
+    public int maxBlockCountInStack = 5;
 
     public float difficultyIncreaseTime = 10f;
     public float spawnReductionTimeFactor = 0.1f;
     public float stackSpawnTime = 4f;
-    public float fruitSpawnTime = 0.4f;
+    public float blockSpawnTime = 0.4f;
     public float startSpawnDelay = 1f;
     
     private const float SpawnAreaScale = 1.1f;
@@ -31,14 +31,14 @@ public class FruitSpawnManager : MonoBehaviour
     private float _screenHeight;
     private float _screenWidth;
     
-    private int _currentFruitCountInStack;
-    private int _spawnedFruitCount;
+    private int _currentBlockCountInStack;
+    private int _spawnedBlockCount;
 
     private float _nextDifficultyIncreaseTime;
     private float _currentReductionTimeFactor;
     private float _spawnRateReductionFactor;
     private float _nextStackSpawnTime;
-    private float _nextFruitSpawnTime;
+    private float _nextBlockSpawnTime;
 
 
     private void Start()
@@ -49,8 +49,8 @@ public class FruitSpawnManager : MonoBehaviour
         _screenHeight = mainCamera.orthographicSize * 2f;
         _screenWidth = _screenHeight * mainCamera.aspect;
 
-        _currentFruitCountInStack = minFruitCountInStack;
-        _spawnedFruitCount = 0;
+        _currentBlockCountInStack = minBlockCountInStack;
+        _spawnedBlockCount = 0;
 
         _currentReductionTimeFactor = 1f;
         _nextStackSpawnTime = Time.time + startSpawnDelay;
@@ -63,7 +63,7 @@ public class FruitSpawnManager : MonoBehaviour
         SpawnStacks();
     }
 
-    private GameObject SpawnFruit()
+    private GameObject SpawnBlock()
     {
         float x, y;
         float angle;
@@ -97,10 +97,10 @@ public class FruitSpawnManager : MonoBehaviour
         }
 
         Vector2 spawnPosition = new Vector3(x, y);
-        GameObject newFruit = Instantiate(blockPrefab, spawnPosition, Quaternion.identity);
-        newFruit.GetComponent<FruitMovement>().SetLaunchAngle(angle);
+        GameObject newBlock = Instantiate(blockPrefab, spawnPosition, Quaternion.identity);
+        newBlock.GetComponent<BlockMovement>().SetLaunchAngle(angle);
 
-        return newFruit;
+        return newBlock;
     }
 
     private void SpawnStacks()
@@ -108,27 +108,27 @@ public class FruitSpawnManager : MonoBehaviour
         if (Time.time < _nextStackSpawnTime)
             return;
         
-        if (_spawnedFruitCount >= _currentFruitCountInStack)
+        if (_spawnedBlockCount >= _currentBlockCountInStack)
         {
             _nextStackSpawnTime = Time.time + stackSpawnTime * _currentReductionTimeFactor;
-            _spawnedFruitCount = 0;
+            _spawnedBlockCount = 0;
             return;
         }
 
-        if (Time.time < _nextFruitSpawnTime)
+        if (Time.time < _nextBlockSpawnTime)
             return;
         
-        SpawnFruit();
-        _spawnedFruitCount++;
+        SpawnBlock();
+        _spawnedBlockCount++;
         
-        _nextFruitSpawnTime = Time.time + fruitSpawnTime * _currentReductionTimeFactor;
+        _nextBlockSpawnTime = Time.time + blockSpawnTime * _currentReductionTimeFactor;
     }
     
     private void MakeMoreDifficult()
     {
-        if (_currentFruitCountInStack < maxFruitCountInStack && _nextDifficultyIncreaseTime < Time.time)
+        if (_currentBlockCountInStack < maxBlockCountInStack && _nextDifficultyIncreaseTime < Time.time)
         {
-            _currentFruitCountInStack++;
+            _currentBlockCountInStack++;
             _currentReductionTimeFactor -= spawnReductionTimeFactor;
             _nextDifficultyIncreaseTime = Time.time + difficultyIncreaseTime;
         }

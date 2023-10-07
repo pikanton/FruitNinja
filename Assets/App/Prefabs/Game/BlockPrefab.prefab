@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6124328215520909529}
   - component: {fileID: 5168158349399883410}
   m_Layer: 0
-  m_Name: FruitPrefab
+  m_Name: BlockPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -145,7 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7146d2ce37a59104cba3f6f9e8ea05e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruit: {fileID: 6167126529915442200}
+  blockTransform: {fileID: 1507874389306677131}
+  blockSpriteRenderer: {fileID: 2384882795735065206}
+  shadowSpriteRenderer: {fileID: 1938201154012485011}
 --- !u!1 &6167126529915442200
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +160,7 @@ GameObject:
   - component: {fileID: 2384882795735065206}
   - component: {fileID: 4081533712971989492}
   m_Layer: 0
-  m_Name: Fruit
+  m_Name: Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,12 +245,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8108f60adf143b641ac8995dc1aaa1d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fruitSprites:
+  blockSprites:
   - {fileID: 21300000, guid: 50d1e7bb104540d4baa130951855ce38, type: 3}
-  - {fileID: 21300000, guid: af1adaad39bd8ce438385681e2b2c9b8, type: 3}
   - {fileID: 21300000, guid: d1dda5d7d5c4e6b428510fdbd7a5d792, type: 3}
-  - {fileID: 21300000, guid: 5f9685c99e9a004429e69f07a217ad74, type: 3}
   - {fileID: 21300000, guid: db7e4c24f5662234eb6cad70f16e62b8, type: 3}
+  - {fileID: 21300000, guid: af1adaad39bd8ce438385681e2b2c9b8, type: 3}
+  - {fileID: 21300000, guid: 5f9685c99e9a004429e69f07a217ad74, type: 3}
   - {fileID: 21300000, guid: 2ebd57b6147f2054c8d887a2ecd5d2e9, type: 3}
   - {fileID: 21300000, guid: 824818a307a422f4d8da944e8065bf7f, type: 3}
   - {fileID: 21300000, guid: 1c1fe4d16de5395418cb8aaa31948b9c, type: 3}
