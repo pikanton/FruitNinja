@@ -91,6 +91,8 @@ namespace App.Scripts.Game.Spawners
         {
             Gizmos.color = color;
             Vector3 spawnerPosition = transform.position;
+
+            UpdateSpawner();
             
             DrawSpawnerLength(spawnerPosition, spawnerAngle);
             DrawAngleLine(spawnerPosition, _relativeFirstAngle);

@@ -26,6 +26,11 @@ namespace App.Scripts.Game.Block
             _initialScale = transform.localScale;
         }
 
+        private void FixedUpdate()
+        {
+            PlayAnimation();
+        }
+
         private void SetAnimationProperties()
         {
             _rotationDirection = Random.Range(0, 2) == 0 ? -1 : 1;
@@ -34,11 +39,6 @@ namespace App.Scripts.Game.Block
             _scalingStartTime = Time.time;
         }
         
-        private void Update()
-        {
-            PlayAnimation();
-        }
-
         private void SetRandomBlockSprite()
         {
             int randomSpriteIndex = Random.Range(0, blockSprites.Count);

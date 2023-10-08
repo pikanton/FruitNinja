@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 625b0f70ce5c4638806de3860ed8d3c8, type: 3}
+  m_Name: SpawnerManagerConfig
+  m_EditorClassIdentifier: 
+  destroyAreaScale: 1.4
+  minBlockCountInStack: 2
+  maxBlockCountInStack: 5
+  difficultyIncreaseTime: 5
+  spawnReductionTimeFactor: 0.1
+  stackSpawnTime: 4
+  blockSpawnTime: 0.4
+  startSpawnDelay: 1

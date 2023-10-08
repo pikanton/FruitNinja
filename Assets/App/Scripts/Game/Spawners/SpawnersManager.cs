@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Random = UnityEngine.Random;
 using App.Scripts.Game.Block;
 using App.Scripts.Game.Camera;
+using App.Scripts.Game.Configs;
 
 namespace App.Scripts.Game.Spawners
 {
@@ -12,17 +13,7 @@ namespace App.Scripts.Game.Spawners
         public GameObject blockPrefab;
         public List<Spawner> spawners;
 
-        public float destroyAreaScale = 1.4f;
-        
-        public int minBlockCountInStack = 2;
-        public int maxBlockCountInStack = 5;
-
-        public float difficultyIncreaseTime = 5f;
-        public float spawnReductionTimeFactor = 0.1f;
-        public float stackSpawnTime = 4f;
-        public float blockSpawnTime = 0.4f;
-        public float startSpawnDelay = 1f;
-    
+        public SpawnersManagerConfig managerConfig;
         
         private int _currentBlockCountInStack;
         private int _spawnedBlockCount;
@@ -43,12 +34,15 @@ namespace App.Scripts.Game.Spawners
 
         private void SetDestroyArea()
         {
+            float destroyAreaScale = managerConfig.destroyAreaScale;
             _destroyAreaWidth = cameraManager.GetCameraWidth() * destroyAreaScale;
             _destroyAreaHeight = cameraManager.GetCameraHeight() * destroyAreaScale;
         }
         
         private void SetTimers()
         {
+            float startSpawnDelay = managerConfig.startSpawnDelay;
+            float difficultyIncreaseTime = managerConfig.difficultyIncreaseTime;
             _currentReductionTimeFactor = 1f;
             _nextStackSpawnTime = Time.time + startSpawnDelay;
             _nextDifficultyIncreaseTime = Time.time + startSpawnDelay + difficultyIncreaseTime;
@@ -56,6 +50,7 @@ namespace App.Scripts.Game.Spawners
 
         private void SetBlockCounts()
         {
+            int minBlockCountInStack = managerConfig.minBlockCountInStack;
             _currentBlockCountInStack = minBlockCountInStack;
             _spawnedBlockCount = 0;
         }
@@ -76,9 +71,7 @@ namespace App.Scripts.Game.Spawners
             Gizmos.DrawWireCube(centerOfScreen, sizeOfDestroyArea);
         }
         
-        
-        
-        private void Update()
+        private void FixedUpdate()
         {
             MakeMoreDifficult();
             SpawnStacks();
@@ -86,6 +79,9 @@ namespace App.Scripts.Game.Spawners
         
         private void SpawnStacks()
         {
+            float stackSpawnTime = managerConfig.stackSpawnTime;
+            float blockSpawnTime = managerConfig.blockSpawnTime;
+            
             if (Time.time < _nextStackSpawnTime)
                 return;
         
@@ -110,14 +106,17 @@ namespace App.Scripts.Game.Spawners
             Spawner randomSpawner = GetRandomSpawner();
             Vector3 spawnPosition = randomSpawner.GetRandomPosition();
             float spawnAngle = randomSpawner.GetRandomAngle();
-            
-            GameObject newBlock = Instantiate(blockPrefab, spawnPosition, Quaternion.identity);
-            newBlock.GetComponent<BlockMovement>().SetLaunchAngle(spawnAngle);
+            Quaternion spawnRotation = Quaternion.Euler(0f, 0f, spawnAngle);
+            GameObject newBlock = Instantiate(blockPrefab, spawnPosition, spawnRotation);
             newBlock.GetComponent<BlockMovement>().SetDestroyArea(_destroyAreaWidth, _destroyAreaHeight);
         }
         
         private void MakeMoreDifficult()
         {
+            int maxBlockCountInStack = managerConfig.maxBlockCountInStack;
+            float spawnReductionTimeFactor = managerConfig.spawnReductionTimeFactor;
+            float difficultyIncreaseTime = managerConfig.difficultyIncreaseTime;
+            
             if (_currentBlockCountInStack < maxBlockCountInStack && _nextDifficultyIncreaseTime < Time.time)
             {
                 _currentBlockCountInStack++;

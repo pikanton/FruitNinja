@@ -7,31 +7,21 @@ namespace App.Scripts.Game.Block
         public float initialSpeed = 13f;
         public float gravity = 9.8f;
 
-        private float _launchAngle;
+        private float _initializeAngle;
         private Vector3 _initialVelocity;
         private Vector3 _currentPosition;
 
         private float _destroyAreaWidth;
         private float _destroyAreaHeight;
-
-        public void SetLaunchAngle(float angle)
-        {
-            _launchAngle = angle;
-        }
-
-        public void SetDestroyArea(float width, float height)
-        {
-            _destroyAreaWidth = width;
-            _destroyAreaHeight = height;
-        }
-
+        
         private void Start()
         {
+            _initializeAngle = GetInitialAngle();
             _initialVelocity = GetInitialVelocity();
             _currentPosition = transform.position;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             UpdatePosition();
 
@@ -43,12 +33,21 @@ namespace App.Scripts.Game.Block
         {
             _currentPosition += _initialVelocity * Time.deltaTime;
             _initialVelocity.y -= gravity * Time.deltaTime;
+          
             transform.position = _currentPosition;
+        }
+        
+        private float GetInitialAngle()
+        {
+            Vector3 rotationEulerAngles = transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(Vector3.zero);
+            float initialAngle = rotationEulerAngles.z;
+            return initialAngle;
         }
 
         private Vector3 GetInitialVelocity()
         {
-            float radianAngle = Mathf.Deg2Rad * _launchAngle;
+            float radianAngle = Mathf.Deg2Rad * _initializeAngle;
             float initialVelocityX = initialSpeed * Mathf.Cos(radianAngle);
             float initialVelocityY = initialSpeed * Mathf.Sin(radianAngle);
             return new Vector3(initialVelocityX, initialVelocityY, 0f);
@@ -65,6 +64,12 @@ namespace App.Scripts.Game.Block
                    position.y > halfDestroyAreaHeight ||
                    position.x < -halfDestroyAreaWidth ||
                    position.x > halfDestroyAreaWidth;
+        }
+        
+        public void SetDestroyArea(float width, float height)
+        {
+            _destroyAreaWidth = width;
+            _destroyAreaHeight = height;
         }
     }
 }
