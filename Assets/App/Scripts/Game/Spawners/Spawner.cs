@@ -13,13 +13,13 @@ namespace App.Scripts.Game.Spawners
         public float relativePositionY;
         [Range(0f, 1.2f)]
         public float relativeSpawnerLength = 0.5f;
-        [Range(0f, 360f)]
-        public float spawnerAngle = 90f;
+        [Range(-180f, 180f)]
+        public float spawnerAngle = 0f;
         [Range(0f, 180f)]
         public float firstAngle = 30f;
         [Range(0f, 180f)]
         public float secondAngle = 60f;
-        public float probability = 30f;
+        public float probability = 1f;
 
         private float _angleDrawLength = 2f;
         private float _relativeFirstAngle;
@@ -85,15 +85,12 @@ namespace App.Scripts.Game.Spawners
             float ys = Mathf.Pow(length.y * screenHeight, 2f);
 
             _spawnerLength = Mathf.Sqrt(xs + ys);
-
         }
         
         private void OnDrawGizmos()
         {
             Gizmos.color = color;
             Vector3 spawnerPosition = transform.position;
-            
-            UpdateSpawner();
             
             DrawSpawnerLength(spawnerPosition, spawnerAngle);
             DrawAngleLine(spawnerPosition, _relativeFirstAngle);
