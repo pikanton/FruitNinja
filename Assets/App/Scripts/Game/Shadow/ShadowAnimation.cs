@@ -1,29 +1,65 @@
 using UnityEngine;
 
-public class ShadowAnimation : MonoBehaviour
+namespace App.Scripts.Game.Shadow
 {
-    public Transform blockTransform;
-    public SpriteRenderer blockSpriteRenderer;
-    public SpriteRenderer shadowSpriteRenderer;
-
-    private Vector3 _initialShadowOffset;
-    private Vector3 _initialBlockScale;
-
-    private void Start()
+    public class ShadowAnimation : MonoBehaviour
     {
-        shadowSpriteRenderer.sprite = blockSpriteRenderer.sprite;
-        _initialShadowOffset = transform.localPosition;
-        _initialBlockScale = blockTransform.localScale;
-    }
+        public Transform blockTransform;
+        public SpriteRenderer blockSpriteRenderer;
+        public SpriteRenderer shadowSpriteRenderer;
 
-    private void Update()
-    {
-        Vector3 fruitScale = blockTransform.localScale;
-        transform.localScale = fruitScale;
-        Vector3 newOffset = new Vector3(_initialShadowOffset.x + fruitScale.x - _initialBlockScale.x,
-            _initialShadowOffset.y - fruitScale.y + _initialBlockScale.y, 0);
-        transform.localPosition = newOffset;
+        private Vector3 _initialShadowOffset;
+        private Vector3 _initialBlockScale;
+
+        private void Start()
+        {
+            CopySpriteFromBlock();
+            InitializeInitialValues();
+        }
         
-        transform.rotation = blockTransform.rotation;
+        private void Update()
+        {
+            UpdateScale();
+            UpdatePosition();
+            UpdateRotation();
+        }
+        
+        private void CopySpriteFromBlock()
+        {
+            shadowSpriteRenderer.sprite = blockSpriteRenderer.sprite;
+        }
+
+        private void InitializeInitialValues()
+        {
+            _initialShadowOffset = transform.localPosition;
+            _initialBlockScale = blockTransform.localScale;
+        }
+        
+        private void UpdateScale()
+        {
+            Vector3 fruitScale = blockTransform.localScale;
+            transform.localScale = fruitScale;
+        }
+
+        private void UpdatePosition()
+        {
+            Vector3 newOffset = CalculateNewPosition();
+            transform.localPosition = newOffset;
+        }
+
+        private Vector3 CalculateNewPosition()
+        {
+            Vector3 fruitScale = blockTransform.localScale;
+            Vector3 newOffset = new Vector3(
+                _initialShadowOffset.x + fruitScale.x - _initialBlockScale.x,
+                _initialShadowOffset.y - fruitScale.y + _initialBlockScale.y,
+                0);
+            return newOffset;
+        }
+
+        private void UpdateRotation()
+        {
+            transform.rotation = blockTransform.rotation;
+        }
     }
 }
