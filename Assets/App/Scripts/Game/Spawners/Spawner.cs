@@ -25,6 +25,11 @@ namespace App.Scripts.Game.Spawners
         private float _relativeFirstAngle;
         private float _relativeSecondAngle;
         private float _spawnerLength;
+
+        public void Initialize()
+        {
+            UpdateSpawner();
+        }
         
         public float GetRandomAngle()
         {
@@ -50,14 +55,14 @@ namespace App.Scripts.Game.Spawners
         
         private void OnValidate()
         {
-            _relativeFirstAngle = firstAngle + spawnerAngle;
-            _relativeSecondAngle = secondAngle + spawnerAngle;
-            
             UpdateSpawner();
         }
 
         private void UpdateSpawner()
         {
+            _relativeFirstAngle = firstAngle + spawnerAngle;
+            _relativeSecondAngle = secondAngle + spawnerAngle;
+
             float screenWidth = spawnersManager.cameraManager.GetCameraWidth();
             float screenHeight = spawnersManager.cameraManager.GetCameraHeight();
             SetPositionRelativeToScreen(screenWidth, screenHeight);
@@ -89,6 +94,7 @@ namespace App.Scripts.Game.Spawners
             Vector3 spawnerPosition = transform.position;
             
             UpdateSpawner();
+            
             DrawSpawnerLength(spawnerPosition, spawnerAngle);
             DrawAngleLine(spawnerPosition, _relativeFirstAngle);
             DrawAngleLine(spawnerPosition, _relativeSecondAngle);
