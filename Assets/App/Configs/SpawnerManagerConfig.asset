@@ -17,6 +17,6 @@ MonoBehaviour:
   maxBlockCountInStack: 5
   difficultyIncreaseTime: 5
   spawnReductionTimeFactor: 0.1
-  stackSpawnTime: 4
-  blockSpawnTime: 0.4
+  stackSpawnTime: 0
+  blockSpawnTime: 0.2
   startSpawnDelay: 1

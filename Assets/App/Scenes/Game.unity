@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160395368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.825218, y: -6.1465383, z: 9.971445}
+  m_LocalPosition: {x: -3.7489753, y: -6.1465383, z: 9.971445}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -585,7 +585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528448009}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.0433264, y: -6.1465383, z: 9.971445}
+  m_LocalPosition: {x: 2.967083, y: -6.1465383, z: 9.971445}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -638,7 +638,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795057597}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.251308, y: -2.1465383, z: 9.971445}
+  m_LocalPosition: {x: 7.668324, y: -2.1465383, z: 9.971445}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -663,7 +663,7 @@ MonoBehaviour:
   relativePositionY: -0.2
   relativeSpawnerLength: 0.3
   spawnerAngle: 90
-  firstAngle: 30
+  firstAngle: 45
   secondAngle: 75
   probability: 5
 --- !u!1 &832483867
@@ -691,7 +691,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 832483867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.033199, y: -2.1465383, z: 9.971445}
+  m_LocalPosition: {x: -8.450216, y: -2.1465383, z: 9.971445}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
