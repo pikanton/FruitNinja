@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
-using App.Scripts.Game.Block;
 using App.Scripts.Game.Camera;
 using App.Scripts.Game.Configs;
 
@@ -14,7 +13,8 @@ namespace App.Scripts.Game.Spawners
         public List<Spawner> spawners;
 
         public SpawnersManagerConfig managerConfig;
-        
+
+        private List<GameObject> _spawnedBlocks;
         private int _currentBlockCountInStack;
         private int _spawnedBlockCount;
         private float _nextDifficultyIncreaseTime;
@@ -27,6 +27,7 @@ namespace App.Scripts.Game.Spawners
         
         public void Initialize()
         {
+            _spawnedBlocks = new List<GameObject>();
             SetDestroyArea();
             SetBlockCounts();
             SetTimers();
@@ -71,12 +72,13 @@ namespace App.Scripts.Game.Spawners
             Gizmos.DrawWireCube(centerOfScreen, sizeOfDestroyArea);
         }
         
-        private void FixedUpdate()
+        private void Update()
         {
+            DestroyBlocks();
             MakeMoreDifficult();
             SpawnStacks();
         }
-        
+
         private void SpawnStacks()
         {
             float stackSpawnTime = managerConfig.stackSpawnTime;
@@ -108,9 +110,35 @@ namespace App.Scripts.Game.Spawners
             float spawnAngle = randomSpawner.GetRandomAngle();
             Quaternion spawnRotation = Quaternion.Euler(0f, 0f, spawnAngle);
             GameObject newBlock = Instantiate(blockPrefab, spawnPosition, spawnRotation);
-            newBlock.GetComponent<BlockMovement>().SetDestroyArea(_destroyAreaWidth, _destroyAreaHeight);
+            _spawnedBlocks.Add(newBlock);
         }
         
+        private void DestroyBlocks()
+        {
+            for (int i = 0; i < _spawnedBlocks.Count; i++)
+            {
+                GameObject block = _spawnedBlocks[i];
+                if (IsOutOfScreen(block.transform))
+                {
+                    Destroy(block);
+                    _spawnedBlocks.RemoveAt(i);
+                }
+            }
+        }
+
+        private bool IsOutOfScreen(Transform blockTransform)
+        {
+            Vector3 position = blockTransform.position;
+
+            float halfDestroyAreaWidth = _destroyAreaWidth / 2f;
+            float halfDestroyAreaHeight = _destroyAreaHeight / 2f;
+
+            return position.y < -halfDestroyAreaHeight ||
+                   position.y > halfDestroyAreaHeight ||
+                   position.x < -halfDestroyAreaWidth ||
+                   position.x > halfDestroyAreaWidth;
+        }
+
         private void MakeMoreDifficult()
         {
             int maxBlockCountInStack = managerConfig.maxBlockCountInStack;

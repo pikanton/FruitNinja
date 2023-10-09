@@ -10,9 +10,6 @@ namespace App.Scripts.Game.Block
         private float _initializeAngle;
         private Vector3 _initialVelocity;
         private Vector3 _currentPosition;
-
-        private float _destroyAreaWidth;
-        private float _destroyAreaHeight;
         
         private void Start()
         {
@@ -21,12 +18,9 @@ namespace App.Scripts.Game.Block
             _currentPosition = transform.position;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             UpdatePosition();
-
-            if (IsOutOfScreen())
-                Destroy(gameObject);
         }
 
         private void UpdatePosition()
@@ -51,25 +45,6 @@ namespace App.Scripts.Game.Block
             float initialVelocityX = initialSpeed * Mathf.Cos(radianAngle);
             float initialVelocityY = initialSpeed * Mathf.Sin(radianAngle);
             return new Vector3(initialVelocityX, initialVelocityY, 0f);
-        }
-
-        private bool IsOutOfScreen()
-        {
-            Vector3 position = transform.position;
-
-            float halfDestroyAreaWidth = _destroyAreaWidth / 2f;
-            float halfDestroyAreaHeight = _destroyAreaHeight / 2f;
-
-            return position.y < -halfDestroyAreaHeight ||
-                   position.y > halfDestroyAreaHeight ||
-                   position.x < -halfDestroyAreaWidth ||
-                   position.x > halfDestroyAreaWidth;
-        }
-        
-        public void SetDestroyArea(float width, float height)
-        {
-            _destroyAreaWidth = width;
-            _destroyAreaHeight = height;
         }
     }
 }
