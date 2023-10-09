@@ -130,14 +130,12 @@ namespace App.Scripts.Game.Spawners
         private bool IsOutOfScreen(Transform blockTransform)
         {
             Vector3 position = blockTransform.position;
-
-            float halfDestroyAreaWidth = _destroyAreaWidth / 2f;
-            float halfDestroyAreaHeight = _destroyAreaHeight / 2f;
-
-            return position.y < -halfDestroyAreaHeight ||
-                   position.y > halfDestroyAreaHeight ||
-                   position.x < -halfDestroyAreaWidth ||
-                   position.x > halfDestroyAreaWidth;
+            Rect destroyArea = cameraManager.GetCameraRect();
+            destroyArea.height *= managerConfig.destroyAreaScale;
+            destroyArea.width *= managerConfig.destroyAreaScale;
+            destroyArea.center = Vector2.zero;
+            
+            return !destroyArea.Contains(position);
         }
 
         private void MakeMoreDifficult()

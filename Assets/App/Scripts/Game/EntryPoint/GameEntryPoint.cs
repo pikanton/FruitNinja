@@ -9,10 +9,6 @@ namespace App.Scripts.Game.EntryPoint
         private void Awake()
         {
             spawnersManager.Initialize();
-            foreach (var spawner in spawnersManager.spawners)
-            {
-                spawner.Initialize();
-            }
         }
     }
 }
