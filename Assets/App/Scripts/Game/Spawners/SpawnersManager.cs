@@ -36,8 +36,9 @@ namespace App.Scripts.Game.Spawners
         private void SetDestroyArea()
         {
             float destroyAreaScale = managerConfig.destroyAreaScale;
-            _destroyAreaWidth = cameraManager.GetCameraWidth() * destroyAreaScale;
-            _destroyAreaHeight = cameraManager.GetCameraHeight() * destroyAreaScale;
+            Rect cameraSize = cameraManager.GetCameraRect();
+            _destroyAreaWidth = cameraSize.width * destroyAreaScale;
+            _destroyAreaHeight = cameraSize.height * destroyAreaScale;
         }
         
         private void SetTimers()

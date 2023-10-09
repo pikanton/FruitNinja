@@ -63,10 +63,9 @@ namespace App.Scripts.Game.Spawners
             _relativeFirstAngle = firstAngle + spawnerAngle;
             _relativeSecondAngle = secondAngle + spawnerAngle;
 
-            float screenWidth = spawnersManager.cameraManager.GetCameraWidth();
-            float screenHeight = spawnersManager.cameraManager.GetCameraHeight();
-            SetPositionRelativeToScreen(screenWidth, screenHeight);
-            SetLengthRelativeToScreen(screenWidth, screenHeight);
+            Rect screenSize = spawnersManager.cameraManager.GetCameraRect();
+            SetPositionRelativeToScreen(screenSize.width, screenSize.height);
+            SetLengthRelativeToScreen(screenSize.width, screenSize.height);
         }
 
         private void SetPositionRelativeToScreen(float screenWidth, float screenHeight)

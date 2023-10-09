@@ -26,7 +26,7 @@ namespace App.Scripts.Game.Block
             _initialScale = transform.localScale;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             PlayAnimation();
         }
@@ -57,7 +57,7 @@ namespace App.Scripts.Game.Block
 
         private void Rotate()
         {
-            float finalRotationAngle = rotateAngle * _rotationDirection;
+            float finalRotationAngle = rotateAngle * _rotationDirection * Time.deltaTime;
             transform.Rotate(Vector3.forward * finalRotationAngle);
         }
 

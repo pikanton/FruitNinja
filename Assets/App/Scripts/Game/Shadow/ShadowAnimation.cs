@@ -17,7 +17,7 @@ namespace App.Scripts.Game.Shadow
             InitializeInitialValues();
         }
         
-        private void FixedUpdate()
+        private void Update()
         {
             UpdateScale();
             UpdatePosition();

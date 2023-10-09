@@ -6,14 +6,15 @@ namespace App.Scripts.Game.Camera
     {
         public UnityEngine.Camera camera;
         
-        public float GetCameraHeight()
+        public Rect GetCameraRect()
         {
-            return camera.orthographicSize * 2f;
-        }
-        
-        public float GetCameraWidth()
-        {
-            return GetCameraHeight() * camera.aspect;
+            float cameraHeight = camera.orthographicSize * 2f;
+            float cameraWidth = cameraHeight * camera.aspect;
+    
+            float halfCameraWidth = cameraWidth * 0.5f;
+            float halfCameraHeight = cameraHeight * 0.5f;
+    
+            return new Rect(-halfCameraWidth, -halfCameraHeight, cameraWidth, cameraHeight);
         }
     }
 }
