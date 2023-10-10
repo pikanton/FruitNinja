@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
-using App.Scripts.Game.Camera;
+using App.Scripts.Game.CameraProperties;
 using App.Scripts.Game.Configs;
 
 namespace App.Scripts.Game.Spawners
@@ -14,38 +14,27 @@ namespace App.Scripts.Game.Spawners
 
         public SpawnersManagerConfig managerConfig;
 
-        private List<GameObject> _spawnedBlocks;
+        public List<GameObject> spawnedBlocks;
         private int _currentBlockCountInStack;
         private int _spawnedBlockCount;
         private float _nextDifficultyIncreaseTime;
-        private float _currentReductionTimeFactor;
+        private float _currentReductionTimeFactor = 1f;
         private float _spawnRateReductionFactor;
         private float _nextStackSpawnTime;
         private float _nextBlockSpawnTime;
-        private float _destroyAreaWidth;
-        private float _destroyAreaHeight;
+
         
         public void Initialize()
         {
-            _spawnedBlocks = new List<GameObject>();
-            SetDestroyArea();
+            spawnedBlocks = new List<GameObject>();
             SetBlockCounts();
             SetTimers();
-        }
-
-        private void SetDestroyArea()
-        {
-            float destroyAreaScale = managerConfig.destroyAreaScale;
-            Rect cameraSize = cameraManager.GetCameraRect();
-            _destroyAreaWidth = cameraSize.width * destroyAreaScale;
-            _destroyAreaHeight = cameraSize.height * destroyAreaScale;
         }
         
         private void SetTimers()
         {
             float startSpawnDelay = managerConfig.startSpawnDelay;
             float difficultyIncreaseTime = managerConfig.difficultyIncreaseTime;
-            _currentReductionTimeFactor = 1f;
             _nextStackSpawnTime = Time.time + startSpawnDelay;
             _nextDifficultyIncreaseTime = Time.time + startSpawnDelay + difficultyIncreaseTime;
         }
@@ -54,28 +43,10 @@ namespace App.Scripts.Game.Spawners
         {
             int minBlockCountInStack = managerConfig.minBlockCountInStack;
             _currentBlockCountInStack = minBlockCountInStack;
-            _spawnedBlockCount = 0;
-        }
-        
-        private void OnDrawGizmos()
-        {
-            SetDestroyArea();
-            DrawDestroyArea();
-        }
-
-        private void DrawDestroyArea()
-        {
-            Gizmos.color = Color.red;
-            
-            Vector3 centerOfScreen = Vector3.zero;
-            Vector3 sizeOfDestroyArea = new Vector3(_destroyAreaWidth, _destroyAreaHeight, 0f);
-            
-            Gizmos.DrawWireCube(centerOfScreen, sizeOfDestroyArea);
         }
         
         private void Update()
         {
-            DestroyBlocks();
             MakeMoreDifficult();
             SpawnStacks();
         }
@@ -111,33 +82,9 @@ namespace App.Scripts.Game.Spawners
             float spawnAngle = randomSpawner.GetRandomAngle();
             Quaternion spawnRotation = Quaternion.Euler(0f, 0f, spawnAngle);
             GameObject newBlock = Instantiate(blockPrefab, spawnPosition, spawnRotation);
-            _spawnedBlocks.Add(newBlock);
+            spawnedBlocks.Add(newBlock);
         }
         
-        private void DestroyBlocks()
-        {
-            for (int i = 0; i < _spawnedBlocks.Count; i++)
-            {
-                GameObject block = _spawnedBlocks[i];
-                if (IsOutOfScreen(block.transform))
-                {
-                    Destroy(block);
-                    _spawnedBlocks.RemoveAt(i);
-                }
-            }
-        }
-
-        private bool IsOutOfScreen(Transform blockTransform)
-        {
-            Vector3 position = blockTransform.position;
-            Rect destroyArea = cameraManager.GetCameraRect();
-            destroyArea.height *= managerConfig.destroyAreaScale;
-            destroyArea.width *= managerConfig.destroyAreaScale;
-            destroyArea.center = Vector2.zero;
-            
-            return !destroyArea.Contains(position);
-        }
-
         private void MakeMoreDifficult()
         {
             int maxBlockCountInStack = managerConfig.maxBlockCountInStack;

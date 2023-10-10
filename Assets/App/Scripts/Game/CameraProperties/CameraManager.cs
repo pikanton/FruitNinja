@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Game.Camera
+namespace App.Scripts.Game.CameraProperties
 {
     public class CameraManager : MonoBehaviour
     {
-        public UnityEngine.Camera camera;
+        public Camera camera;
         
         public Rect GetCameraRect()
         {
-            float cameraHeight = camera.orthographicSize * 2f;
+            float halfCameraHeight = camera.orthographicSize;
+            float cameraHeight = halfCameraHeight * 2f;
             float cameraWidth = cameraHeight * camera.aspect;
-    
             float halfCameraWidth = cameraWidth * 0.5f;
-            float halfCameraHeight = cameraHeight * 0.5f;
     
             return new Rect(-halfCameraWidth, -halfCameraHeight, cameraWidth, cameraHeight);
         }

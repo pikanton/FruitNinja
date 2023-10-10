@@ -52,8 +52,8 @@ namespace App.Scripts.Game.Shadow
             Vector3 fruitScale = blockTransform.localScale;
             Vector3 newOffset = new Vector3(
                 _initialShadowOffset.x + fruitScale.x - _initialBlockScale.x,
-                _initialShadowOffset.y - fruitScale.y + _initialBlockScale.y,
-                0);
+                _initialShadowOffset.y - fruitScale.y + _initialBlockScale.y
+                );
             return newOffset;
         }
 

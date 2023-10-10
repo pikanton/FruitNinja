@@ -13,7 +13,7 @@ namespace App.Scripts.Game.Spawners
         [Range(0f, 1.2f)]
         public float relativeSpawnerLength = 0.5f;
         [Range(-180f, 180f)]
-        public float spawnerAngle = 0f;
+        public float spawnerAngle;
         [Range(0f, 180f)]
         public float firstAngle = 30f;
         [Range(0f, 180f)]
@@ -60,16 +60,16 @@ namespace App.Scripts.Game.Spawners
             Rect screenSize = spawnersManager.cameraManager.GetCameraRect();
             Vector3 length = GetNormalizedVectorByAngle(spawnerAngle) * relativeSpawnerLength;
 
-            float xs = Mathf.Pow(length.x * screenSize.width, 2f);
-            float ys = Mathf.Pow(length.y * screenSize.height, 2f);
+            float squareOfNormalizedX = Mathf.Pow(length.x * screenSize.width, 2f);
+            float squareOfNormalizedY = Mathf.Pow(length.y * screenSize.height, 2f);
 
-            return Mathf.Sqrt(xs + ys);
+            return Mathf.Sqrt(squareOfNormalizedX + squareOfNormalizedY);
         }
 
         public Vector3 GetNormalizedVectorByAngle(float angleInDegrees)
         {
             float angleInRadians = angleInDegrees  * Mathf.Deg2Rad;
-            Vector3 vector = new Vector3(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians), 0f);
+            Vector3 vector = new Vector3(Mathf.Cos(angleInRadians), Mathf.Sin(angleInRadians));
             return vector;
         }
     }

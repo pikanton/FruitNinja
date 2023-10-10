@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bc1ad20c029d24b8c5f42bf5241e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialSpeed: 13
-  gravity: 9.8
+  physicsConfig: {fileID: 11400000, guid: 57c4881801996214289b4e03b4075663, type: 2}
 --- !u!1 &5698706068590153092
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,11 +1,11 @@
+using App.Scripts.Game.Configs;
 using UnityEngine;
 
 namespace App.Scripts.Game.Block
 {
     public class BlockMovement : MonoBehaviour
     {
-        public float initialSpeed = 13f;
-        public float gravity = 9.8f;
+        public PhysicsConfig physicsConfig;
 
         private float _initializeAngle;
         private Vector3 _initialVelocity;
@@ -26,7 +26,7 @@ namespace App.Scripts.Game.Block
         private void UpdatePosition()
         {
             _currentPosition += _initialVelocity * Time.deltaTime;
-            _initialVelocity.y -= gravity * Time.deltaTime;
+            _initialVelocity.y -= physicsConfig.gravity * Time.deltaTime;
           
             transform.position = _currentPosition;
         }
@@ -42,8 +42,8 @@ namespace App.Scripts.Game.Block
         private Vector3 GetInitialVelocity()
         {
             float radianAngle = Mathf.Deg2Rad * _initializeAngle;
-            float initialVelocityX = initialSpeed * Mathf.Cos(radianAngle);
-            float initialVelocityY = initialSpeed * Mathf.Sin(radianAngle);
+            float initialVelocityX = physicsConfig.initialSpeed * Mathf.Cos(radianAngle);
+            float initialVelocityY = physicsConfig.initialSpeed * Mathf.Sin(radianAngle);
             return new Vector3(initialVelocityX, initialVelocityY, 0f);
         }
     }

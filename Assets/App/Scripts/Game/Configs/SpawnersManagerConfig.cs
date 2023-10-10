@@ -1,9 +1,8 @@
-﻿using App.Scripts.Game.Camera;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace App.Scripts.Game.Configs
 {
-    [CreateAssetMenu(fileName = "SpawnerManager", menuName = "Configs", order = 0)]
+    [CreateAssetMenu(fileName = "SpawnerManagerConfig", menuName = "Configs/SpawnerManager", order = 0)]
     public class SpawnersManagerConfig : ScriptableObject
     {
         public float destroyAreaScale = 1.4f;
@@ -14,7 +13,7 @@ namespace App.Scripts.Game.Configs
         public float difficultyIncreaseTime = 5f;
         public float spawnReductionTimeFactor = 0.1f;
         public float stackSpawnTime = 4f;
-        public float blockSpawnTime = 0.4f;
+        public float blockSpawnTime = 0.2f;
         public float startSpawnDelay = 1f;
     }
 }
