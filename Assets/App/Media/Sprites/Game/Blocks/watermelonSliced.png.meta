@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50d1e7bb104540d4baa130951855ce38
+guid: 4fb126c0a2207de4587c41f3aedf494b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -115,18 +115,62 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: watermelonSliced_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 139.5
+        height: 219
+      alignment: 9
+      pivot: {x: 0.52093196, y: 0.47481483}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f9d0be85abc7534fa261c0610c6e0b8
+      internalID: 967070880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: watermelonSliced_1
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 0
+        width: 139.5
+        height: 219
+      alignment: 9
+      pivot: {x: 0.46743926, y: 0.49111116}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd5dcec04de3b0a429800fafc14dc00b
+      internalID: -1899607485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      watermelonSliced_0: 967070880
+      watermelonSliced_1: -1899607485
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

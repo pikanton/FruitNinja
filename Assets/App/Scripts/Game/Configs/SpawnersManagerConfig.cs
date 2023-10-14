@@ -10,6 +10,7 @@ namespace App.Scripts.Game.Configs
         public int minBlockCountInStack = 2;
         public int maxBlockCountInStack = 5;
 
+        public float blockInitialSpeed = 13f;
         public float difficultyIncreaseTime = 5f;
         public float spawnReductionTimeFactor = 0.1f;
         public float stackSpawnTime = 4f;

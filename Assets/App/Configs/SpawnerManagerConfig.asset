@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyAreaScale: 1.4
   minBlockCountInStack: 2
-  maxBlockCountInStack: 5
-  difficultyIncreaseTime: 5
-  spawnReductionTimeFactor: 0.1
+  maxBlockCountInStack: 6
+  blockInitialSpeed: 13
+  difficultyIncreaseTime: 3
+  spawnReductionTimeFactor: 0.15
   stackSpawnTime: 4
-  blockSpawnTime: 0.2
+  blockSpawnTime: 0.4
   startSpawnDelay: 1

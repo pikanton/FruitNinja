@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50d1e7bb104540d4baa130951855ce38
+guid: 357dee87f508ee746a950c23991d9320
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -115,18 +115,62 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: mangoSliced_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 118.5
+        height: 173
+      alignment: 9
+      pivot: {x: 0.59491163, y: 0.5251181}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da91571929c38e84facdb5b73706cbb5
+      internalID: 1795369475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mangoSliced_1
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 0
+        width: 118.5
+        height: 173
+      alignment: 9
+      pivot: {x: 0.40724522, y: 0.54284865}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f07cc0513199d1c479245c5da11ef15b
+      internalID: 367478593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      mangoSliced_0: 1651213823
+      mangoSliced_1: 2094135619
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

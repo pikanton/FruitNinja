@@ -5,7 +5,7 @@ namespace App.Scripts.Game.Spawners
 {
     public class Spawner : MonoBehaviour
     {
-        public SpawnersManager spawnersManager;
+        public SpawnersController spawnersController;
         [Range(-0.6f, 0.6f)]
         public float relativePositionX;
         [Range(-0.6f, 0.6f)]
@@ -46,7 +46,7 @@ namespace App.Scripts.Game.Spawners
         
         public Vector3 GetPositionRelativeToScreen()
         {
-            Rect screenSize = spawnersManager.cameraManager.GetCameraRect();
+            Rect screenSize = spawnersController.cameraController.GetCameraRect();
             Vector3 newPosition = new Vector3
             {
                 x = relativePositionX * screenSize.width,
@@ -57,7 +57,7 @@ namespace App.Scripts.Game.Spawners
         
         public float GetLengthRelativeToScreen()
         {
-            Rect screenSize = spawnersManager.cameraManager.GetCameraRect();
+            Rect screenSize = spawnersController.cameraController.GetCameraRect();
             Vector3 length = GetNormalizedVectorByAngle(spawnerAngle) * relativeSpawnerLength;
 
             float squareOfNormalizedX = Mathf.Pow(length.x * screenSize.width, 2f);
