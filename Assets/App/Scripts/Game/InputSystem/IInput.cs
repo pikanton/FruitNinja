@@ -1,4 +1,4 @@
-﻿namespace App.Scripts.Game.Controllers
+﻿namespace App.Scripts.Game.InputSystem
 {
     public interface IInput
     {

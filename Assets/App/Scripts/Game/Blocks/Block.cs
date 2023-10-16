@@ -1,7 +1,5 @@
-using System;
 using App.Scripts.Game.Configs;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.Game.Blocks
 {
@@ -11,6 +9,7 @@ namespace App.Scripts.Game.Blocks
         public SpriteRenderer spriteRenderer;
         public BlockMovement blockMovement;
         public BlockAnimation blockAnimation;
+        public ShadowAnimation shadowAnimation;
         public float colliderRadius = 1f;
         public float lifeTime = 100f;
 
@@ -20,6 +19,7 @@ namespace App.Scripts.Game.Blocks
             spriteRenderer.sprite = blockSprites.blockSprite;
             blockMovement.Initialize();
             blockAnimation.Initialize();
+            shadowAnimation.Initialize();
         }
     }
 }

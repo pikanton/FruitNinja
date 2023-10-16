@@ -11,7 +11,7 @@ namespace App.Scripts.Game.Blocks
         private Vector3 _initialShadowOffset;
         private Vector3 _initialBlockScale;
 
-        private void Start()
+        public void Initialize()
         {
             CopySpriteFromBlock();
             InitializeInitialValues();

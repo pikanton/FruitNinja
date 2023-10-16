@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Game.Controllers
+namespace App.Scripts.Game.InputSystem
 {
     public class WindowsInputController : IInput
     {

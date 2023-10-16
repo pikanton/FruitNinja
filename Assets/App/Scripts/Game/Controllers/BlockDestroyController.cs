@@ -2,7 +2,9 @@
 using App.Scripts.Game.Effects;
 using App.Scripts.Game.Configs;
 using App.Scripts.Game.Spawners;
+using App.Scripts.Game.UISystem;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace App.Scripts.Game.Controllers
 {
@@ -11,6 +13,7 @@ namespace App.Scripts.Game.Controllers
         public float halfBlockInitialSpeed = 6f;
         public float halfBlockLifeTime = 3f;
         public SpawnersController spawnersController;
+        public LiveBar liveBar;
         public Block blockPrefab;
         public Blot blotPrefab;
         public Juice juicePrefab;
@@ -52,7 +55,6 @@ namespace App.Scripts.Game.Controllers
             var halfBlock = Instantiate(blockPrefab, parentBlockTransform.position, Quaternion.identity);
             halfBlock.blockAnimation.transform.rotation = parentBlockTransform.rotation;
             halfBlock.blockSprites.blockSprite = halfBlockSprite;
-            halfBlock.blockAnimation.disableScaling = true;
             halfBlock.blockMovement.InitialSpeed = halfBlockInitialSpeed;
             halfBlock.blockMovement.InitialAngle = initialAngle;
             halfBlock.lifeTime = halfBlockLifeTime;
@@ -83,7 +85,12 @@ namespace App.Scripts.Game.Controllers
                 {
                     Destroy(block.gameObject);
                     spawnersController.spawnedBlocks.blockList.RemoveAt(i);
+                    liveBar.RemoveLive();
                 }
+            }
+            if (liveBar.CurrentLiveCount <= 0)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
 

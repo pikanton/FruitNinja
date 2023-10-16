@@ -56,6 +56,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 2384882795735065206}
   blockMovement: {fileID: 5168158349399883410}
   blockAnimation: {fileID: 4081533712971989492}
+  shadowAnimation: {fileID: 8119713049167168495}
   colliderRadius: 1
   lifeTime: 100
 --- !u!114 &5168158349399883410
@@ -268,7 +269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8108f60adf143b641ac8995dc1aaa1d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disableScaling: 0
   rotateAngle: 120
   targetIncreaseScale: 1.3
   targetDecreaseScale: 0.8
