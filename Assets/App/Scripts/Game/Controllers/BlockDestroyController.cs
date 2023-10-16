@@ -10,13 +10,13 @@ namespace App.Scripts.Game.Controllers
 {
     public class BlockDestroyController : MonoBehaviour
     {
-        public float halfBlockInitialSpeed = 6f;
-        public float halfBlockLifeTime = 3f;
-        public SpawnersController spawnersController;
-        public LiveBar liveBar;
-        public Block blockPrefab;
-        public Blot blotPrefab;
-        public Juice juicePrefab;
+        [SerializeField] private float halfBlockInitialSpeed = 6f;
+        [SerializeField] private float halfBlockLifeTime = 3f;
+        [SerializeField] private SpawnersController spawnersController;
+        [SerializeField] private LiveBar liveBar;
+        [SerializeField] private Block blockPrefab;
+        [SerializeField] private Blot blotPrefab;
+        [SerializeField] private Juice juicePrefab;
         public void SliceBlock(Block block, Vector3 direction)
         {
             float sliceAngle = Mathf.Atan(direction.y / direction.x) * Mathf.Rad2Deg;

@@ -4,9 +4,9 @@ namespace App.Scripts.Game.Blocks
 {
     public class ShadowAnimation : MonoBehaviour
     {
-        public Transform blockTransform;
-        public SpriteRenderer blockSpriteRenderer;
-        public SpriteRenderer shadowSpriteRenderer;
+        [SerializeField] private Transform blockTransform;
+        [SerializeField] private SpriteRenderer blockSpriteRenderer;
+        [SerializeField] private SpriteRenderer shadowSpriteRenderer;
 
         private Vector3 _initialShadowOffset;
         private Vector3 _initialBlockScale;

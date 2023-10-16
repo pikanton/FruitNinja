@@ -4,8 +4,9 @@ namespace App.Scripts.Game.Effects
 {
     public class Blot : MonoBehaviour
     {
-        public float lifeTime = 6f;
-        public SpriteRenderer spriteRenderer;
+        [SerializeField] private float lifeTime = 6f;
+        [SerializeField] public SpriteRenderer spriteRenderer;
+        
         private float _initialTime;
         private Color _initialColor;
 

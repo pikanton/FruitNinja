@@ -5,7 +5,7 @@ namespace App.Scripts.Game.EditorGizmos
 {
     public class DestroyAreaGizmos : MonoBehaviour
     {
-        public BlockDestroyController blockDestroyController;
+        [SerializeField] private BlockDestroyController blockDestroyController;
         private void OnDrawGizmos()
         {
             DrawDestroyArea();

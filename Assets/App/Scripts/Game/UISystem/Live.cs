@@ -5,6 +5,6 @@ namespace App.Scripts.Game.UISystem
 {
     public class Live : MonoBehaviour
     {
-        public Image image;
+        [SerializeField] public Image image;
     }
 }

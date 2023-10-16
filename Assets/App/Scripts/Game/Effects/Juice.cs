@@ -4,7 +4,7 @@ namespace App.Scripts.Game.Effects
 {
     public class Juice : MonoBehaviour
     {
-        public ParticleSystem juiceParticle;
+        [SerializeField] private ParticleSystem juiceParticle;
 
         public void Initialize(Color color)
         {

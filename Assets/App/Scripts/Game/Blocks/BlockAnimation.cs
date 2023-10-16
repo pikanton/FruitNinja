@@ -7,11 +7,10 @@ namespace App.Scripts.Game.Blocks
 {
     public class BlockAnimation : MonoBehaviour
     {
-        public float rotateAngle = 2.0f;
-
-        public float targetIncreaseScale = 1.3f;
-        public float targetDecreaseScale = 0.8f;
-        public float scalingDuration = 4.0f;
+        [SerializeField] private float rotateAngle = 2.0f;
+        [SerializeField] private float targetIncreaseScale = 1.3f;
+        [SerializeField] private float targetDecreaseScale = 0.8f;
+        [SerializeField] private float scalingDuration = 4.0f;
 
         private Action _selectedAnimation;
         private Vector3 _initialScale;

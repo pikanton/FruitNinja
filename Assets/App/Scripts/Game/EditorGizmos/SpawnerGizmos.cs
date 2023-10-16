@@ -5,10 +5,10 @@ namespace App.Scripts.Game.EditorGizmos
 {
     public class SpawnerGizmos : MonoBehaviour
     {
-        public Spawner spawner;
+        [SerializeField] private Spawner spawner;
 
-        public Color color = Color.black;
-        public float angleDrawLength = 2f;
+        [SerializeField] private Color color = Color.black;
+        [SerializeField] private float angleDrawLength = 2f;
 
         private void OnDrawGizmos()
         {

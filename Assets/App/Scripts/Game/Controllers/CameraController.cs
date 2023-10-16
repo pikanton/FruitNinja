@@ -4,7 +4,7 @@ namespace App.Scripts.Game.Controllers
 {
     public class CameraController : MonoBehaviour
     {
-        public Camera camera;
+        [SerializeField] private Camera camera;
         
         public Rect GetCameraRect()
         {

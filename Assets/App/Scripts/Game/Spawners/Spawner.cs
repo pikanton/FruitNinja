@@ -5,20 +5,20 @@ namespace App.Scripts.Game.Spawners
 {
     public class Spawner : MonoBehaviour
     {
-        public SpawnersController spawnersController;
+        [SerializeField] private SpawnersController spawnersController;
         [Range(-0.6f, 0.6f)]
-        public float relativePositionX;
+        [SerializeField] private float relativePositionX;
         [Range(-0.6f, 0.6f)]
-        public float relativePositionY;
+        [SerializeField] private float relativePositionY;
         [Range(0f, 1.2f)]
-        public float relativeSpawnerLength = 0.5f;
+        [SerializeField] private float relativeSpawnerLength = 0.5f;
         [Range(-180f, 180f)]
-        public float spawnerAngle;
+        [SerializeField] public float spawnerAngle;
         [Range(0f, 180f)]
-        public float firstAngle = 30f;
+        [SerializeField] public float firstAngle = 30f;
         [Range(0f, 180f)]
-        public float secondAngle = 60f;
-        public float probability = 1f;
+        [SerializeField] public float secondAngle = 60f;
+        [SerializeField] public float probability = 1f;
 
         public float GetRandomAngle()
         {

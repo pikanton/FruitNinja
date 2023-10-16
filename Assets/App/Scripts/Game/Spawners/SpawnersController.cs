@@ -9,12 +9,12 @@ namespace App.Scripts.Game.Spawners
 {
     public class SpawnersController : MonoBehaviour
     {
-        public CameraController cameraController;
-        public Block blockPrefab;
-        public List<Spawner> spawners;
-        public BlockSpriteConfig blockSprite;
-        public SpawnersManagerConfig managerConfig;
-        public BlockList spawnedBlocks;
+        [SerializeField] private Block blockPrefab;
+        [SerializeField] private List<Spawner> spawners;
+        [SerializeField] private BlockSpriteConfig blockSprite;
+        [SerializeField] public CameraController cameraController;
+        [SerializeField] public SpawnersManagerConfig managerConfig;
+        [SerializeField] public BlockList spawnedBlocks;
         
         private int _currentBlockCountInStack;
         private int _spawnedBlockCount;

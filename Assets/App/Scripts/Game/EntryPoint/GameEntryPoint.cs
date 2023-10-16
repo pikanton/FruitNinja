@@ -8,9 +8,9 @@ namespace App.Scripts.Game.EntryPoint
 {
     public class GameEntryPoint : MonoBehaviour
     {
-        public SpawnersController spawnersController;
-        public BladeController bladeController;
-        public LiveBar liveBar;
+        [SerializeField] private SpawnersController spawnersController;
+        [SerializeField] private BladeController bladeController;
+        [SerializeField] private LiveBar liveBar;
         private void Awake()
         {
             IInput inputController = GetInputController();

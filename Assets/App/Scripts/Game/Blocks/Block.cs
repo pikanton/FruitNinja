@@ -5,13 +5,13 @@ namespace App.Scripts.Game.Blocks
 {
     public class Block : MonoBehaviour
     {
-        public BlockSpriteConfig.BlockSprites blockSprites;
-        public SpriteRenderer spriteRenderer;
-        public BlockMovement blockMovement;
-        public BlockAnimation blockAnimation;
-        public ShadowAnimation shadowAnimation;
-        public float colliderRadius = 1f;
-        public float lifeTime = 100f;
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private ShadowAnimation shadowAnimation;
+        [SerializeField] public BlockSpriteConfig.BlockSprites blockSprites;
+        [SerializeField] public BlockMovement blockMovement;
+        [SerializeField] public BlockAnimation blockAnimation;
+        [SerializeField] public float colliderRadius = 1f;
+        [SerializeField] public float lifeTime = 100f;
 
         public void Initialize()
         {

@@ -5,7 +5,7 @@ namespace App.Scripts.Game.Blocks
 {
     public class BlockMovement : MonoBehaviour
     {
-        public PhysicsConfig physicsConfig;
+        [SerializeField] private PhysicsConfig physicsConfig;
         public float InitialSpeed { get; set; }
         public float InitialAngle { get; set; }
         

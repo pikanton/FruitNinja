@@ -5,8 +5,8 @@ namespace App.Scripts.Game.UISystem
 {
     public class LiveBar : MonoBehaviour
     {
-        public List<Live> liveList;
-        [Range(0, 7)] public int liveCount = 3;
+        [SerializeField] private List<Live> liveList;
+        [Range(0, 7)] [SerializeField] private int liveCount = 3;
         public int CurrentLiveCount { get; private set; }
 
         public void Initialize()

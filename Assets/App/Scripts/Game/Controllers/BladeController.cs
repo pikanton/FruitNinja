@@ -6,11 +6,11 @@ namespace App.Scripts.Game.Controllers
 {
     public class BladeController : MonoBehaviour
     {
-        public Camera camera;
-        public TrailRenderer trail;
-        public float minSliceVelocity = 0.01f;
-        public BlockList spawnedBlocks;
-        public BlockDestroyController blockDestroyController;
+        [SerializeField] private Camera camera;
+        [SerializeField] private TrailRenderer trail;
+        [SerializeField] private float minSliceVelocity = 0.01f;
+        [SerializeField] private BlockList spawnedBlocks;
+        [SerializeField] private BlockDestroyController blockDestroyController;
         
         private Vector3 _direction;
         private bool _isSlicing;
