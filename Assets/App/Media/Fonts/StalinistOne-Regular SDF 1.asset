@@ -57,11 +57,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: StalinistOne-Regular SDF
+  m_Name: StalinistOne-Regular SDF 1
   m_EditorClassIdentifier: 
-  hashCode: 1331884033
+  hashCode: -1277235184
   material: {fileID: 2310806532108228765}
-  materialHashCode: 163274241
+  materialHashCode: -1774533200
   m_Version: 1.1.0
   m_SourceFontFileGUID: cfce3d382db329e468c48bb4d50ed4d0
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: cfce3d382db329e468c48bb4d50ed4d0, type: 3}
@@ -2669,7 +2669,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FaceTex:
-        m_Texture: {fileID: 2800000, guid: 10e192a133156e54d8483fee4e18e770, type: 3}
+        m_Texture: {fileID: 2800000, guid: d5a2ead22d332b04ba3fef7194cd8bbb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -2677,7 +2677,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OutlineTex:
-        m_Texture: {fileID: 10305, guid: 0000000000000000f000000000000000, type: 0}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -2707,7 +2707,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.249
+    - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333

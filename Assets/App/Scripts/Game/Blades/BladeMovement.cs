@@ -1,16 +1,14 @@
-﻿using App.Scripts.Game.Blocks;
-using App.Scripts.Game.InputSystem;
+﻿using App.Scripts.Game.InputSystem;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace App.Scripts.Game.Controllers
+namespace App.Scripts.Game.Blades
 {
-    public class BladeController : MonoBehaviour
+    public class BladeMovement : MonoBehaviour
     {
         [SerializeField] private Camera camera;
         [SerializeField] private TrailRenderer trail;
-        [SerializeField] private float minSliceVelocity = 0.01f;
-        [SerializeField] private BlockList spawnedBlocks;
-        [SerializeField] private BlockDestroyController blockDestroyController;
+        [SerializeField] private SliceManager sliceManager;
         
         private Vector3 _direction;
         private bool _isSlicing;
@@ -55,23 +53,8 @@ namespace App.Scripts.Game.Controllers
         {
             Vector3 newPosition = GetNewPosition();
             _direction = newPosition - transform.position;
-            float velocity = _direction.magnitude / Time.deltaTime;
             transform.position = newPosition;
-            
-            if (velocity > minSliceVelocity)
-            {
-                for (int i = 0; i < spawnedBlocks.blockList.Count; i++)
-                {
-                    Block block = spawnedBlocks.blockList[i];
-                    Vector3 blockPosition = block.transform.position;
-                    Vector3 bladePosition = transform.position;
-                    if (Vector3.Distance(blockPosition, bladePosition) < block.colliderRadius)
-                    {
-                        spawnedBlocks.blockList.RemoveAt(i);
-                        blockDestroyController.SliceBlock(block, _direction);
-                    }
-                }
-            }
+            sliceManager.CheckBlocksToSlice(_direction);
         }
 
         private Vector3 GetNewPosition()

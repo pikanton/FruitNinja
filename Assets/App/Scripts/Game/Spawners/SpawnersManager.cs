@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using App.Scripts.Game.Blocks;
 using Random = UnityEngine.Random;
 using App.Scripts.Game.Configs;
-using App.Scripts.Game.Controllers;
+using App.Scripts.Game.SceneManagers;
 
 namespace App.Scripts.Game.Spawners
 {
-    public class SpawnersController : MonoBehaviour
+    public class SpawnersManager : MonoBehaviour
     {
         [SerializeField] private Block blockPrefab;
         [SerializeField] private List<Spawner> spawners;
-        [SerializeField] private BlockSpriteConfig blockSprite;
-        [SerializeField] public CameraController cameraController;
-        [SerializeField] public SpawnersManagerConfig managerConfig;
+        [SerializeField] private BlockConfig blockConfig;
+        [SerializeField] private SpawnersManagerConfig managerConfig;
+        [SerializeField] public CameraManager cameraManager;
         [SerializeField] public BlockList spawnedBlocks;
         
         private int _currentBlockCountInStack;
@@ -82,14 +82,9 @@ namespace App.Scripts.Game.Spawners
             float spawnAngle = randomSpawner.GetRandomAngle();
             
             var newBlock = Instantiate(blockPrefab, spawnPosition, Quaternion.identity, spawnedBlocks.gameObject.transform);
-            var containerBlock = blockSprite.GetRandomBlockView();
-            newBlock.blockSprites = containerBlock;
-            
-            newBlock.blockMovement.InitialAngle = spawnAngle;
-            newBlock.blockMovement.InitialSpeed = managerConfig.blockInitialSpeed;
-            
-            newBlock.Initialize();
-            spawnedBlocks.blockList.Add(newBlock);
+            newBlock.blockProperties = blockConfig.GetRandomBlockView();
+            newBlock.Initialize(managerConfig.blockInitialSpeed, spawnAngle);
+            spawnedBlocks.spawnedBlocks.Add(newBlock);
         }
         
         private void MakeMoreDifficult()

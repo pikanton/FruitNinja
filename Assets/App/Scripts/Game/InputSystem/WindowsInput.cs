@@ -2,7 +2,7 @@
 
 namespace App.Scripts.Game.InputSystem
 {
-    public class WindowsInputController : IInput
+    public class WindowsInput : IInput
     {
         public bool GetPress()
         {

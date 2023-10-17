@@ -227,6 +227,7 @@ MonoBehaviour:
   - {fileID: 1092876686}
   - {fileID: 82404256}
   - {fileID: 1717478468}
+  animationDuration: 0.2
   liveCount: 5
 --- !u!1 &82404253
 GameObject:
@@ -257,7 +258,7 @@ RectTransform:
   m_GameObject: {fileID: 82404253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2336889}
@@ -275,7 +276,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 82404253}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -310,7 +311,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f273647b1c944c2b6dd72c214e491ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 82404255}
 --- !u!222 &82404257
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6e4a3e1f69457d9ab4a82a9e85997b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnersController: {fileID: 1275566201}
+  spawnersManager: {fileID: 1275566201}
   relativePositionX: -0.25
   relativePositionY: -0.6
   relativeSpawnerLength: 0.3
@@ -799,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6e4a3e1f69457d9ab4a82a9e85997b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnersController: {fileID: 1275566201}
+  spawnersManager: {fileID: 1275566201}
   relativePositionX: 0.25
   relativePositionY: -0.6
   relativeSpawnerLength: 0.3
@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd646283d6d640a0b1fbfacc4b283ffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockList: []
+  spawnedBlocks: []
 --- !u!1 &717460747
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,7 +984,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f273647b1c944c2b6dd72c214e491ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 761853884}
 --- !u!222 &761853886
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1053,7 +1052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6e4a3e1f69457d9ab4a82a9e85997b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnersController: {fileID: 1275566201}
+  spawnersManager: {fileID: 1275566201}
   relativePositionX: 0.6
   relativePositionY: -0.2
   relativeSpawnerLength: 0.3
@@ -1121,7 +1120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f6e4a3e1f69457d9ab4a82a9e85997b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnersController: {fileID: 1275566201}
+  spawnersManager: {fileID: 1275566201}
   relativePositionX: -0.6
   relativePositionY: -0.2
   relativeSpawnerLength: 0.2
@@ -1226,7 +1225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f273647b1c944c2b6dd72c214e491ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 1092876685}
 --- !u!222 &1092876687
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1261,8 +1259,9 @@ GameObject:
   - component: {fileID: 1236873846}
   - component: {fileID: 1236873848}
   - component: {fileID: 1236873847}
+  - component: {fileID: 1236873849}
   m_Layer: 0
-  m_Name: Score
+  m_Name: ScoreBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1287,7 +1286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.023535872, y: 0.8463021}
   m_AnchorMax: {x: 0.5477321, y: 0.9565105}
-  m_AnchoredPosition: {x: -1, y: 3}
+  m_AnchoredPosition: {x: -0.9998779, y: 3}
   m_SizeDelta: {x: -23.606, y: 24.79}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1236873847
@@ -1328,6 +1327,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1236873845}
   m_CullTransparentMesh: 1
+--- !u!114 &1236873849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236873845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 088b2d580ceb4122b651e6bbafacf781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreTextMeshPro: {fileID: 1870565977}
+  recordTextMeshPro: {fileID: 2135998621}
+  scoreAnimationDuration: 0.5
+  prefix: 'Best:'
 --- !u!1 &1275566200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1339,7 +1354,7 @@ GameObject:
   - component: {fileID: 1275566202}
   - component: {fileID: 1275566201}
   m_Layer: 0
-  m_Name: SpawnersController
+  m_Name: SpawnersManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1357,15 +1372,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beddad76beae481187a37904d413f54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraController: {fileID: 519420033}
   blockPrefab: {fileID: 8466357463137494742, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
   spawners:
   - {fileID: 160395370}
   - {fileID: 528448011}
   - {fileID: 832483869}
   - {fileID: 795057599}
-  blockSprite: {fileID: 11400000, guid: 6bcc9abd9e262f44e888facb4aa8d5ba, type: 2}
+  blockConfig: {fileID: 11400000, guid: 6bcc9abd9e262f44e888facb4aa8d5ba, type: 2}
   managerConfig: {fileID: 11400000, guid: 5526930c8ebed52409e3a93b7cc56b0d, type: 2}
+  cameraManager: {fileID: 519420033}
   spawnedBlocks: {fileID: 703178827}
 --- !u!4 &1275566202
 Transform:
@@ -1651,7 +1666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f273647b1c944c2b6dd72c214e491ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 1649579496}
 --- !u!222 &1649579498
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1685,6 +1699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1711068972}
   - component: {fileID: 1711068971}
+  - component: {fileID: 1711068973}
   m_Layer: 0
   m_Name: Blade
   m_TagString: Untagged
@@ -1706,9 +1721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 519420031}
   trail: {fileID: 1588382543}
-  minSliceVelocity: 25
-  spawnedBlocks: {fileID: 703178827}
-  blockDestroyController: {fileID: 1946871764}
+  sliceManager: {fileID: 1711068973}
 --- !u!4 &1711068972
 Transform:
   m_ObjectHideFlags: 0
@@ -1725,6 +1738,28 @@ Transform:
   m_Father: {fileID: 717460748}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1711068973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711068969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d160e1459bb4b0fa97aad3abe472b72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreAmount: 75
+  minSliceVelocity: 25
+  halfBlockLifeTime: 3
+  halfBlockInitialSpeed: 6
+  spawnedBlocks: {fileID: 703178827}
+  blockPrefab: {fileID: 8466357463137494742, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
+  blotPrefab: {fileID: 7562959973513577880, guid: 2e8bdf39065a73f469306fbabdc638fe, type: 3}
+  juicePrefab: {fileID: 3294425700205250769, guid: 3831f28c06f2cc04e92cc2609df6eb34, type: 3}
+  scoreBar: {fileID: 1236873849}
+  scoreLabel: {fileID: 1721607615366031755, guid: 9fd3f84f1b30bd442ad9a54b7fec5083, type: 3}
 --- !u!1 &1717478465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,7 +1789,7 @@ RectTransform:
   m_GameObject: {fileID: 1717478465}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2336889}
@@ -1772,7 +1807,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717478465}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1807,7 +1842,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f273647b1c944c2b6dd72c214e491ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 1717478467}
 --- !u!222 &1717478469
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1860,9 +1894,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f1c2ee5a434bddb1d0e1b73e169e9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnersController: {fileID: 1275566201}
-  bladeController: {fileID: 1711068971}
+  spawnersManager: {fileID: 1275566201}
+  bladeMovement: {fileID: 1711068971}
   liveBar: {fileID: 2336892}
+  scoreBar: {fileID: 1236873849}
 --- !u!4 &1810082703
 Transform:
   m_ObjectHideFlags: 0
@@ -1890,7 +1925,7 @@ GameObject:
   - component: {fileID: 1870565978}
   - component: {fileID: 1870565977}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1938,8 +1973,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b93efe47f7632bd4ebf52e0f91d5a229, type: 2}
-  m_sharedMaterial: {fileID: 2310806532108228765, guid: b93efe47f7632bd4ebf52e0f91d5a229, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8d7afc418d0284c4eb0640aa6d328bf9, type: 2}
+  m_sharedMaterial: {fileID: 2310806532108228765, guid: 8d7afc418d0284c4eb0640aa6d328bf9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2095,7 +2130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f273647b1c944c2b6dd72c214e491ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 1908230974}
 --- !u!222 &1908230976
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2201,7 +2235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f273647b1c944c2b6dd72c214e491ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 1943649343}
 --- !u!222 &1943649345
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2270,13 +2303,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e2c8afd0fad4b84a98d666019738516, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  halfBlockInitialSpeed: 6
-  halfBlockLifeTime: 3
-  spawnersController: {fileID: 1275566201}
+  managerConfig: {fileID: 11400000, guid: 5526930c8ebed52409e3a93b7cc56b0d, type: 2}
+  cameraManager: {fileID: 519420033}
+  blockList: {fileID: 703178827}
   liveBar: {fileID: 2336892}
-  blockPrefab: {fileID: 8466357463137494742, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-  blotPrefab: {fileID: 7562959973513577880, guid: 2e8bdf39065a73f469306fbabdc638fe, type: 3}
-  juicePrefab: {fileID: 3294425700205250769, guid: 3831f28c06f2cc04e92cc2609df6eb34, type: 3}
 --- !u!114 &1946871765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2289,7 +2319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6140503631304e37b6ce82cfca3bc7ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockDestroyController: {fileID: 1946871764}
+  blockDestroyManager: {fileID: 1946871764}
 --- !u!1 &2135998619
 GameObject:
   m_ObjectHideFlags: 0
@@ -2302,7 +2332,7 @@ GameObject:
   - component: {fileID: 2135998622}
   - component: {fileID: 2135998621}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Record
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2357,8 +2387,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278224687
-  m_fontColor: {r: 0.18551676, g: 0.5283019, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 0
   m_fontColorGradient:

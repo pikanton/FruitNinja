@@ -1,11 +1,11 @@
-﻿using App.Scripts.Game.Controllers;
+﻿using App.Scripts.Game.SceneManagers;
 using UnityEngine;
 
 namespace App.Scripts.Game.EditorGizmos
 {
     public class DestroyAreaGizmos : MonoBehaviour
     {
-        [SerializeField] private BlockDestroyController blockDestroyController;
+        [SerializeField] private BlockDestroyManager blockDestroyManager;
         private void OnDrawGizmos()
         {
             DrawDestroyArea();
@@ -16,7 +16,7 @@ namespace App.Scripts.Game.EditorGizmos
             Gizmos.color = Color.red;
             
             Vector3 centerOfScreen = Vector3.zero;
-            Rect destroyArea = blockDestroyController.GetDestroyAreaRect();
+            Rect destroyArea = blockDestroyManager.GetDestroyAreaRect();
             Vector3 sizeOfDestroyArea = new Vector3(destroyArea.width, destroyArea.height, 0f);
             
             Gizmos.DrawWireCube(centerOfScreen, sizeOfDestroyArea);

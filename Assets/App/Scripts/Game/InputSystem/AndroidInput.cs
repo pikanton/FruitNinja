@@ -2,7 +2,7 @@
 
 namespace App.Scripts.Game.InputSystem
 {
-    public class AndroidInputController : IInput
+    public class AndroidInput : IInput
     {
         public bool GetPress()
         {

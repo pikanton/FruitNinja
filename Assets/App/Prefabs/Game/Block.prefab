@@ -47,17 +47,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecb7393c2ae54ca686a440b37ff76d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockSprites:
+  spriteRenderer: {fileID: 2384882795735065206}
+  shadowAnimation: {fileID: 8119713049167168495}
+  blockMovement: {fileID: 5168158349399883410}
+  blockAnimation: {fileID: 4081533712971989492}
+  blockCollider: {fileID: 7032632501634162382}
+  blockProperties:
     blockSprite: {fileID: 0}
     blockLeftHalf: {fileID: 0}
     blockRightHalf: {fileID: 0}
     blotSprite: {fileID: 0}
     juiceColor: {r: 0, g: 0, b: 0, a: 0}
-  spriteRenderer: {fileID: 2384882795735065206}
-  blockMovement: {fileID: 5168158349399883410}
-  blockAnimation: {fileID: 4081533712971989492}
-  shadowAnimation: {fileID: 8119713049167168495}
-  colliderRadius: 1
+    colliderRadius: 0
   lifeTime: 100
 --- !u!114 &5168158349399883410
 MonoBehaviour:
@@ -183,6 +184,7 @@ GameObject:
   - component: {fileID: 1507874389306677131}
   - component: {fileID: 2384882795735065206}
   - component: {fileID: 4081533712971989492}
+  - component: {fileID: 7032632501634162382}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -273,3 +275,15 @@ MonoBehaviour:
   targetIncreaseScale: 1.3
   targetDecreaseScale: 0.8
   scalingDuration: 3
+--- !u!114 &7032632501634162382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6167126529915442200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e60f945b3326452cb1f8e310d5704ed1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

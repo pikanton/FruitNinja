@@ -6,14 +6,16 @@ namespace App.Scripts.Game.Blocks
     public class BlockMovement : MonoBehaviour
     {
         [SerializeField] private PhysicsConfig physicsConfig;
-        public float InitialSpeed { get; set; }
-        public float InitialAngle { get; set; }
         
+        private float _initialSpeed;
+        private float _initialAngle;
         private Vector3 _initialVelocity;
         private Vector3 _currentPosition;
         
-        public void Initialize()
+        public void Initialize(float initialSpeed = 0f, float initialAngle = 0f)
         {
+            _initialSpeed = initialSpeed;
+            _initialAngle = initialAngle;
             _initialVelocity = GetInitialVelocity();
             _currentPosition = transform.position;
         }
@@ -28,9 +30,9 @@ namespace App.Scripts.Game.Blocks
 
         private Vector3 GetInitialVelocity()
         {
-            float radianAngle = Mathf.Deg2Rad * InitialAngle;
-            float initialVelocityX = InitialSpeed * Mathf.Cos(radianAngle);
-            float initialVelocityY = InitialSpeed * Mathf.Sin(radianAngle);
+            float radianAngle = Mathf.Deg2Rad * _initialAngle;
+            float initialVelocityX = _initialSpeed * Mathf.Cos(radianAngle);
+            float initialVelocityY = _initialSpeed * Mathf.Sin(radianAngle);
             return new Vector3(initialVelocityX, initialVelocityY, 0f);
         }
     }

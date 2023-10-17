@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Game.Controllers
+namespace App.Scripts.Game.SceneManagers
 {
-    public class CameraController : MonoBehaviour
+    public class CameraManager : MonoBehaviour
     {
         [SerializeField] private Camera camera;
         
