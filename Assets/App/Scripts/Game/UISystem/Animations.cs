@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace App.Scripts.Game.UISystem
 {
     public class Animations
     {
+        public event Action OnScaleAnimationComplete;
         public IEnumerator ScaleAnimation(Transform targetTransform, Vector3 targetScale, float animationDuration)
         {
             float elapsedTime = 0;
@@ -17,8 +19,8 @@ namespace App.Scripts.Game.UISystem
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
-
             targetTransform.localScale = targetScale;
+            OnScaleAnimationComplete?.Invoke(); 
         }
         
         public IEnumerator AnimateValueChange(int startValue, int amount, float valueAnimationDuration,

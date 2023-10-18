@@ -15,8 +15,7 @@ namespace App.Scripts.Game.Blades
         [SerializeField] private Block blockPrefab;
         [SerializeField] private Blot blotPrefab;
         [SerializeField] private Juice juicePrefab;
-        [SerializeField] private ScoreBar scoreBar;
-        [SerializeField] private ScoreLabel scoreLabel;
+        [SerializeField] private ScoreManager scoreManager;
 
         public void CheckBlocksToSlice(Vector3 direction)
         {
@@ -50,16 +49,11 @@ namespace App.Scripts.Game.Blades
             float rightBlockOrthogonalAngle = sliceAngle - 90f;
             CreateHalfBlock(block, blockProperties.blockLeftHalf, leftBlockOrthogonalAngle);
             CreateHalfBlock(block, blockProperties.blockRightHalf, rightBlockOrthogonalAngle);
-            AddScore(blockPosition, scoreAmount);
+            scoreManager.AddScore(blockPosition, scoreAmount);
             Destroy(block.gameObject);
         }
 
-        private void AddScore(Vector3 blockPosition, int amount)
-        {
-            scoreBar.AddScore(amount);
-            ScoreLabel newScoreLabel = Instantiate(scoreLabel, blockPosition, Quaternion.identity, scoreBar.transform);
-            newScoreLabel.Initialize(amount);
-        }
+        
         
         private Juice CreateJuiceParticle(Vector3 parentBlockPosition, Color juiceColor)
         {

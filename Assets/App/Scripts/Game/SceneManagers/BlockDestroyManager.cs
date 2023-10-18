@@ -1,6 +1,9 @@
 ﻿using App.Scripts.Game.Blocks;
 using App.Scripts.Game.Configs;
+using App.Scripts.Game.Saves;
+using App.Scripts.Game.UISystem;
 using App.Scripts.Game.UISystem.Lives;
+using App.Scripts.Game.UISystem.Scores;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +16,10 @@ namespace App.Scripts.Game.SceneManagers
         
         [SerializeField] private BlockList blockList;
         [SerializeField] private LiveBar liveBar;
+        [SerializeField] private ScoreBar scoreBar;
+        [SerializeField] private RestartPopup restartPopup;
+        
+        private GameSaver _gameSaver = new GameSaver();
 
         public Rect GetDestroyAreaRect()
         {
@@ -42,7 +49,8 @@ namespace App.Scripts.Game.SceneManagers
             }
             if (liveBar.CurrentLiveCount <= 0)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                _gameSaver.SaveHighScore(scoreBar.GetHighScore());
+                restartPopup.StopGame();
             }
         }
 

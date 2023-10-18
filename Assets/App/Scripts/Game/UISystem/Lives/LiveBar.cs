@@ -11,7 +11,7 @@ namespace App.Scripts.Game.UISystem.Lives
         public int CurrentLiveCount { get; private set; }
 
         private Animations _animations = new();
-
+    
         public void Initialize()
         {
             CurrentLiveCount = liveCount;
