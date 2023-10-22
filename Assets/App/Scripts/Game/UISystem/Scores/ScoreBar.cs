@@ -1,4 +1,5 @@
-﻿using App.Scripts.Game.Saves;
+﻿using App.Scripts.Game.Animations;
+using App.Scripts.Game.Saves;
 using TMPro;
 using UnityEngine;
 
@@ -9,40 +10,46 @@ namespace App.Scripts.Game.UISystem.Scores
         [SerializeField] public TextMeshProUGUI scoreTextMeshPro;
         [SerializeField] public TextMeshProUGUI recordTextMeshPro;
         [SerializeField] private float scoreAnimationDuration = 0.5f;
-        [SerializeField] private string prefix = "Best: ";
+        [SerializeField] private string prefix = "Лучший: ";
 
-        private int _highScore;
         private GameSaver _gameSaver = new GameSaver();
 
-        private Animations _animations = new();
+        private UIAnimation _uiAnimation = new();
 
-        private int _currentScore;
+        public int CurrentScore { private set; get; }
+        public int HighScore { private set; get; }
+
         public void Initialize()
         {
-            _currentScore = 0;
-            _highScore = _gameSaver.GetHighScore();
-            scoreTextMeshPro.text = _currentScore.ToString();
-            recordTextMeshPro.text = $"{prefix}{_highScore.ToString()}";
+            CurrentScore = 0;
+            HighScore = _gameSaver.GetHighScore();
+            scoreTextMeshPro.text = CurrentScore.ToString();
+            recordTextMeshPro.text = GetHighScoreString();
         }
 
         public void AddScore(int amount)
         {
-            StartCoroutine(_animations.AnimateValueChange(_currentScore, amount, scoreAnimationDuration,
+            StartCoroutine(_uiAnimation.AnimateValueChange(CurrentScore, amount, scoreAnimationDuration,
                 scoreTextMeshPro));
             
-            _currentScore += amount;
+            CurrentScore += amount;
             
-            if (_highScore < _currentScore)
+            if (HighScore < CurrentScore)
             {
-                StartCoroutine(_animations.AnimateValueChange(_highScore, _currentScore - _highScore,
+                StartCoroutine(_uiAnimation.AnimateValueChange(HighScore, CurrentScore - HighScore,
                     scoreAnimationDuration, recordTextMeshPro, prefix));
-                _highScore = _currentScore;
+                HighScore = CurrentScore;
             }
         }
 
         public int GetHighScore()
         {
-            return _highScore;
+            return HighScore;
+        }
+
+        public string GetHighScoreString()
+        {
+            return $"{prefix}{HighScore.ToString()}";
         }
     }
 }

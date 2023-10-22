@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using App.Scripts.Game.Animations;
+using TMPro;
 using UnityEngine;
 
 namespace App.Scripts.Game.UISystem.Scores
@@ -10,10 +11,10 @@ namespace App.Scripts.Game.UISystem.Scores
         [SerializeField] private TextMeshProUGUI fruits;
         [SerializeField] private TextMeshProUGUI series;
         [SerializeField] private TextMeshProUGUI multiplayer;
-        private const string FruitFormat = " fruits";
-        private const string MultiplayerFormat = "x";
+        private const string FruitFormat = " фрукта";
+        private const string MultiplayerFormat = "х";
 
-        private Animations _animations = new();
+        private readonly UIAnimation _uiAnimation = new();
         private float _initialTime;
         private Color _initialColorFruits;
         private Color _initialColorSeries;
@@ -29,7 +30,7 @@ namespace App.Scripts.Game.UISystem.Scores
             multiplayer.text = MultiplayerFormat + currentScoreMultiPlayer.ToString();
             transform.localScale = Vector3.zero;
             Destroy(gameObject, lifeTime);
-            StartCoroutine(_animations.ScaleAnimation(transform, Vector3.one, animationDuration));
+            StartCoroutine(_uiAnimation.ScaleAnimation(transform, Vector3.one, animationDuration));
         }
 
         private void Update()

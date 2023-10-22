@@ -4,7 +4,7 @@ namespace App.Scripts.Game.SceneManagers
 {
     public class CameraManager : MonoBehaviour
     {
-        [SerializeField] private Camera camera;
+        [SerializeField] public Camera camera;
         
         public Rect GetCameraRect()
         {

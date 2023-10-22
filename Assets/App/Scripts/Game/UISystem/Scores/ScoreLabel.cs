@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using App.Scripts.Game.Animations;
+using TMPro;
 using UnityEngine;
 
 namespace App.Scripts.Game.UISystem.Scores
@@ -9,7 +10,7 @@ namespace App.Scripts.Game.UISystem.Scores
         [SerializeField] private float lifeTime = 1f;
         [SerializeField] private TextMeshProUGUI textMeshPro;
 
-        private Animations _animations = new();
+        private readonly UIAnimation _uiAnimation = new();
         private float _initialTime;
         private Color _initialColor;
 
@@ -20,7 +21,7 @@ namespace App.Scripts.Game.UISystem.Scores
             textMeshPro.text = amount.ToString();
             transform.localScale = Vector3.zero;
             Destroy(gameObject, lifeTime);
-            StartCoroutine(_animations.ScaleAnimation(transform, Vector3.one, animationDuration));
+            StartCoroutine(_uiAnimation.ScaleAnimation(transform, Vector3.one, animationDuration));
         }
 
         private void Update()

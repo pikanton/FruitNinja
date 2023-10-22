@@ -16,6 +16,7 @@ namespace App.Scripts.Game.EntryPoint
         [SerializeField] private ScoreBar scoreBar;
         private void Awake()
         {
+            // PlayerPrefs.SetFloat("HighScore", 0);
             IInput inputController = GetInputController();
             bladeMovement.Initialize(inputController);
             liveBar.Initialize();

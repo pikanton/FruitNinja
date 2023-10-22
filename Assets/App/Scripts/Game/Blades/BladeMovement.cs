@@ -1,4 +1,5 @@
-﻿using App.Scripts.Game.InputSystem;
+﻿using System;
+using App.Scripts.Game.InputSystem;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -63,6 +64,10 @@ namespace App.Scripts.Game.Blades
             newPosition.z = 0;
             return newPosition;
         }
-        
+
+        private void OnEnable()
+        {
+            StopSlicing();
+        }
     }
 }

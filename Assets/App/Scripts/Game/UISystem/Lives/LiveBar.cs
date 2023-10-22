@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using App.Scripts.Game.Animations;
 using UnityEngine;
 
 namespace App.Scripts.Game.UISystem.Lives
@@ -10,7 +11,7 @@ namespace App.Scripts.Game.UISystem.Lives
         [SerializeField] [Range(0, 7)] private int liveCount = 5;
         public int CurrentLiveCount { get; private set; }
 
-        private Animations _animations = new();
+        private readonly UIAnimation _uiAnimation = new();
     
         public void Initialize()
         {
@@ -25,7 +26,7 @@ namespace App.Scripts.Game.UISystem.Lives
         {
             if (CurrentLiveCount < liveList.Count)
             {
-                StartCoroutine(_animations.ScaleAnimation(liveList[CurrentLiveCount].transform, Vector3.one, animationDuration));
+                StartCoroutine(_uiAnimation.ScaleAnimation(liveList[CurrentLiveCount].transform, Vector3.one, animationDuration));
                 CurrentLiveCount++;
             }
         }
@@ -35,7 +36,7 @@ namespace App.Scripts.Game.UISystem.Lives
             if (CurrentLiveCount > 0)
             {
                 CurrentLiveCount--;
-                StartCoroutine(_animations.ScaleAnimation(liveList[CurrentLiveCount].transform, Vector3.zero, animationDuration));
+                StartCoroutine(_uiAnimation.ScaleAnimation(liveList[CurrentLiveCount].transform, Vector3.zero, animationDuration));
             }
         }
 
