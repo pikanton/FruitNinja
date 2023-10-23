@@ -3,6 +3,7 @@ using System.Collections;
 using App.Scripts.Game.Animations;
 using App.Scripts.Game.Blades;
 using App.Scripts.Game.Blocks;
+using App.Scripts.Game.Configs;
 using App.Scripts.Game.Spawners;
 using App.Scripts.Game.UISystem.Scores;
 using TMPro;
@@ -27,66 +28,75 @@ namespace App.Scripts.Game.UISystem.Popups
         [SerializeField] private Button actionButton;
         [SerializeField] private Image panelImage;
         [SerializeField] private Transform containerTransform;
-
-        [SerializeField] private float animationDuration = 0.5f;
         
-        [SerializeField] private string continueInfoText = "ПАУЗА";
-        [SerializeField] private string continueButtonText = "Продолжить";
-        [SerializeField] private float continueButtonFontSize = 25f;
-        [SerializeField] private string restartInfoText = "ВЫ ПРОИГРАЛИ!";
-        [SerializeField] private string restartButtonText = "Рестарт";
-        [SerializeField] private float restartButtonFontSize = 35f;
+        [SerializeField] private PopupConfig popupConfig;
 
-        [SerializeField] private float startPopupAlpha = 0f;
-        [SerializeField] private float endPopupAlpha = 0.9f;
         
+
         private readonly UIAnimation _uiAnimation = new();
+
+        public void Initialize()
+        {
+            containerTransform.localScale = Vector3.zero;
+            transform.localScale = Vector3.zero;
+            Color initialColor = panelImage.color;
+            panelImage.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0f);
+            gameObject.SetActive(true);
+        }
+        
+        public void LoadMenuScene()
+        {
+            StartCoroutine(_uiAnimation.ScaleAnimation(containerTransform, Vector3.zero, popupConfig.animationDuration));
+            StartCoroutine(_uiAnimation.FadeAnimation(panelImage, 1f, popupConfig.animationDuration));
+            StartCoroutine(_uiAnimation.DoActionAfterDelay(
+                () => SceneManager.LoadScene(popupConfig.menuSceneName),
+                popupConfig.animationDuration));
+        }
         
         public void PauseGame()
         {
-            transform.localScale = Vector3.one;
             Time.timeScale = 0f;
-            actionButton.onClick.RemoveAllListeners();
-            actionButton.onClick.AddListener(Continue);
-            ActivateManagers(false);
-            actionButtonTextMeshPro.text = continueButtonText;
-            actionButtonTextMeshPro.fontSize = continueButtonFontSize;
-            infoTextMeshPro.text = continueInfoText;
-            SetScoreText();
-            StartCoroutine(_uiAnimation.FadeAnimation(panelImage, 0.9f, animationDuration));
-            StartCoroutine(_uiAnimation.ScaleAnimation(containerTransform, Vector3.one, animationDuration));
+            ConfigurePopup(Continue);
+            actionButtonTextMeshPro.text = popupConfig.continueButtonText;
+            actionButtonTextMeshPro.fontSize = popupConfig.continueButtonFontSize;
+            infoTextMeshPro.text = popupConfig.continueInfoText;
+            StartCoroutine(_uiAnimation.FadeAnimation(panelImage, popupConfig.endPopupAlpha, popupConfig.animationDuration));
+            StartCoroutine(_uiAnimation.ScaleAnimation(containerTransform, Vector3.one, popupConfig.animationDuration));
         }
 
         public void StopGame()
         {
-            transform.localScale = Vector3.one;
-            actionButton.onClick.RemoveAllListeners();
-            actionButton.onClick.AddListener(Restart);
+            ConfigurePopup(Restart);
+            actionButtonTextMeshPro.text = popupConfig.restartButtonText;
+            actionButtonTextMeshPro.fontSize = popupConfig.restartButtonFontSize;
+            infoTextMeshPro.text = popupConfig.restartInfoText;
             ActivateManagers(false);
-            actionButtonTextMeshPro.text = restartButtonText;
-            actionButtonTextMeshPro.fontSize = restartButtonFontSize;
-            infoTextMeshPro.text = restartInfoText;
-            SetScoreText();
             StartCoroutine(WaitForEmptyBlockListAndAnimate());
         }
-                
+
+        private void ConfigurePopup(Action buttonAction)
+        {
+            transform.localScale = Vector3.one;
+            actionButton.onClick.RemoveAllListeners();
+            actionButton.onClick.AddListener(new(buttonAction));
+            scoreTextMeshPro.text = scoreBar.CurrentScore.ToString();
+            recordTextMeshPro.text = scoreBar.GetHighScoreString();
+        }
+        
         private void Restart()
         {
-            StartCoroutine(DoActionAfterDelay(
+            StartCoroutine(_uiAnimation.DoActionAfterDelay(
                 () => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex),
-                animationDuration));
-            HidePopup();
+                popupConfig.animationDuration));
+            HidePopupAnimate();
         }
 
         private void Continue()
         {
-            StartCoroutine(DoActionAfterDelay(
-                () => ActivateManagers(true),
-                animationDuration));
-            StartCoroutine(DoActionAfterDelay(
+            StartCoroutine(_uiAnimation.DoActionAfterDelay(
                 () => Time.timeScale = 1f,
-                animationDuration));
-            HidePopup();
+                popupConfig.animationDuration));
+            HidePopupAnimate();
         }
 
         private void ActivateManagers(bool active)
@@ -95,34 +105,17 @@ namespace App.Scripts.Game.UISystem.Popups
             spawnersManager.gameObject.SetActive(active);
         }
         
-        private void SetScoreText()
+        private void HidePopupAnimate()
         {
-            scoreTextMeshPro.text = scoreBar.CurrentScore.ToString();
-            recordTextMeshPro.text = scoreBar.GetHighScoreString();
+            StartCoroutine(_uiAnimation.ScaleAnimation(containerTransform, Vector3.zero, popupConfig.animationDuration));
+            StartCoroutine(_uiAnimation.FadeAnimation(panelImage, popupConfig.startPopupAlpha, popupConfig.animationDuration));
+            StartCoroutine(_uiAnimation.DoActionAfterDelay(() => transform.localScale = Vector3.zero, popupConfig.animationDuration));
         }
         
-        private void HidePopup()
+        private void ShowPopupAnimate()
         {
-            StartCoroutine(_uiAnimation.ScaleAnimation(containerTransform, Vector3.zero, animationDuration));
-            StartCoroutine(_uiAnimation.FadeAnimation(panelImage, startPopupAlpha, animationDuration));
-            StartCoroutine(DoActionAfterDelay(() => transform.localScale = Vector3.zero, animationDuration));
-        }
-        
-        private void ShowPopup()
-        {
-            StartCoroutine(_uiAnimation.FadeAnimation(panelImage, endPopupAlpha, animationDuration));
-            StartCoroutine(_uiAnimation.ScaleAnimation(containerTransform, Vector3.one, animationDuration));
-        }
-        
-        private IEnumerator DoActionAfterDelay(Action action, float timeDelay)
-        {
-            float currentAnimationTime = 0;
-            while (currentAnimationTime < timeDelay)
-            {
-                currentAnimationTime += Time.unscaledDeltaTime;
-                yield return null;
-            }
-            action();
+            StartCoroutine(_uiAnimation.FadeAnimation(panelImage, popupConfig.endPopupAlpha, popupConfig.animationDuration));
+            StartCoroutine(_uiAnimation.ScaleAnimation(containerTransform, Vector3.one, popupConfig.animationDuration));
         }
         
         private IEnumerator WaitForEmptyBlockListAndAnimate()
@@ -131,7 +124,7 @@ namespace App.Scripts.Game.UISystem.Popups
             {
                 yield return null;
             }
-            ShowPopup();
+            ShowPopupAnimate();
         }
     }
 }

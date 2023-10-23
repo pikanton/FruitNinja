@@ -56,6 +56,16 @@ namespace App.Scripts.Game.Animations
 
             image.color = newColor;
         }
-
+        
+        public IEnumerator DoActionAfterDelay(Action action, float timeDelay)
+        {
+            float currentAnimationTime = 0;
+            while (currentAnimationTime < timeDelay)
+            {
+                currentAnimationTime += Time.unscaledDeltaTime;
+                yield return null;
+            }
+            action();
+        }
     }
 }

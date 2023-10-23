@@ -52,43 +52,5 @@ namespace App.Scripts.Game.UISystem.Scores
             
             _addScoreTime = Time.time;
         }
-
-        // private Vector3 CheckLabelPosition(RectTransform checkingTransform, Vector3 position)
-        // {
-        //     Vector3 newPosition = position;
-        //     Rect cameraRect = cameraManager.GetCameraRect();
-        //
-        //     var rect = checkingTransform.rect;
-        //     
-        //     float screenWidth = cameraRect.width;
-        //     float screenHeight = cameraRect.height;
-        //     float halfScreenWidth = screenWidth / 2;
-        //     float halfScreenHeight = screenHeight / 2;
-        //     
-        //     float labelWidth = rect.width / cameraManager.camera.pixelWidth;
-        //     float labelHeight = rect.height / cameraManager.camera.pixelHeight;
-        //     float halfLabelWidth = labelWidth / 2;
-        //     float halfLabelHeight = labelHeight / 2;
-        //
-        //     if (newPosition.x + halfLabelWidth > halfScreenWidth)
-        //     {
-        //         newPosition.x = halfScreenWidth - halfLabelWidth;
-        //     }
-        //     if (newPosition.x - halfLabelWidth < -halfScreenWidth)
-        //     {
-        //         newPosition.x = -halfScreenWidth + halfLabelWidth;
-        //     }
-        //
-        //     if (newPosition.y + halfLabelHeight > halfScreenHeight)
-        //     {
-        //         newPosition.y = halfScreenHeight - halfLabelHeight;
-        //     }
-        //     if (newPosition.y - halfLabelHeight < -halfScreenHeight)
-        //     {
-        //         newPosition.y = -halfScreenHeight + halfLabelHeight;
-        //     }
-        //     
-        //     return newPosition;
-        // }
     }
 }
