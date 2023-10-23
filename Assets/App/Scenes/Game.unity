@@ -227,8 +227,7 @@ MonoBehaviour:
   - {fileID: 1092876686}
   - {fileID: 82404256}
   - {fileID: 1717478468}
-  animationDuration: 0.2
-  liveCount: 3
+  livesConfig: {fileID: 11400000, guid: 01694b0b27ed8cd42a6213e5e797deaa, type: 2}
 --- !u!1 &82404253
 GameObject:
   m_ObjectHideFlags: 0
