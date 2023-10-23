@@ -27,6 +27,7 @@ namespace App.Scripts.Game.UISystem.Popups
         
         [SerializeField] private Button actionButton;
         [SerializeField] private Image panelImage;
+        [SerializeField] private Image fadeImage;
         [SerializeField] private Transform containerTransform;
         
         [SerializeField] private PopupConfig popupConfig;
@@ -47,7 +48,7 @@ namespace App.Scripts.Game.UISystem.Popups
         public void LoadMenuScene()
         {
             StartCoroutine(_uiAnimation.ScaleAnimation(containerTransform, Vector3.zero, popupConfig.animationDuration));
-            StartCoroutine(_uiAnimation.FadeAnimation(panelImage, 1f, popupConfig.animationDuration));
+            FadeShow();
             StartCoroutine(_uiAnimation.DoActionAfterDelay(
                 () => SceneManager.LoadScene(popupConfig.menuSceneName),
                 popupConfig.animationDuration));
@@ -74,6 +75,14 @@ namespace App.Scripts.Game.UISystem.Popups
             StartCoroutine(WaitForEmptyBlockListAndAnimate());
         }
 
+        private void FadeShow()
+        {
+            Color initialColor = fadeImage.color;
+            fadeImage.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0f);
+            fadeImage.enabled = true;
+            StartCoroutine(_uiAnimation.FadeAnimation(fadeImage, 1f,  popupConfig.animationDuration));
+        }
+        
         private void ConfigurePopup(Action buttonAction)
         {
             transform.localScale = Vector3.one;
@@ -88,7 +97,7 @@ namespace App.Scripts.Game.UISystem.Popups
             StartCoroutine(_uiAnimation.DoActionAfterDelay(
                 () => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex),
                 popupConfig.animationDuration));
-            HidePopupAnimate();
+            FadeShow();
         }
 
         private void Continue()

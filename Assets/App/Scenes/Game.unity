@@ -574,6 +574,7 @@ MonoBehaviour:
   actionButtonTextMeshPro: {fileID: 1718056562}
   actionButton: {fileID: 1998201856}
   panelImage: {fileID: 219299695}
+  fadeImage: {fileID: 432091388}
   containerTransform: {fileID: 2005647584}
   popupConfig: {fileID: 11400000, guid: dec5e8828d8d0f14ebe6341e5b6ccb86, type: 2}
 --- !u!1 &221038416
@@ -1759,7 +1760,7 @@ RectTransform:
   m_GameObject: {fileID: 1092876683}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2336889}
@@ -2362,7 +2363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7691841702508332846, guid: b85fd451d566a6549a7599af6739a786, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7691841702508332846, guid: b85fd451d566a6549a7599af6739a786, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -3141,7 +3142,7 @@ RectTransform:
   m_GameObject: {fileID: 1908230972}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2336889}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: LivesConfig
   m_EditorClassIdentifier: 
   animationDuration: 0.2
-  liveCount: 3
+  liveCount: 5
