@@ -1,5 +1,7 @@
 ﻿using App.Scripts.Game.Blocks;
+using App.Scripts.Game.Blocks.Models;
 using App.Scripts.Game.Effects;
+using App.Scripts.Game.UISystem.Lives;
 using App.Scripts.Game.UISystem.Scores;
 using UnityEngine;
 
@@ -9,13 +11,11 @@ namespace App.Scripts.Game.Blades
     {
         [SerializeField] private int scoreAmount = 75;
         [SerializeField] private float minSliceVelocity = 25f;
-        [SerializeField] private float halfBlockLifeTime = 3f;
-        [SerializeField] private float halfBlockInitialSpeed = 6f;
+
         [SerializeField] private BlockList spawnedBlocks;
-        [SerializeField] private Block blockPrefab;
-        [SerializeField] private Blot blotPrefab;
-        [SerializeField] private Juice juicePrefab;
         [SerializeField] private ScoreManager scoreManager;
+        [SerializeField] private LiveBar liveBar;
+        [SerializeField] public float explosionForce = 15f;
 
         public void CheckBlocksToSlice(Vector3 direction)
         {
@@ -31,6 +31,7 @@ namespace App.Scripts.Game.Blades
                     {
                         spawnedBlocks.spawnedBlocks.RemoveAt(i);
                         SliceBlock(block, direction);
+                        BlockAction(block);
                     }
                 }
             }
@@ -39,46 +40,49 @@ namespace App.Scripts.Game.Blades
         private void SliceBlock(Block block, Vector3 direction)
         {
             float sliceAngle = Mathf.Atan(direction.y / direction.x) * Mathf.Rad2Deg;
-            Transform blockTransform = block.transform;
-            Vector3 blockPosition = blockTransform.position;
-            BlockProperties blockProperties = block.blockProperties;
-
-            CreateJuiceParticle(blockPosition, blockProperties.juiceColor);
-            CreateBlot(blockPosition, blockProperties.blotSprite);
-            float leftBlockOrthogonalAngle = sliceAngle + 90f;
-            float rightBlockOrthogonalAngle = sliceAngle - 90f;
-            CreateHalfBlock(block, blockProperties.blockLeftHalf, leftBlockOrthogonalAngle);
-            CreateHalfBlock(block, blockProperties.blockRightHalf, rightBlockOrthogonalAngle);
-            scoreManager.AddScore(blockPosition, scoreAmount);
-            Destroy(block.gameObject);
+            block.Slice(sliceAngle);
         }
 
-        
-        
-        private Juice CreateJuiceParticle(Vector3 parentBlockPosition, Color juiceColor)
+        private void BlockAction(Block block)
         {
-            var juice = Instantiate(juicePrefab, parentBlockPosition, Quaternion.identity);
-            juice.Initialize(juiceColor);
-            return juice;
+            if (block is Fruit)
+            {
+                FruitSliced(block);
+            }
+            else if (block is Bomb)
+            {
+                BombSliced(block);
+            }
+            else if (block is Heart)
+            {
+                HeartSliced(block);
+            }
         }
 
-        private Blot CreateBlot(Vector3 parentBlockPosition, Sprite blotSprite)
+        private void FruitSliced(Block block)
         {
-            var blot = Instantiate(blotPrefab, parentBlockPosition, Quaternion.identity);
-            blot.spriteRenderer.sprite = blotSprite;
-            blot.Initialize();
-            return blot;
+            scoreManager.AddScore(block.transform.position, scoreAmount);
         }
         
-        private Block CreateHalfBlock(Block parentBlock, Sprite halfBlockSprite, float initialAngle)
+        private void BombSliced(Block block)
         {
-            var parentBlockTransform = parentBlock.transform;
-            var halfBlock = Instantiate(blockPrefab, parentBlockTransform.position, Quaternion.identity);
-            halfBlock.blockAnimation.transform.rotation = parentBlockTransform.rotation;
-            halfBlock.blockProperties.blockSprite = halfBlockSprite;
-            halfBlock.lifeTime = halfBlockLifeTime;
-            halfBlock.Initialize(halfBlockInitialSpeed, initialAngle);
-            return halfBlock;
+            liveBar.RemoveLive();
+            foreach (var spawnedBlock in spawnedBlocks.spawnedBlocks)
+            {
+                Vector3 blockToBomb = spawnedBlock.transform.position - block.transform.position;
+                float distance = blockToBomb.magnitude;
+                if (distance > 0)
+                {
+                    float force = explosionForce / distance;
+                    Vector3 acceleration = force * blockToBomb.normalized;
+                    spawnedBlock.blockMovement.AddVelocity(acceleration);
+                }
+            }
+        }
+
+        private void HeartSliced(Block block)
+        {
+            liveBar.AddLive();
         }
     }
 }

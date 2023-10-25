@@ -10,6 +10,7 @@ namespace App.Scripts.Game.Blocks
         public Sprite blockLeftHalf;
         public Sprite blockRightHalf;
         public Sprite blotSprite;
+        public Sprite effectSprite;
         public Color juiceColor;
         public float colliderRadius;
     }

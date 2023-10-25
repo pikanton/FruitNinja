@@ -1,4 +1,5 @@
-﻿using App.Scripts.Game.Animations;
+﻿using System;
+using App.Scripts.Game.Animations;
 using App.Scripts.Game.Saves;
 using TMPro;
 using UnityEngine;
@@ -13,26 +14,30 @@ namespace App.Scripts.Menu
         [SerializeField] private Image loadImage;
         [SerializeField] private float loadSceneAnimationDuration = 1f;
         [SerializeField] private string gameSceneName = "Game";
+        [SerializeField] private ButtonManager startButton;
+        [SerializeField] private ButtonManager exitButton;
         
         private readonly GameSaver _gameSaver = new();
         private readonly UIAnimation _uiAnimation = new();
 
-        public void Awake()
+        private void Awake()
         {
+            startButton.ButtonAction = LoadGameScene;
+            exitButton.ButtonAction = Exit;
             Time.timeScale = 1f;
             int score = _gameSaver.GetHighScore();
             scoreTextMeshPro.text = score.ToString();
             AnimateSceneLoad(loadImage, loadSceneAnimationDuration);
         }
 
-        public void LoadGameScene()
+        private void LoadGameScene()
         {
             AnimateSceneQuit();
             StartCoroutine(_uiAnimation.DoActionAfterDelay(
                 () => SceneManager.LoadScene(gameSceneName), loadSceneAnimationDuration));
         }
 
-        public void Exit()
+        private void Exit()
         {
             AnimateSceneQuit();
             StartCoroutine(_uiAnimation.DoActionAfterDelay(Quit, loadSceneAnimationDuration));
@@ -40,8 +45,8 @@ namespace App.Scripts.Menu
 
         private void AnimateSceneLoad(Image fadeImage, float animationDuration)
         {
-            Color initialColor = fadeImage.color;
             fadeImage.enabled = true;
+            Color initialColor = fadeImage.color;
             fadeImage.color = new Color(initialColor.r, initialColor.g, initialColor.b, 1f);
             StartCoroutine(_uiAnimation.FadeAnimation(fadeImage, 0f, animationDuration));
             StartCoroutine(_uiAnimation.DoActionAfterDelay(
@@ -55,7 +60,7 @@ namespace App.Scripts.Menu
             loadImage.enabled = true;
             StartCoroutine(_uiAnimation.FadeAnimation(loadImage, 1f, loadSceneAnimationDuration));
         }
-        
+
         private void Quit()
         {
 #if UNITY_EDITOR

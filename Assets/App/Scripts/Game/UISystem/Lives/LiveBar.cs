@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using App.Scripts.Game.Animations;
 using App.Scripts.Game.Configs;
+using App.Scripts.Game.Saves;
+using App.Scripts.Game.UISystem.Popups;
+using App.Scripts.Game.UISystem.Scores;
 using UnityEngine;
 
 namespace App.Scripts.Game.UISystem.Lives
@@ -9,7 +13,11 @@ namespace App.Scripts.Game.UISystem.Lives
     {
         [SerializeField] private List<Live> liveList;
         [SerializeField] private LivesConfig livesConfig;
-
+        [SerializeField] private ScoreBar scoreBar;
+        [SerializeField] private Popup gamePopup;
+        
+        private readonly GameSaver _gameSaver = new GameSaver();
+        private bool _isCheckingLives = true;
         public int CurrentLiveCount { get; private set; }
 
         private readonly UIAnimation _uiAnimation = new();
@@ -22,7 +30,17 @@ namespace App.Scripts.Game.UISystem.Lives
                 liveList[i].transform.localScale = i < CurrentLiveCount ? Vector3.one : Vector3.zero;
             }
         }
-        
+
+        private void Update()
+        {
+            if (CurrentLiveCount <= 0 && _isCheckingLives)
+            {
+                _isCheckingLives = false;
+                _gameSaver.SaveHighScore(scoreBar.GetHighScore());
+                gamePopup.StopGame();
+            }
+        }
+
         public void AddLive()
         {
             if (CurrentLiveCount < liveList.Count)

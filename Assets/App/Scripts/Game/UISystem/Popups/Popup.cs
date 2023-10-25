@@ -25,7 +25,8 @@ namespace App.Scripts.Game.UISystem.Popups
         [SerializeField] private TextMeshProUGUI infoTextMeshPro;
         [SerializeField] private TextMeshProUGUI actionButtonTextMeshPro;
         
-        [SerializeField] private Button actionButton;
+        [SerializeField] private ButtonManager actionButton;
+        [SerializeField] private ButtonManager menuButton;
         [SerializeField] private Image panelImage;
         [SerializeField] private Image fadeImage;
         [SerializeField] private Transform containerTransform;
@@ -38,6 +39,7 @@ namespace App.Scripts.Game.UISystem.Popups
 
         public void Initialize()
         {
+            menuButton.ButtonAction = LoadMenuScene;
             containerTransform.localScale = Vector3.zero;
             transform.localScale = Vector3.zero;
             Color initialColor = panelImage.color;
@@ -58,6 +60,7 @@ namespace App.Scripts.Game.UISystem.Popups
         {
             Time.timeScale = 0f;
             ConfigurePopup(Continue);
+            ActivateManagers(false);
             actionButtonTextMeshPro.text = popupConfig.continueButtonText;
             actionButtonTextMeshPro.fontSize = popupConfig.continueButtonFontSize;
             infoTextMeshPro.text = popupConfig.continueInfoText;
@@ -86,8 +89,7 @@ namespace App.Scripts.Game.UISystem.Popups
         private void ConfigurePopup(Action buttonAction)
         {
             transform.localScale = Vector3.one;
-            actionButton.onClick.RemoveAllListeners();
-            actionButton.onClick.AddListener(new(buttonAction));
+            actionButton.ButtonAction = buttonAction;
             scoreTextMeshPro.text = scoreBar.CurrentScore.ToString();
             recordTextMeshPro.text = scoreBar.GetHighScoreString();
         }
@@ -104,6 +106,9 @@ namespace App.Scripts.Game.UISystem.Popups
         {
             StartCoroutine(_uiAnimation.DoActionAfterDelay(
                 () => Time.timeScale = 1f,
+                popupConfig.animationDuration));
+            StartCoroutine(_uiAnimation.DoActionAfterDelay(
+                () => ActivateManagers(true),
                 popupConfig.animationDuration));
             HidePopupAnimate();
         }

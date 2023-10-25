@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Game.Blocks;
+using App.Scripts.Game.Blocks.Models;
 using App.Scripts.Game.Configs;
 using App.Scripts.Game.Saves;
 using App.Scripts.Game.UISystem;
@@ -18,11 +19,7 @@ namespace App.Scripts.Game.SceneManagers
         
         [SerializeField] private BlockList blockList;
         [SerializeField] private LiveBar liveBar;
-        [SerializeField] private ScoreBar scoreBar;
-        [SerializeField] private Popup gamePopup;
         
-        private readonly GameSaver _gameSaver = new GameSaver();
-        private bool _isCheckingLives = true;
 
         public Rect GetDestroyAreaRect()
         {
@@ -47,14 +44,11 @@ namespace App.Scripts.Game.SceneManagers
                 {
                     Destroy(block.gameObject);
                     blockList.spawnedBlocks.RemoveAt(i);
-                    liveBar.RemoveLive();
+                    if (block is Fruit)
+                    {
+                        liveBar.RemoveLive();
+                    }
                 }
-            }
-            if (liveBar.CurrentLiveCount <= 0 && _isCheckingLives)
-            {
-                _isCheckingLives = false;
-                _gameSaver.SaveHighScore(scoreBar.GetHighScore());
-                gamePopup.StopGame();
             }
         }
 

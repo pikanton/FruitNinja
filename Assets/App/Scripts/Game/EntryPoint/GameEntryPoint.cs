@@ -19,12 +19,13 @@ namespace App.Scripts.Game.EntryPoint
         [SerializeField] private ScoreBar scoreBar;
         [SerializeField] private Popup popup;
         [SerializeField] private Image loadImage;
+        [SerializeField] private ButtonManager pauseButton;
         [SerializeField] private float loadSceneAnimationDuration = 1f;
         
         private readonly UIAnimation _uiAnimation = new();
         private void Awake()
         {
-            // PlayerPrefs.SetFloat("HighScore", 0);
+            pauseButton.ButtonAction = popup.PauseGame;
             Time.timeScale = 1f;
             IInput inputController = GetInputController();
             bladeMovement.Initialize(inputController);

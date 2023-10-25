@@ -17,47 +17,55 @@ MonoBehaviour:
     blockLeftHalf: {fileID: -1297974327, guid: 9273b07d7c0a49447a2942b9d8ba86f9, type: 3}
     blockRightHalf: {fileID: -1165009317, guid: 9273b07d7c0a49447a2942b9d8ba86f9, type: 3}
     blotSprite: {fileID: 21300000, guid: 559bbe9924967e0409f7d67e6ddab1bd, type: 3}
+    effectSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     juiceColor: {r: 1, g: 0.970262, b: 0.38113207, a: 1}
     colliderRadius: 0.7
   - blockSprite: {fileID: 21300000, guid: 50d1e7bb104540d4baa130951855ce38, type: 3}
     blockLeftHalf: {fileID: 51841918, guid: 7748a72f7b2548b4c816492e2dd84958, type: 3}
     blockRightHalf: {fileID: 1276238026, guid: 7748a72f7b2548b4c816492e2dd84958, type: 3}
     blotSprite: {fileID: 21300000, guid: 86807b097ae0c854fb65f780bf5ea1c6, type: 3}
+    effectSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     juiceColor: {r: 1, g: 0.9896824, b: 0.7962264, a: 1}
     colliderRadius: 0.8
   - blockSprite: {fileID: 21300000, guid: d1dda5d7d5c4e6b428510fdbd7a5d792, type: 3}
     blockLeftHalf: {fileID: 463512928, guid: 4a1e1ca34f04c394fbb733abc96674ab, type: 3}
     blockRightHalf: {fileID: -1866833350, guid: 4a1e1ca34f04c394fbb733abc96674ab, type: 3}
     blotSprite: {fileID: 21300000, guid: 64c8b6779ceedea47b9fc7681738cdb2, type: 3}
+    effectSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     juiceColor: {r: 0.5177462, g: 1, b: 0.3803922, a: 1}
     colliderRadius: 0.8
   - blockSprite: {fileID: 21300000, guid: db7e4c24f5662234eb6cad70f16e62b8, type: 3}
     blockLeftHalf: {fileID: -2115683233, guid: d457b5371468ece4f8d9e1081c751fe0, type: 3}
     blockRightHalf: {fileID: 787448004, guid: d457b5371468ece4f8d9e1081c751fe0, type: 3}
     blotSprite: {fileID: 21300000, guid: c5f720fdf083624458d6e80fb925335c, type: 3}
+    effectSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     juiceColor: {r: 0.7339933, g: 0.3803922, b: 1, a: 1}
     colliderRadius: 0.8
   - blockSprite: {fileID: 21300000, guid: 5f9685c99e9a004429e69f07a217ad74, type: 3}
     blockLeftHalf: {fileID: 1795369475, guid: 357dee87f508ee746a950c23991d9320, type: 3}
     blockRightHalf: {fileID: 367478593, guid: 357dee87f508ee746a950c23991d9320, type: 3}
     blotSprite: {fileID: 21300000, guid: 559bbe9924967e0409f7d67e6ddab1bd, type: 3}
+    effectSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     juiceColor: {r: 1, g: 0.9686275, b: 0.3803922, a: 1}
     colliderRadius: 0.8
   - blockSprite: {fileID: 21300000, guid: 2ebd57b6147f2054c8d887a2ecd5d2e9, type: 3}
     blockLeftHalf: {fileID: 121410056, guid: 3f3c9365faa574d4ea7de249d4566b07, type: 3}
     blockRightHalf: {fileID: 736836117, guid: 3f3c9365faa574d4ea7de249d4566b07, type: 3}
     blotSprite: {fileID: 21300000, guid: 559bbe9924967e0409f7d67e6ddab1bd, type: 3}
+    effectSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     juiceColor: {r: 1, g: 0.9686275, b: 0.3803922, a: 1}
     colliderRadius: 0.9
   - blockSprite: {fileID: 21300000, guid: 824818a307a422f4d8da944e8065bf7f, type: 3}
     blockLeftHalf: {fileID: 677535363, guid: 21a67ffeed0cfc041b69a4e790b482ab, type: 3}
     blockRightHalf: {fileID: 620266101, guid: 21a67ffeed0cfc041b69a4e790b482ab, type: 3}
     blotSprite: {fileID: 21300000, guid: 0810a36c144e75a4fa3d8e59d5213c01, type: 3}
+    effectSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     juiceColor: {r: 1, g: 0.3803922, b: 0.43069762, a: 1}
     colliderRadius: 0.8
   - blockSprite: {fileID: 21300000, guid: 1c1fe4d16de5395418cb8aaa31948b9c, type: 3}
     blockLeftHalf: {fileID: 967070880, guid: 4fb126c0a2207de4587c41f3aedf494b, type: 3}
     blockRightHalf: {fileID: -1899607485, guid: 4fb126c0a2207de4587c41f3aedf494b, type: 3}
     blotSprite: {fileID: 21300000, guid: 0810a36c144e75a4fa3d8e59d5213c01, type: 3}
+    effectSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
     juiceColor: {r: 1, g: 0.3803922, b: 0.43137258, a: 1}
     colliderRadius: 1.2

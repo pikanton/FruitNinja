@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using App.Scripts.Game.Blocks;
+using App.Scripts.Game.Blocks.Models;
 using Random = UnityEngine.Random;
 using App.Scripts.Game.Configs;
 using App.Scripts.Game.SceneManagers;
@@ -9,9 +10,8 @@ namespace App.Scripts.Game.Spawners
 {
     public class SpawnersManager : MonoBehaviour
     {
-        [SerializeField] private Block blockPrefab;
         [SerializeField] private List<Spawner> spawners;
-        [SerializeField] private BlockConfig blockConfig;
+        [SerializeField] private BlockPrefabConfig blockPrefabConfig;
         [SerializeField] private SpawnersManagerConfig managerConfig;
         [SerializeField] public CameraManager cameraManager;
         [SerializeField] public BlockList spawnedBlocks;
@@ -78,11 +78,11 @@ namespace App.Scripts.Game.Spawners
         private void SpawnBlock()
         {
             Spawner randomSpawner = GetRandomSpawner();
+            Block blockPrefab = blockPrefabConfig.GetRandomBlockPrefab().prefab;
             Vector3 spawnPosition = randomSpawner.GetRandomPosition();
             float spawnAngle = randomSpawner.GetRandomAngle();
-            
-            var newBlock = Instantiate(blockPrefab, spawnPosition, Quaternion.identity, spawnedBlocks.gameObject.transform);
-            newBlock.blockProperties = blockConfig.GetRandomBlockView();
+
+            Block newBlock = Instantiate(blockPrefab, spawnPosition, Quaternion.identity, spawnedBlocks.gameObject.transform);
             newBlock.Initialize(managerConfig.blockInitialSpeed, spawnAngle);
             spawnedBlocks.spawnedBlocks.Add(newBlock);
         }

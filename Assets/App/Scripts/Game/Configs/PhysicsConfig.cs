@@ -6,5 +6,6 @@ namespace App.Scripts.Game.Configs
     public class PhysicsConfig : ScriptableObject
     {
         public float gravity = 9.8f;
+        public float velocityLimit = 13f;
     }
 }
