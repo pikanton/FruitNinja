@@ -1338,6 +1338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnedBlocks: []
+  halfBLocks: []
 --- !u!1 &717460747
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,7 +2847,9 @@ MonoBehaviour:
   spawnedBlocks: {fileID: 703178827}
   scoreManager: {fileID: 1236873850}
   liveBar: {fileID: 2336892}
-  explosionForce: 20
+  explosionForce: 15
+  halfBlockInitialSpeed: 6
+  blockPrefab: {fileID: 6862684257112317645, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
 --- !u!1 &1717478465
 GameObject:
   m_ObjectHideFlags: 0
