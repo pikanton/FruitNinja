@@ -1,6 +1,5 @@
 ﻿using App.Scripts.Game.Blocks;
 using App.Scripts.Game.Blocks.Models;
-using App.Scripts.Game.Effects;
 using App.Scripts.Game.UISystem.Lives;
 using App.Scripts.Game.UISystem.Scores;
 using UnityEngine;
@@ -16,6 +15,8 @@ namespace App.Scripts.Game.Blades
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private LiveBar liveBar;
         [SerializeField] public float explosionForce = 15f;
+        [SerializeField] private float halfBlockInitialSpeed = 6f;
+        [SerializeField] private Block blockPrefab;
 
         public void CheckBlocksToSlice(Vector3 direction)
         {
@@ -31,7 +32,7 @@ namespace App.Scripts.Game.Blades
                     {
                         spawnedBlocks.spawnedBlocks.RemoveAt(i);
                         SliceBlock(block, direction);
-                        BlockAction(block);
+                        BlockAction(block, direction);
                     }
                 }
             }
@@ -43,11 +44,11 @@ namespace App.Scripts.Game.Blades
             block.Slice(sliceAngle);
         }
 
-        private void BlockAction(Block block)
+        private void BlockAction(Block block, Vector3 direction)
         {
             if (block is Fruit)
             {
-                FruitSliced(block);
+                FruitSliced(block, direction);
             }
             else if (block is Bomb)
             {
@@ -59,8 +60,13 @@ namespace App.Scripts.Game.Blades
             }
         }
 
-        private void FruitSliced(Block block)
+        private void FruitSliced(Block block, Vector3 direction)
         {
+            float sliceAngle = Mathf.Atan(direction.y / direction.x) * Mathf.Rad2Deg;
+            float leftBlockOrthogonalAngle = sliceAngle + 90f;
+            float rightBlockOrthogonalAngle = sliceAngle - 90f;
+            CreateHalfBlock(blockPrefab, block.blockProperties.blockLeftHalf, leftBlockOrthogonalAngle);
+            CreateHalfBlock(blockPrefab, block.blockProperties.blockRightHalf, rightBlockOrthogonalAngle);
             scoreManager.AddScore(block.transform.position, scoreAmount);
         }
         
@@ -78,11 +84,35 @@ namespace App.Scripts.Game.Blades
                     spawnedBlock.blockMovement.AddVelocity(acceleration);
                 }
             }
+            foreach (var halfBlock in spawnedBlocks.halfBLocks)
+            {
+                Vector3 blockToBomb = halfBlock.transform.position - block.transform.position;
+                float distance = blockToBomb.magnitude;
+                if (distance > 0)
+                {
+                    float force = explosionForce / distance;
+                    Vector3 acceleration = force * blockToBomb.normalized;
+                    halfBlock.blockMovement.AddVelocity(acceleration);
+                }
+            }
         }
 
         private void HeartSliced(Block block)
         {
             liveBar.AddLive();
+        }
+        
+        private Block CreateHalfBlock(Block block, Sprite halfBlockSprite, float initialAngle)
+        {
+            var parentBlockTransform = transform;
+            var halfBlock = Instantiate(block, parentBlockTransform.position, Quaternion.identity,
+                spawnedBlocks.transform);
+            halfBlock.Initialize(halfBlockInitialSpeed, initialAngle);
+            halfBlock.blockAnimation.transform.rotation = parentBlockTransform.rotation;
+            halfBlock.spriteRenderer.sprite = halfBlockSprite;
+            halfBlock.shadowAnimation.Initialize();
+            spawnedBlocks.halfBLocks.Add(halfBlock);
+            return halfBlock;
         }
     }
 }

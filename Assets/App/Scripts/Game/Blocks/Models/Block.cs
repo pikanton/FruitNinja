@@ -16,17 +16,12 @@ namespace App.Scripts.Game.Blocks.Models
         [SerializeField] public Juice juicePrefab;
         [SerializeField] private BlockConfig blockConfig;
         
-        [SerializeField] public float lifeTime = 100f;
-        
-        [SerializeField] private float halfBlockLifeTime = 3f;
-        [SerializeField] private float halfBlockInitialSpeed = 6f;
 
         public virtual void Initialize(float initialSpeed = 0f, float initialAngle = 0f)
         {
             blockProperties = blockConfig.GetRandomBlockView();
             spriteRenderer.sprite = blockProperties.blockSprite;
             InitializeComponents(initialSpeed, initialAngle);
-            Destroy(gameObject, lifeTime);
         }
 
         protected void InitializeComponents(float initialSpeed = 0f, float initialAngle = 0f)
@@ -44,10 +39,7 @@ namespace App.Scripts.Game.Blocks.Models
 
             CreateJuiceParticle(blockPosition, blockProperties.juiceColor);
             CreateBlot(blockPosition, blockProperties.blotSprite);
-            float leftBlockOrthogonalAngle = sliceAngle + 90f;
-            float rightBlockOrthogonalAngle = sliceAngle - 90f;
-            CreateHalfBlock(blockProperties.blockLeftHalf, leftBlockOrthogonalAngle);
-            CreateHalfBlock(blockProperties.blockRightHalf, rightBlockOrthogonalAngle);
+            
             Destroy(gameObject);
         }
         
@@ -59,7 +51,7 @@ namespace App.Scripts.Game.Blocks.Models
             return juice;
         }
 
-        protected Blot CreateBlot(Vector3 parentBlockPosition, Sprite blotSprite)
+        private Blot CreateBlot(Vector3 parentBlockPosition, Sprite blotSprite)
         {
             var blot = Instantiate(blotPrefab, parentBlockPosition, Quaternion.identity);
             blot.spriteRenderer.sprite = blotSprite;
@@ -67,16 +59,5 @@ namespace App.Scripts.Game.Blocks.Models
             return blot;
         }
 
-        protected Block CreateHalfBlock(Sprite halfBlockSprite, float initialAngle)
-        {
-            var parentBlockTransform = transform;
-            var halfBlock = Instantiate(this, parentBlockTransform.position, Quaternion.identity);
-            halfBlock.Initialize(halfBlockInitialSpeed, initialAngle);
-            halfBlock.blockAnimation.transform.rotation = parentBlockTransform.rotation;
-            halfBlock.spriteRenderer.sprite = halfBlockSprite;
-            halfBlock.shadowAnimation.Initialize();
-            halfBlock.lifeTime = halfBlockLifeTime;
-            return halfBlock;
-        }
     }
 }

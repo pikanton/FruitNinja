@@ -7,5 +7,6 @@ namespace App.Scripts.Game.Blocks
     public class BlockList : MonoBehaviour
     {
         [SerializeField] public List<Block> spawnedBlocks = new();
+        [SerializeField] public List<Block> halfBLocks = new();
     }
 }

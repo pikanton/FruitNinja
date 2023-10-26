@@ -50,6 +50,16 @@ namespace App.Scripts.Game.SceneManagers
                     }
                 }
             }
+
+            for (int i = 0; i < blockList.halfBLocks.Count; i++)
+            {
+                Block block = blockList.halfBLocks[i];
+                if (IsOutOfScreen(block.transform))
+                {
+                    Destroy(block.gameObject);
+                    blockList.halfBLocks.RemoveAt(i);
+                }
+            }
         }
 
         private bool IsOutOfScreen(Transform blockTransform)

@@ -9,7 +9,6 @@ namespace App.Scripts.Game.Blocks.Models
         public override void Initialize(float initialSpeed = 0f, float initialAngle = 0f)
         {
             InitializeComponents(initialSpeed, initialAngle);
-            Destroy(gameObject, lifeTime);
         }
 
         public override void Slice(float sliceAngle)
