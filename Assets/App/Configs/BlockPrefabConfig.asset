@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockPrefabs:
   - prefab: {fileID: 6862684257112317645, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-    probability: 20
+    probability: 10
   - prefab: {fileID: 6647023116005519045, guid: a326dfbf3afc2844ca0885f6e9112206, type: 3}
     probability: 2
   - prefab: {fileID: 4519879951076528023, guid: 3d96757cc09054c41b8ba9b992347b16, type: 3}
