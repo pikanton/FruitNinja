@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6124328215520909529}
   - component: {fileID: 5168158349399883410}
-  - component: {fileID: 6862684257112317645}
+  - component: {fileID: 615756559317701975}
   m_Layer: 0
-  m_Name: Fruit
+  m_Name: FruitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   physicsConfig: {fileID: 11400000, guid: 57c4881801996214289b4e03b4075663, type: 2}
---- !u!114 &6862684257112317645
+--- !u!114 &615756559317701975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2815196516063243091}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 101debc421bf444da0381b3cf0871e87, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fd41002793a4499b2e6990c4c902e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   blockMovement: {fileID: 5168158349399883410}
@@ -66,17 +66,16 @@ MonoBehaviour:
   blockAnimation: {fileID: 4081533712971989492}
   blockCollider: {fileID: 7032632501634162382}
   blockProperties:
-    blockSprite: {fileID: 0}
-    blockLeftHalf: {fileID: 0}
-    blockRightHalf: {fileID: 0}
-    blotSprite: {fileID: 0}
-    effectSprite: {fileID: 0}
-    juiceColor: {r: 0, g: 0, b: 0, a: 0}
-    colliderRadius: 0
+    blockSprite: {fileID: 21300000, guid: 5936764d2c7c7a04cb2b646b55f471d8, type: 3}
+    blockLeftHalf: {fileID: 21300000, guid: 60263e41b195914459b5d93772eddd2b, type: 3}
+    blockRightHalf: {fileID: 21300000, guid: ef2535ccfbcc14b4c9d8ec6fbd5b967a, type: 3}
+    blotSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    effectSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    juiceColor: {r: 0.7176471, g: 0.5764706, b: 0.43529415, a: 1}
+    colliderRadius: 1.8
   blotPrefab: {fileID: 7562959973513577880, guid: 2e8bdf39065a73f469306fbabdc638fe, type: 3}
   juicePrefab: {fileID: 3294425700205250769, guid: 3831f28c06f2cc04e92cc2609df6eb34, type: 3}
   blockConfig: {fileID: 11400000, guid: 6bcc9abd9e262f44e888facb4aa8d5ba, type: 2}
-  immortalityTime: 0
 --- !u!1 &5698706068590153092
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +150,7 @@ SpriteRenderer:
   m_SortingLayerID: 1359222827
   m_SortingLayer: -5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: af1adaad39bd8ce438385681e2b2c9b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5936764d2c7c7a04cb2b646b55f471d8, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.50980395}
   m_FlipX: 0
   m_FlipY: 0
@@ -252,7 +251,7 @@ SpriteRenderer:
   m_SortingLayerID: 1450259163
   m_SortingLayer: -4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: af1adaad39bd8ce438385681e2b2c9b8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5936764d2c7c7a04cb2b646b55f471d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -270,7 +269,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6167126529915442200}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8108f60adf143b641ac8995dc1aaa1d7, type: 3}
   m_Name: 

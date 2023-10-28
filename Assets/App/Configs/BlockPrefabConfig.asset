@@ -15,10 +15,12 @@ MonoBehaviour:
   maxFreezersOnScreen: 1
   blockPrefabs:
   - prefab: {fileID: 6862684257112317645, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-    probability: 10
+    probability: 50
   - prefab: {fileID: 6647023116005519045, guid: a326dfbf3afc2844ca0885f6e9112206, type: 3}
-    probability: 2
+    probability: 7
   - prefab: {fileID: 4519879951076528023, guid: 3d96757cc09054c41b8ba9b992347b16, type: 3}
-    probability: 1
+    probability: 2
   - prefab: {fileID: -1218704673425713371, guid: 77ebbafc862b36f489b144376112e882, type: 3}
-    probability: 100000000
+    probability: 2
+  - prefab: {fileID: 615756559317701975, guid: 79f9b97f772b8644b8eddb5eb7a5135f, type: 3}
+    probability: 3

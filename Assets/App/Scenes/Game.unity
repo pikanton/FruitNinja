@@ -3053,6 +3053,12 @@ MonoBehaviour:
   halfBlockInitialSpeed: 6
   blockPrefab: {fileID: 6862684257112317645, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
   freezeManager: {fileID: 1946871767}
+  fruitPrefab: {fileID: 6862684257112317645, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
+  spawnFruitCount: 4
+  firstSpawnAngle: 50
+  secondSpawnAngle: 130
+  fruitBoxFruitInitialSpeed: 7
+  fruitBoxImmortalityTime: 0.15
 --- !u!1 &1717478465
 GameObject:
   m_ObjectHideFlags: 0

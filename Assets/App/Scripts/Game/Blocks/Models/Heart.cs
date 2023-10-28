@@ -11,7 +11,7 @@ namespace App.Scripts.Game.Blocks.Models
             InitializeComponents(initialSpeed, initialAngle);
         }
 
-        public override void Slice(float sliceAngle)
+        public override bool Slice(float sliceAngle)
         {
             Transform blockTransform = transform;
             Vector3 blockPosition = blockTransform.position;
@@ -19,6 +19,7 @@ namespace App.Scripts.Game.Blocks.Models
             CreateJuiceParticle(blockPosition, blockProperties.juiceColor);
             CreateEffect(blockPosition, blockProperties.effectSprite);
             Destroy(gameObject);
+            return true;
         }
 
         private Effect CreateEffect(Vector3 parentBlockPosition, Sprite effectSprite)

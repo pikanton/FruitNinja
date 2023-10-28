@@ -31,7 +31,7 @@ namespace App.Scripts.Game.Blocks.Models
             shadowAnimation.Initialize();
         }
         
-        public virtual void Slice(float sliceAngle)
+        public virtual bool Slice(float sliceAngle)
         {
             Transform blockTransform = transform;
             Vector3 blockPosition = blockTransform.position;
@@ -40,6 +40,7 @@ namespace App.Scripts.Game.Blocks.Models
             CreateBlot(blockPosition, blockProperties.blotSprite);
             
             Destroy(gameObject);
+            return true;
         }
         
         

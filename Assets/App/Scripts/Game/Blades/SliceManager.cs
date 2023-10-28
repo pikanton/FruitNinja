@@ -1,13 +1,10 @@
-﻿using System.Collections;
-using App.Scripts.Game.Animations;
-using App.Scripts.Game.Blocks;
+﻿using App.Scripts.Game.Blocks;
 using App.Scripts.Game.Blocks.Models;
 using App.Scripts.Game.SceneManagers;
 using App.Scripts.Game.UISystem.Lives;
 using App.Scripts.Game.UISystem.Scores;
 using UnityEngine;
-using UnityEngine.UI;
-
+    
 namespace App.Scripts.Game.Blades
 {
     public class SliceManager : MonoBehaviour
@@ -24,6 +21,13 @@ namespace App.Scripts.Game.Blades
 
         [SerializeField] private FreezeManager freezeManager;
         
+        [SerializeField] private Fruit fruitPrefab;
+        [SerializeField] private int spawnFruitCount;
+        [SerializeField] private float firstSpawnAngle;
+        [SerializeField] private float secondSpawnAngle;
+        [SerializeField] private float fruitBoxFruitInitialSpeed = 7f;
+        [SerializeField] private float fruitBoxImmortalityTime = 0.2f;
+        
         public void CheckBlocksToSlice(Vector3 direction)
         {
             float velocity = direction.magnitude / Time.deltaTime;
@@ -36,20 +40,17 @@ namespace App.Scripts.Game.Blades
                     Vector3 bladePosition = transform.position;
                     if (block.blockCollider.OnTrigger(bladePosition))
                     {
-                        spawnedBlocks.spawnedBlocks.RemoveAt(i);
-                        SliceBlock(block, direction);
-                        BlockAction(block, direction);
+                        float sliceAngle = Mathf.Atan(direction.y / direction.x) * Mathf.Rad2Deg;
+                        if (block.Slice(sliceAngle))
+                        {
+                            spawnedBlocks.spawnedBlocks.RemoveAt(i);
+                            BlockAction(block, direction);
+                        }
                     }
                 }
             }
         }
         
-        private void SliceBlock(Block block, Vector3 direction)
-        {
-            float sliceAngle = Mathf.Atan(direction.y / direction.x) * Mathf.Rad2Deg;
-            block.Slice(sliceAngle);
-        }
-
         private void BlockAction(Block block, Vector3 direction)
         {
             if (block is Fruit)
@@ -59,6 +60,10 @@ namespace App.Scripts.Game.Blades
             else if (block is Bomb)
             {
                 BombSliced(block);
+            }
+            else if (block is FruitBox)
+            {
+                FruitBoxSliced(block, direction);
             }
             else if (block is Heart)
             {
@@ -116,7 +121,19 @@ namespace App.Scripts.Game.Blades
         {
             freezeManager.Freeze();
             BlockCounter.FreezerIsDestroyed = true;
-            
+        }
+        
+        private void FruitBoxSliced(Block block, Vector3 direction)
+        {
+            float sliceAngle = Mathf.Atan(direction.y / direction.x) * Mathf.Rad2Deg;
+            float leftBlockOrthogonalAngle = sliceAngle + 90f;
+            float rightBlockOrthogonalAngle = sliceAngle - 90f;
+            CreateHalfBlock(blockPrefab, block.blockProperties.blockLeftHalf, leftBlockOrthogonalAngle);
+            CreateHalfBlock(blockPrefab, block.blockProperties.blockRightHalf, rightBlockOrthogonalAngle);
+            for (int i = 0; i < spawnFruitCount; i++)
+            {
+                SpawnFruit(block);
+            }
         }
         
         private Block CreateHalfBlock(Block block, Sprite halfBlockSprite, float initialAngle)
@@ -131,22 +148,24 @@ namespace App.Scripts.Game.Blades
             spawnedBlocks.halfBLocks.Add(halfBlock);
             return halfBlock;
         }
-
-        private IEnumerator FreezeBlocks(float freezeDuration)
+        
+        private void SpawnFruit(Block fruitBoxBlock)
         {
-            float startValue = 0f;
-            float endValue = 1f;
-    
-            float currentAnimationTime = 0;
-            while (currentAnimationTime < freezeDuration)
-            {
-                float progress = currentAnimationTime / freezeDuration;
-                currentAnimationTime += Time.unscaledDeltaTime;
-                SceneProperties.BlocksTimeScale = Mathf.Lerp(startValue, endValue, progress);
-                yield return null;
-            }
-
-            SceneProperties.BlocksTimeScale = endValue;
+            Fruit newFruit = Instantiate(fruitPrefab, fruitBoxBlock.transform.position,
+                Quaternion.identity, spawnedBlocks.gameObject.transform);
+            newFruit.Initialize(fruitBoxFruitInitialSpeed, GetRandomAngle());
+            newFruit.SetImmortalityTime(fruitBoxImmortalityTime);
+            spawnedBlocks.spawnedBlocks.Add(newFruit);
+        }
+        
+        private float GetRandomAngle()
+        {
+            float angle;
+            if (firstSpawnAngle > secondSpawnAngle)
+                angle = Random.Range(firstSpawnAngle, secondSpawnAngle);
+            else
+                angle = Random.Range(firstSpawnAngle, secondSpawnAngle);
+            return angle;
         }
     }
 }
