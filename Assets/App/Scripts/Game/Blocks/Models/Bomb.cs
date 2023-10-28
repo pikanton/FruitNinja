@@ -6,6 +6,7 @@ namespace App.Scripts.Game.Blocks.Models
     public class Bomb : Block
     {
         [SerializeField] private Effect effectPrefab;
+
         public override void Initialize(float initialSpeed = 0f, float initialAngle = 0f)
         {
             InitializeComponents(initialSpeed, initialAngle);

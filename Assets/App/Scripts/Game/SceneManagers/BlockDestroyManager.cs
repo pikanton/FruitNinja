@@ -42,6 +42,8 @@ namespace App.Scripts.Game.SceneManagers
                 Block block = blockList.spawnedBlocks[i];
                 if (IsOutOfScreen(block.transform))
                 {
+                    if (block is Freezer)
+                        BlockCounter.FreezerCount = 0;
                     Destroy(block.gameObject);
                     blockList.spawnedBlocks.RemoveAt(i);
                     if (block is Fruit)

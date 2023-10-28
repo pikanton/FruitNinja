@@ -83,8 +83,17 @@ namespace App.Scripts.Game.Spawners
             float spawnAngle = randomSpawner.GetRandomAngle();
 
             Block newBlock = Instantiate(blockPrefab, spawnPosition, Quaternion.identity, spawnedBlocks.gameObject.transform);
+            CheckBlockCount(newBlock);
             newBlock.Initialize(managerConfig.blockInitialSpeed, spawnAngle);
             spawnedBlocks.spawnedBlocks.Add(newBlock);
+        }
+
+        private void CheckBlockCount(Block block)
+        {
+            if (block is Freezer)
+            {
+                BlockCounter.FreezerCount++;
+            }
         }
         
         private void MakeMoreDifficult()

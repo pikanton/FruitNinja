@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88c1c972fc43442ca7377c7dcf4f686d, type: 3}
   m_Name: BlockPrefabConfig
   m_EditorClassIdentifier: 
+  maxFreezersOnScreen: 1
   blockPrefabs:
   - prefab: {fileID: 6862684257112317645, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
     probability: 10
@@ -19,3 +20,5 @@ MonoBehaviour:
     probability: 2
   - prefab: {fileID: 4519879951076528023, guid: 3d96757cc09054c41b8ba9b992347b16, type: 3}
     probability: 1
+  - prefab: {fileID: -1218704673425713371, guid: 77ebbafc862b36f489b144376112e882, type: 3}
+    probability: 100000000

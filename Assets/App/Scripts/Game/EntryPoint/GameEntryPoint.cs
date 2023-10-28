@@ -1,6 +1,7 @@
 ﻿using App.Scripts.Game.Animations;
 using App.Scripts.Game.Blades;
 using App.Scripts.Game.InputSystem;
+using App.Scripts.Game.SceneManagers;
 using App.Scripts.Game.Spawners;
 using App.Scripts.Game.UISystem.Lives;
 using App.Scripts.Game.UISystem.Popups;
@@ -25,7 +26,10 @@ namespace App.Scripts.Game.EntryPoint
         private readonly UIAnimation _uiAnimation = new();
         private void Awake()
         {
+            Application.targetFrameRate = 120;
+            QualitySettings.vSyncCount = 0;
             pauseButton.ButtonAction = popup.PauseGame;
+            SceneProperties.BlocksTimeScale = 1f;
             Time.timeScale = 1f;
             IInput inputController = GetInputController();
             bladeMovement.Initialize(inputController);

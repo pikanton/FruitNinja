@@ -22,6 +22,8 @@ namespace App.Scripts.Menu
 
         private void Awake()
         {
+            Application.targetFrameRate = 120;
+            QualitySettings.vSyncCount = 0;
             startButton.ButtonAction = LoadGameScene;
             exitButton.ButtonAction = Exit;
             Time.timeScale = 1f;

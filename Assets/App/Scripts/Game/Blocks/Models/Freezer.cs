@@ -1,4 +1,6 @@
-﻿using App.Scripts.Game.Effects;
+﻿using System.Collections;
+using App.Scripts.Game.Effects;
+using App.Scripts.Game.SceneManagers;
 using UnityEngine;
 
 namespace App.Scripts.Game.Blocks.Models    
@@ -6,6 +8,7 @@ namespace App.Scripts.Game.Blocks.Models
     public class Freezer : Block
     {
         [SerializeField] private Effect effectPrefab;
+
         public override void Initialize(float initialSpeed = 0f, float initialAngle = 0f)
         {
             InitializeComponents(initialSpeed, initialAngle);
@@ -28,5 +31,6 @@ namespace App.Scripts.Game.Blocks.Models
             effect.Initialize();
             return effect;
         }
+
     }
 }

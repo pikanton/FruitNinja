@@ -1,8 +1,12 @@
-﻿using App.Scripts.Game.Blocks;
+﻿using System.Collections;
+using App.Scripts.Game.Animations;
+using App.Scripts.Game.Blocks;
 using App.Scripts.Game.Blocks.Models;
+using App.Scripts.Game.SceneManagers;
 using App.Scripts.Game.UISystem.Lives;
 using App.Scripts.Game.UISystem.Scores;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace App.Scripts.Game.Blades
 {
@@ -18,6 +22,8 @@ namespace App.Scripts.Game.Blades
         [SerializeField] private float halfBlockInitialSpeed = 6f;
         [SerializeField] private Block blockPrefab;
 
+        [SerializeField] private FreezeManager freezeManager;
+        
         public void CheckBlocksToSlice(Vector3 direction)
         {
             float velocity = direction.magnitude / Time.deltaTime;
@@ -57,6 +63,10 @@ namespace App.Scripts.Game.Blades
             else if (block is Heart)
             {
                 HeartSliced(block);
+            }
+            else if (block is Freezer)
+            {
+                FreezerSliced(block);
             }
         }
 
@@ -101,6 +111,13 @@ namespace App.Scripts.Game.Blades
         {
             liveBar.AddLive();
         }
+
+        private void FreezerSliced(Block block)
+        {
+            freezeManager.Freeze();
+            BlockCounter.FreezerIsDestroyed = true;
+            
+        }
         
         private Block CreateHalfBlock(Block block, Sprite halfBlockSprite, float initialAngle)
         {
@@ -113,6 +130,23 @@ namespace App.Scripts.Game.Blades
             halfBlock.shadowAnimation.Initialize();
             spawnedBlocks.halfBLocks.Add(halfBlock);
             return halfBlock;
+        }
+
+        private IEnumerator FreezeBlocks(float freezeDuration)
+        {
+            float startValue = 0f;
+            float endValue = 1f;
+    
+            float currentAnimationTime = 0;
+            while (currentAnimationTime < freezeDuration)
+            {
+                float progress = currentAnimationTime / freezeDuration;
+                currentAnimationTime += Time.unscaledDeltaTime;
+                SceneProperties.BlocksTimeScale = Mathf.Lerp(startValue, endValue, progress);
+                yield return null;
+            }
+
+            SceneProperties.BlocksTimeScale = endValue;
         }
     }
 }

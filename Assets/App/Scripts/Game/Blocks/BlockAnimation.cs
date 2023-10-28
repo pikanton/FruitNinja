@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using App.Scripts.Game.SceneManagers;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -56,7 +57,7 @@ namespace App.Scripts.Game.Blocks
 
         private void Rotate()
         {
-            float finalRotationAngle = rotateAngle * _rotationDirection * Time.deltaTime;
+            float finalRotationAngle = rotateAngle * _rotationDirection * Time.deltaTime * SceneProperties.BlocksTimeScale;
             transform.Rotate(Vector3.forward * finalRotationAngle);
         }
     }

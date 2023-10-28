@@ -57,6 +57,23 @@ namespace App.Scripts.Game.Animations
             image.color = newColor;
         }
         
+        public IEnumerator FadeScaledAnimation(Image image, float newAlpha, float animationDuration)
+        {
+            Color startColor = image.color;
+            Color newColor = new Color(startColor.r, startColor.g, startColor.b, newAlpha);
+    
+            float currentAnimationTime = 0;
+            while (currentAnimationTime < animationDuration)
+            {
+                float progress = currentAnimationTime / animationDuration;
+                currentAnimationTime += Time.deltaTime;
+                image.color = Color.Lerp(startColor, newColor, progress);
+                yield return null;
+            }
+
+            image.color = newColor;
+        }
+        
         public IEnumerator TintAnimation(Image image, float newTint, float animationDuration)
         {
             Color startColor = image.color;

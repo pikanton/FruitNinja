@@ -1,4 +1,5 @@
 using App.Scripts.Game.Configs;
+using App.Scripts.Game.SceneManagers;
 using UnityEngine;
 
 namespace App.Scripts.Game.Blocks
@@ -12,6 +13,8 @@ namespace App.Scripts.Game.Blocks
         private Vector3 _initialVelocity;
 
         private Vector3 _currentPosition;
+
+        private float _timeUpdate = 0f;
         
         public void Initialize(float initialSpeed = 0f, float initialAngle = 0f)
         {
@@ -23,8 +26,8 @@ namespace App.Scripts.Game.Blocks
 
         private void Update()
         {
-            _currentPosition += _initialVelocity * Time.deltaTime;
-            float afterGravityVelocity = _initialVelocity.y - physicsConfig.gravity * Time.deltaTime;
+            _currentPosition += _initialVelocity * (Time.deltaTime * SceneProperties.BlocksTimeScale);
+            float afterGravityVelocity = _initialVelocity.y - physicsConfig.gravity * Time.deltaTime * SceneProperties.BlocksTimeScale;
             _initialVelocity.y = Mathf.Clamp(afterGravityVelocity, -physicsConfig.velocityLimit,
                 physicsConfig.velocityLimit);
             transform.position = _currentPosition;

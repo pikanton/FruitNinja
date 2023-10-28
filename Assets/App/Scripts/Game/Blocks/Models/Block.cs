@@ -15,7 +15,6 @@ namespace App.Scripts.Game.Blocks.Models
         [SerializeField] public Blot blotPrefab;
         [SerializeField] public Juice juicePrefab;
         [SerializeField] private BlockConfig blockConfig;
-        
 
         public virtual void Initialize(float initialSpeed = 0f, float initialAngle = 0f)
         {
