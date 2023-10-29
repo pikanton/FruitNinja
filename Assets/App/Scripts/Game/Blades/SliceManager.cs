@@ -141,6 +141,7 @@ namespace App.Scripts.Game.Blades
             var parentBlockTransform = transform;
             var halfBlock = Instantiate(block, parentBlockTransform.position, Quaternion.identity,
                 spawnedBlocks.transform);
+            halfBlock.spriteRenderer.sortingOrder = -100;
             halfBlock.Initialize(halfBlockInitialSpeed, initialAngle);
             halfBlock.blockAnimation.transform.rotation = parentBlockTransform.rotation;
             halfBlock.spriteRenderer.sprite = halfBlockSprite;

@@ -47,7 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bc1ad20c029d24b8c5f42bf5241e2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocityLimit: 13
   physicsConfig: {fileID: 11400000, guid: 57c4881801996214289b4e03b4075663, type: 2}
 --- !u!114 &6647023116005519045
 MonoBehaviour:
@@ -77,9 +76,6 @@ MonoBehaviour:
   blotPrefab: {fileID: 7562959973513577880, guid: 2e8bdf39065a73f469306fbabdc638fe, type: 3}
   juicePrefab: {fileID: 3294425700205250769, guid: 3831f28c06f2cc04e92cc2609df6eb34, type: 3}
   blockConfig: {fileID: 11400000, guid: 6bcc9abd9e262f44e888facb4aa8d5ba, type: 2}
-  lifeTime: 100
-  halfBlockLifeTime: 3
-  halfBlockInitialSpeed: 6
   effectPrefab: {fileID: 8339556664786400459, guid: a4846f605a1556742a1a1458b5ecae44, type: 3}
 --- !u!1 &5698706068590153092
 GameObject:
@@ -153,7 +149,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1359222827
-  m_SortingLayer: -4
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cbe27decb19f6444bb4ba878100356d8, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.50980395}
@@ -254,8 +250,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1450259163
-  m_SortingLayer: -3
-  m_SortingOrder: 0
+  m_SortingLayer: -4
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: cbe27decb19f6444bb4ba878100356d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
