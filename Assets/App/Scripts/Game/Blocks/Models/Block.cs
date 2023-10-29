@@ -1,6 +1,7 @@
 using App.Scripts.Game.Configs;
 using App.Scripts.Game.Effects;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.Game.Blocks.Models
 {
@@ -14,11 +15,11 @@ namespace App.Scripts.Game.Blocks.Models
         [SerializeField] public BlockProperties blockProperties;
         [SerializeField] public Blot blotPrefab;
         [SerializeField] public Juice juicePrefab;
-        [SerializeField] private BlockConfig blockConfig;
+        [SerializeField] private BlockPropertiesConfig blockPropertiesConfig;
 
         public virtual void Initialize(float initialSpeed = 0f, float initialAngle = 0f)
         {
-            blockProperties = blockConfig.GetRandomBlockView();
+            blockProperties = blockPropertiesConfig.GetRandomBlockView();
             spriteRenderer.sprite = blockProperties.blockSprite;
             InitializeComponents(initialSpeed, initialAngle);
         }

@@ -50,8 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b65943445f104c6e91a083efc1107aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationDuration: 0.15
-  lifeTime: 1
+  scoreLabelConfig: {fileID: 11400000, guid: a08591747ececef48a9d098fe0e01ba1, type: 2}
   textMeshPro: {fileID: 1153791133873185805}
 --- !u!1 &8228315424069448137
 GameObject:

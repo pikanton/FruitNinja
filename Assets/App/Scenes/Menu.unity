@@ -428,6 +428,7 @@ GameObject:
   - component: {fileID: 292779051}
   - component: {fileID: 292779053}
   - component: {fileID: 292779052}
+  - component: {fileID: 292779054}
   m_Layer: 0
   m_Name: RightTower
   m_TagString: Untagged
@@ -448,12 +449,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 790117459}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -183.23999, y: 0}
-  m_SizeDelta: {x: 366.47705, y: 0}
+  m_AnchoredPosition: {x: -183.24023, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &292779052
 MonoBehaviour:
@@ -493,6 +494,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292779050}
   m_CullTransparentMesh: 1
+--- !u!114 &292779054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292779050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 2
+  m_AspectRatio: 0.47718367
 --- !u!1001 &325781916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -562,7 +577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7691841702508332847, guid: b85fd451d566a6549a7599af6739a786, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7691841702508332847, guid: b85fd451d566a6549a7599af6739a786, type: 3}
       propertyPath: m_AnchorMax.x
@@ -720,7 +735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7691841702508332847, guid: b85fd451d566a6549a7599af6739a786, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7691841702508332847, guid: b85fd451d566a6549a7599af6739a786, type: 3}
       propertyPath: m_AnchorMax.x
@@ -812,6 +827,7 @@ GameObject:
   - component: {fileID: 578949013}
   - component: {fileID: 578949015}
   - component: {fileID: 578949014}
+  - component: {fileID: 578949016}
   m_Layer: 0
   m_Name: LeftTower
   m_TagString: Untagged
@@ -832,12 +848,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 790117459}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 177.49988, y: 0}
-  m_SizeDelta: {x: 354.99988, y: 0}
+  m_AnchoredPosition: {x: 177.5, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &578949014
 MonoBehaviour:
@@ -877,6 +893,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 578949012}
   m_CullTransparentMesh: 1
+--- !u!114 &578949016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 578949012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 2
+  m_AspectRatio: 0.4622394
 --- !u!1 &655511431
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,10 +973,10 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 292779051}
+  - {fileID: 578949013}
   - {fileID: 325781917}
   - {fileID: 487650713}
-  - {fileID: 578949013}
-  - {fileID: 292779051}
   - {fileID: 1512026397}
   - {fileID: 1077485751}
   - {fileID: 945761639}
@@ -1196,10 +1226,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b071f1e4af343098cb8ea049b2b7ab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneConfig: {fileID: 11400000, guid: fe567da74ec04774b962bc3d87dcdb7a, type: 2}
   scoreTextMeshPro: {fileID: 197274652}
   loadImage: {fileID: 1160441879}
-  loadSceneAnimationDuration: 1
-  gameSceneName: Game
   startButton: {fileID: 1648818466}
   exitButton: {fileID: 793935255}
 --- !u!4 &967351121

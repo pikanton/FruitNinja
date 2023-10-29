@@ -3,7 +3,8 @@ using System.Collections;
 using App.Scripts.Game.Animations;
 using App.Scripts.Game.Blades;
 using App.Scripts.Game.Blocks;
-using App.Scripts.Game.Configs;
+using App.Scripts.Game.Configs.Scenes;
+using App.Scripts.Game.Configs.UI;
 using App.Scripts.Game.Spawners;
 using App.Scripts.Game.UISystem.Scores;
 using TMPro;
@@ -15,6 +16,10 @@ namespace App.Scripts.Game.UISystem.Popups
 {
     public class Popup : MonoBehaviour
     {
+        [SerializeField] private PopupConfig popupConfig;
+        [SerializeField] private SceneConfig sceneConfig;
+
+        
         [SerializeField] private SpawnersManager spawnersManager;
         [SerializeField] private BladeMovement bladeMovement;
         [SerializeField] private BlockList blocklist;
@@ -30,10 +35,6 @@ namespace App.Scripts.Game.UISystem.Popups
         [SerializeField] private Image panelImage;
         [SerializeField] private Image fadeImage;
         [SerializeField] private Transform containerTransform;
-        
-        [SerializeField] private PopupConfig popupConfig;
-
-        
 
         private readonly UIAnimation _uiAnimation = new();
 
@@ -52,7 +53,7 @@ namespace App.Scripts.Game.UISystem.Popups
             StartCoroutine(_uiAnimation.ScaleAnimation(containerTransform, Vector3.zero, popupConfig.animationDuration));
             FadeShow();
             StartCoroutine(_uiAnimation.DoActionAfterDelay(
-                () => SceneManager.LoadScene(popupConfig.menuSceneName),
+                () => SceneManager.LoadScene(sceneConfig.menuSceneName),
                 popupConfig.animationDuration));
         }
         

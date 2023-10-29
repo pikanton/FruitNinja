@@ -4,16 +4,16 @@ namespace App.Scripts.Game.Saves
 {
     public class GameSaver
     {
-        private string _highScoreKey = "HighScore";
-        
+        private const string HighScoreKey = "HighScore";
+
         public void SaveHighScore(int highScore)
         {
-            PlayerPrefs.SetInt(_highScoreKey, highScore);
+            PlayerPrefs.SetInt(HighScoreKey, highScore);
         }
 
         public int GetHighScore()
         {
-            return PlayerPrefs.GetInt(_highScoreKey);
+            return PlayerPrefs.GetInt(HighScoreKey);
 
         }
     }

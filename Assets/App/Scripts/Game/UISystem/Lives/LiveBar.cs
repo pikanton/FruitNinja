@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using App.Scripts.Game.Animations;
-using App.Scripts.Game.Configs;
+using App.Scripts.Game.Configs.UI;
 using App.Scripts.Game.Saves;
 using App.Scripts.Game.UISystem.Popups;
 using App.Scripts.Game.UISystem.Scores;
@@ -16,24 +15,23 @@ namespace App.Scripts.Game.UISystem.Lives
         [SerializeField] private ScoreBar scoreBar;
         [SerializeField] private Popup gamePopup;
         
-        private readonly GameSaver _gameSaver = new GameSaver();
-        private bool _isCheckingLives = true;
-        public int CurrentLiveCount { get; private set; }
-
+        private readonly GameSaver _gameSaver = new();
         private readonly UIAnimation _uiAnimation = new();
+        private bool _isCheckingLives = true;
+        private int _currentLiveCount;
     
         public void Initialize()
         {
-            CurrentLiveCount = livesConfig.liveCount;
+            _currentLiveCount = livesConfig.liveCount;
             for (int i = 0; i < liveList.Count; i++)
             {
-                liveList[i].transform.localScale = i < CurrentLiveCount ? Vector3.one : Vector3.zero;
+                liveList[i].transform.localScale = i < _currentLiveCount ? Vector3.one : Vector3.zero;
             }
         }
 
         private void Update()
         {
-            if (CurrentLiveCount <= 0 && _isCheckingLives)
+            if (_currentLiveCount <= 0 && _isCheckingLives)
             {
                 _isCheckingLives = false;
                 _gameSaver.SaveHighScore(scoreBar.GetHighScore());
@@ -43,19 +41,21 @@ namespace App.Scripts.Game.UISystem.Lives
 
         public void AddLive()
         {
-            if (CurrentLiveCount < liveList.Count)
+            if (_currentLiveCount < liveList.Count)
             {
-                StartCoroutine(_uiAnimation.ScaleAnimation(liveList[CurrentLiveCount].transform, Vector3.one, livesConfig.animationDuration));
-                CurrentLiveCount++;
+                StartCoroutine(_uiAnimation.ScaleAnimation(liveList[_currentLiveCount].transform,
+                    Vector3.one, livesConfig.animationDuration));
+                _currentLiveCount++;
             }
         }
 
         public void RemoveLive()
         {
-            if (CurrentLiveCount > 0)
+            if (_currentLiveCount > 0)
             {
-                CurrentLiveCount--;
-                StartCoroutine(_uiAnimation.ScaleAnimation(liveList[CurrentLiveCount].transform, Vector3.zero, livesConfig.animationDuration));
+                _currentLiveCount--;
+                StartCoroutine(_uiAnimation.ScaleAnimation(liveList[_currentLiveCount].transform,
+                    Vector3.zero, livesConfig.animationDuration));
             }
         }
 

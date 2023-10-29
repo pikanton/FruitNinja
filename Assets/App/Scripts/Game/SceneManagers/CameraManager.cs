@@ -4,8 +4,7 @@ namespace App.Scripts.Game.SceneManagers
 {
     public class CameraManager : MonoBehaviour
     {
-        [SerializeField] public Camera camera;
-        
+        [SerializeField] private new Camera camera;
         public Rect GetCameraRect()
         {
             float halfCameraHeight = camera.orthographicSize;

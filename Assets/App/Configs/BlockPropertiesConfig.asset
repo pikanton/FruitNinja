@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e2beaad2648448185070424d665b18f, type: 3}
-  m_Name: BlockViewConfig
+  m_Name: BlockPropertiesConfig
   m_EditorClassIdentifier: 
   blockProperties:
   - blockSprite: {fileID: 21300000, guid: af1adaad39bd8ce438385681e2b2c9b8, type: 3}

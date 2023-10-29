@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Game.Configs
+namespace App.Scripts.Game.Configs.UI
 {
-    [CreateAssetMenu(fileName = "LivesConfig", menuName = "Configs/Lives")]
+    [CreateAssetMenu(fileName = "LivesConfig", menuName = "Configs/UI/Lives")]
     public class LivesConfig : ScriptableObject
     {
         [SerializeField] public float animationDuration = 0.2f;

@@ -4,6 +4,7 @@ using App.Scripts.Game.Blocks;
 using App.Scripts.Game.Blocks.Models;
 using Random = UnityEngine.Random;
 using App.Scripts.Game.Configs;
+using App.Scripts.Game.Configs.Gameplay;
 using App.Scripts.Game.SceneManagers;
 
 namespace App.Scripts.Game.Spawners
@@ -11,7 +12,7 @@ namespace App.Scripts.Game.Spawners
     public class SpawnersManager : MonoBehaviour
     {
         [SerializeField] private List<Spawner> spawners;
-        [SerializeField] private BlockPrefabConfig blockPrefabConfig;
+        [SerializeField] private BlockPrefabsManagerConfig blockPrefabsManagerConfig;
         [SerializeField] private SpawnersManagerConfig managerConfig;
         [SerializeField] public CameraManager cameraManager;
         [SerializeField] public BlockList spawnedBlocks;
@@ -24,7 +25,6 @@ namespace App.Scripts.Game.Spawners
         private float _nextStackSpawnTime;
         private float _nextBlockSpawnTime;
 
-        
         public void Initialize()
         {
             SetBlockCounts();
@@ -78,7 +78,7 @@ namespace App.Scripts.Game.Spawners
         private void SpawnBlock()
         {
             Spawner randomSpawner = GetRandomSpawner();
-            Block blockPrefab = blockPrefabConfig.GetRandomBlockPrefab().prefab;
+            Block blockPrefab = blockPrefabsManagerConfig.GetRandomBlockPrefab().prefab;
             Vector3 spawnPosition = randomSpawner.GetRandomPosition();
             float spawnAngle = randomSpawner.GetRandomAngle();
 
@@ -129,6 +129,5 @@ namespace App.Scripts.Game.Spawners
 
             return null;
         }
-        
     }
 }

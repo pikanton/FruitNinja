@@ -1,12 +1,10 @@
 ﻿using App.Scripts.Game.SceneManagers;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace App.Scripts.Game.Blocks
 {
     public class BlockManager : MonoBehaviour
     {
-
         private void Update()
         {
             if (BlockCounter.FreezerIsDestroyed && 

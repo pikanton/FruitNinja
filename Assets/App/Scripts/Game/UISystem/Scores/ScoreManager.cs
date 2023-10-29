@@ -1,16 +1,14 @@
-﻿using App.Scripts.Game.SceneManagers;
+﻿using App.Scripts.Game.Configs.UI;
 using UnityEngine;
 
 namespace App.Scripts.Game.UISystem.Scores
 {
     public class ScoreManager : MonoBehaviour
     {
-        [SerializeField] private CameraManager cameraManager;
+        [SerializeField] private ScoreConfig scoreConfig;
         [SerializeField] private ScoreBar scoreBar;
         [SerializeField] private ScoreLabel scoreLabel;
         [SerializeField] private MultiScoreLabel multiScoreLabel;
-        [SerializeField] private float multiplyScoreDelay = 0.2f;
-        [SerializeField] private int maxScoreMultiplayer = 4;
         
         private float _addScoreTime;
         private int _currentScoreMultiplayer;
@@ -20,7 +18,7 @@ namespace App.Scripts.Game.UISystem.Scores
 
         private void Update()
         {
-            if (_currentScoreMultiplayer >= 2 && Time.time >= _addScoreTime + multiplyScoreDelay)
+            if (_currentScoreMultiplayer >= 2 && Time.time >= _addScoreTime + scoreConfig.multiplyScoreDelay)
             {
                 scoreBar.AddScore(_lastAmount * _currentSlicedBlocks * (_currentScoreMultiplayer - 1));
                 MultiScoreLabel newScoreLabel = Instantiate(multiScoreLabel, _lastBlockPosition, Quaternion.identity, scoreBar.transform);
@@ -38,10 +36,10 @@ namespace App.Scripts.Game.UISystem.Scores
             ScoreLabel newScoreLabel = Instantiate(scoreLabel, blockPosition, Quaternion.identity, scoreBar.transform);
             newScoreLabel.Initialize(amount);
             
-            if (Time.time < _addScoreTime + multiplyScoreDelay)
+            if (Time.time < _addScoreTime + scoreConfig.multiplyScoreDelay)
             {
                 _currentSlicedBlocks++;
-                if (_currentScoreMultiplayer < maxScoreMultiplayer)
+                if (_currentScoreMultiplayer < scoreConfig.maxScoreMultiplayer)
                     _currentScoreMultiplayer++;
             }
             else

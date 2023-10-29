@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace App.Scripts.Game.Configs
+namespace App.Scripts.Game.Configs.UI
 {
-    [CreateAssetMenu(fileName = "PopupConfig", menuName = "Configs/Popup")]
+    [CreateAssetMenu(fileName = "PopupConfig", menuName = "Configs/UI/Popup")]
     public class PopupConfig : ScriptableObject
     {
         [SerializeField] public float animationDuration = 0.5f;
@@ -16,7 +16,5 @@ namespace App.Scripts.Game.Configs
 
         [SerializeField] public float startPopupAlpha = 0f;
         [SerializeField] public float endPopupAlpha = 0.9f;
-        
-        [SerializeField] public string menuSceneName = "Menu";
     }
 }

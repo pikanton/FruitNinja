@@ -1,4 +1,5 @@
 ﻿using App.Scripts.Game.Animations;
+using App.Scripts.Game.Configs.UI;
 using TMPro;
 using UnityEngine;
 
@@ -6,8 +7,7 @@ namespace App.Scripts.Game.UISystem.Scores
 {
     public class ScoreLabel : MonoBehaviour
     {
-        [SerializeField] private float animationDuration = 0.15f;
-        [SerializeField] private float lifeTime = 1f;
+        [SerializeField] private ScoreLabelConfig scoreLabelConfig;
         [SerializeField] private TextMeshProUGUI textMeshPro;
 
         private readonly UIAnimation _uiAnimation = new();
@@ -16,18 +16,19 @@ namespace App.Scripts.Game.UISystem.Scores
 
         public void Initialize(int amount)
         {
-            _initialTime = Time.time + lifeTime;
+            _initialTime = Time.time + scoreLabelConfig.lifeTime;
             _initialColor = textMeshPro.color;
             textMeshPro.text = amount.ToString();
             transform.localScale = Vector3.zero;
-            Destroy(gameObject, lifeTime);
-            StartCoroutine(_uiAnimation.ScaleAnimation(transform, Vector3.one, animationDuration));
+            Destroy(gameObject, scoreLabelConfig.lifeTime);
+            StartCoroutine(_uiAnimation.ScaleAnimation(transform,
+                Vector3.one, scoreLabelConfig.animationDuration));
         }
 
         private void Update()
         {
-            float elapsedTime = Time.time - (_initialTime - lifeTime);
-            float alpha = 1f - (elapsedTime / lifeTime);
+            float elapsedTime = Time.time - (_initialTime - scoreLabelConfig.lifeTime);
+            float alpha = 1f - (elapsedTime / scoreLabelConfig.lifeTime);
             textMeshPro.color = new Color(_initialColor.r, _initialColor.g, _initialColor.b, alpha);
         }
     }

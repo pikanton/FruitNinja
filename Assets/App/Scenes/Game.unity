@@ -566,6 +566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50b2005bca2b43f983de06ef278f6cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popupConfig: {fileID: 11400000, guid: dec5e8828d8d0f14ebe6341e5b6ccb86, type: 2}
+  sceneConfig: {fileID: 11400000, guid: fe567da74ec04774b962bc3d87dcdb7a, type: 2}
   spawnersManager: {fileID: 1275566201}
   bladeMovement: {fileID: 1711068971}
   blocklist: {fileID: 703178827}
@@ -579,7 +581,6 @@ MonoBehaviour:
   panelImage: {fileID: 219299695}
   fadeImage: {fileID: 432091388}
   containerTransform: {fileID: 2005647584}
-  popupConfig: {fileID: 11400000, guid: dec5e8828d8d0f14ebe6341e5b6ccb86, type: 2}
 --- !u!1 &221038416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2198,10 +2199,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088b2d580ceb4122b651e6bbafacf781, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreConfig: {fileID: 11400000, guid: 932488123c994184fa8f319dae3d4038, type: 2}
   scoreTextMeshPro: {fileID: 1870565977}
   recordTextMeshPro: {fileID: 2135998621}
-  scoreAnimationDuration: 0.5
-  prefix: "\u041B\u0443\u0447\u0448\u0438\u0439: "
 --- !u!114 &1236873850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2214,12 +2214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1fc7b3e4a184735b872bc2a80eb21ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraManager: {fileID: 519420033}
+  scoreConfig: {fileID: 11400000, guid: 932488123c994184fa8f319dae3d4038, type: 2}
   scoreBar: {fileID: 1236873849}
   scoreLabel: {fileID: 3722825065677095964, guid: 9fd3f84f1b30bd442ad9a54b7fec5083, type: 3}
   multiScoreLabel: {fileID: 5197872545316228227, guid: 0e56e3af35d0b364db22feae9a6cff2c, type: 3}
-  multiplyScoreDelay: 0.2
-  maxScoreMultiplayer: 4
 --- !u!1 &1275566200
 GameObject:
   m_ObjectHideFlags: 0
@@ -2254,7 +2252,7 @@ MonoBehaviour:
   - {fileID: 528448011}
   - {fileID: 832483869}
   - {fileID: 795057599}
-  blockPrefabConfig: {fileID: 11400000, guid: 922a533cafa061c48a3cc3f7303e85cc, type: 2}
+  blockPrefabsManagerConfig: {fileID: 11400000, guid: 922a533cafa061c48a3cc3f7303e85cc, type: 2}
   managerConfig: {fileID: 11400000, guid: 5526930c8ebed52409e3a93b7cc56b0d, type: 2}
   cameraManager: {fileID: 519420033}
   spawnedBlocks: {fileID: 703178827}
@@ -3044,21 +3042,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d160e1459bb4b0fa97aad3abe472b72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreAmount: 75
-  minSliceVelocity: 25
+  sliceConfig: {fileID: 11400000, guid: c2bfb260b04780445aa569d51d3ef620, type: 2}
   spawnedBlocks: {fileID: 703178827}
   scoreManager: {fileID: 1236873850}
   liveBar: {fileID: 2336892}
-  explosionForce: 15
-  halfBlockInitialSpeed: 6
   blockPrefab: {fileID: 6862684257112317645, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
+  objectOrdersConfig: {fileID: 11400000, guid: c25a716c666a3b74d992d3446f0bbee5, type: 2}
+  halfBlockConfig: {fileID: 11400000, guid: 1ed882fe46e737744981bdbfd2db0853, type: 2}
+  bombConfig: {fileID: 11400000, guid: f76eb90dc81570d44b144a326a83d373, type: 2}
   freezeManager: {fileID: 1946871767}
-  fruitPrefab: {fileID: 6862684257112317645, guid: 4e68d3323258abd4ab59fdb7ca523f71, type: 3}
-  spawnFruitCount: 4
-  firstSpawnAngle: 50
-  secondSpawnAngle: 130
-  fruitBoxFruitInitialSpeed: 7
-  fruitBoxImmortalityTime: 0.15
+  fruitBoxConfig: {fileID: 11400000, guid: df12ec621cbc9b54891ad7518fc35e68, type: 2}
 --- !u!1 &1717478465
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,6 +3197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f1c2ee5a434bddb1d0e1b73e169e9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneConfig: {fileID: 11400000, guid: fe567da74ec04774b962bc3d87dcdb7a, type: 2}
   spawnersManager: {fileID: 1275566201}
   bladeMovement: {fileID: 1711068971}
   liveBar: {fileID: 2336892}
@@ -3211,7 +3205,6 @@ MonoBehaviour:
   popup: {fileID: 219299697}
   loadImage: {fileID: 432091388}
   pauseButton: {fileID: 1093999419}
-  loadSceneAnimationDuration: 1
 --- !u!4 &1810082703
 Transform:
   m_ObjectHideFlags: 0
@@ -3665,10 +3658,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f5beef83c2648b697703f50ce5fe105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startValue: 0
-  endValue: 1
-  freezeDuration: 4
-  frostImage: {fileID: 521672153}
+  freezerConfig: {fileID: 11400000, guid: 45d3f19652a6436489dd198152d54b7a, type: 2}
+  frostEffectImage: {fileID: 521672153}
 --- !u!224 &1998201855 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7691841702508332847, guid: b85fd451d566a6549a7599af6739a786, type: 3}

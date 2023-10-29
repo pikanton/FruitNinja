@@ -1,18 +1,17 @@
 ﻿using App.Scripts.Game.Animations;
+using App.Scripts.Game.Configs.UI;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace App.Scripts.Game.UISystem.Scores
 {
     public class MultiScoreLabel : MonoBehaviour
     {
-        [SerializeField] private float animationDuration = 0.15f;
-        [SerializeField] private float lifeTime = 1f;
+        [SerializeField] private MultiScoreLabelConfig multiScoreLabelConfig;
         [SerializeField] private TextMeshProUGUI fruits;
         [SerializeField] private TextMeshProUGUI series;
         [SerializeField] private TextMeshProUGUI multiplayer;
-        private const string FruitFormat = " фрукта";
-        private const string MultiplayerFormat = "х";
 
         private readonly UIAnimation _uiAnimation = new();
         private float _initialTime;
@@ -22,21 +21,22 @@ namespace App.Scripts.Game.UISystem.Scores
 
         public void Initialize(int amount, int currentScoreMultiPlayer)
         {
-            _initialTime = Time.time + lifeTime;
+            _initialTime = Time.time + multiScoreLabelConfig.lifeTime;
             _initialColorFruits = fruits.color;
             _initialColorSeries = series.color;
             _initialColorMultiplayer = multiplayer.color;
-            fruits.text = currentScoreMultiPlayer.ToString() + FruitFormat;
-            multiplayer.text = MultiplayerFormat + currentScoreMultiPlayer.ToString();
+            fruits.text = currentScoreMultiPlayer.ToString() + multiScoreLabelConfig.fruitFormat;
+            multiplayer.text = multiScoreLabelConfig.multiplayerFormat + currentScoreMultiPlayer.ToString();
             transform.localScale = Vector3.zero;
-            Destroy(gameObject, lifeTime);
-            StartCoroutine(_uiAnimation.ScaleAnimation(transform, Vector3.one, animationDuration));
+            Destroy(gameObject, multiScoreLabelConfig.lifeTime);
+            StartCoroutine(_uiAnimation.ScaleAnimation(transform,
+                Vector3.one, multiScoreLabelConfig.animationDuration));
         }
 
         private void Update()
         {
-            float elapsedTime = Time.time - (_initialTime - lifeTime);
-            float alpha = 1f - (elapsedTime / lifeTime);
+            float elapsedTime = Time.time - (_initialTime - multiScoreLabelConfig.lifeTime);
+            float alpha = 1f - (elapsedTime / multiScoreLabelConfig.lifeTime);
             fruits.color = GetNewAlphaColor(_initialColorFruits, alpha);
             series.color = GetNewAlphaColor(_initialColorSeries, alpha);
             multiplayer.color = GetNewAlphaColor(_initialColorMultiplayer, alpha);

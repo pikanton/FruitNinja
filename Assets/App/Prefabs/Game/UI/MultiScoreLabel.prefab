@@ -187,8 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ba4e09d5084bf7955cce0dbc1b4bc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationDuration: 0.15
-  lifeTime: 1
+  multiScoreLabelConfig: {fileID: 11400000, guid: 0d9d3c5d2a532bb4c915dd4eafd01fea, type: 2}
   fruits: {fileID: 8270130334384855096}
   series: {fileID: 5574986276079829017}
   multiplayer: {fileID: 4832482737999133180}

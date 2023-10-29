@@ -1,4 +1,4 @@
-using App.Scripts.Game.Configs;
+using App.Scripts.Game.Configs.Gameplay;
 using App.Scripts.Game.SceneManagers;
 using UnityEngine;
 
@@ -11,10 +11,7 @@ namespace App.Scripts.Game.Blocks
         private float _initialSpeed;
         private float _initialAngle;
         private Vector3 _initialVelocity;
-
         private Vector3 _currentPosition;
-
-        private float _timeUpdate = 0f;
         
         public void Initialize(float initialSpeed = 0f, float initialAngle = 0f)
         {

@@ -1,14 +1,8 @@
 ﻿using App.Scripts.Game.Blocks;
 using App.Scripts.Game.Blocks.Models;
-using App.Scripts.Game.Configs;
-using App.Scripts.Game.Saves;
-using App.Scripts.Game.UISystem;
+using App.Scripts.Game.Configs.Gameplay;
 using App.Scripts.Game.UISystem.Lives;
-using App.Scripts.Game.UISystem.Popups;
-using App.Scripts.Game.UISystem.Scores;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.Game.SceneManagers
 {
@@ -16,11 +10,9 @@ namespace App.Scripts.Game.SceneManagers
     {
         [SerializeField] private SpawnersManagerConfig managerConfig;
         [SerializeField] private CameraManager cameraManager;
-        
         [SerializeField] private BlockList blockList;
         [SerializeField] private LiveBar liveBar;
         
-
         public Rect GetDestroyAreaRect()
         {
             Rect destroyArea = cameraManager.GetCameraRect();

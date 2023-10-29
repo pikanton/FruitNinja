@@ -4,7 +4,7 @@ namespace App.Scripts.Game.Blocks.Models
 {
     public class Fruit : Block
     {
-        [SerializeField] private float immortalityTime = 0;
+        [SerializeField] private float immortalityTime;
 
         private float _spawnTime;
 

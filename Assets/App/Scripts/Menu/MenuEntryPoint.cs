@@ -1,5 +1,5 @@
-﻿using System;
-using App.Scripts.Game.Animations;
+﻿using App.Scripts.Game.Animations;
+using App.Scripts.Game.Configs.Scenes;
 using App.Scripts.Game.Saves;
 using TMPro;
 using UnityEngine;
@@ -10,10 +10,9 @@ namespace App.Scripts.Menu
 {
     public class MenuEntryPoint : MonoBehaviour
     {
+        [SerializeField] private SceneConfig sceneConfig;
         [SerializeField] private TextMeshProUGUI scoreTextMeshPro;
         [SerializeField] private Image loadImage;
-        [SerializeField] private float loadSceneAnimationDuration = 1f;
-        [SerializeField] private string gameSceneName = "Game";
         [SerializeField] private ButtonManager startButton;
         [SerializeField] private ButtonManager exitButton;
         
@@ -22,27 +21,28 @@ namespace App.Scripts.Menu
 
         private void Awake()
         {
-            Application.targetFrameRate = 120;
-            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = sceneConfig.targetFrameRate;
+            QualitySettings.vSyncCount = sceneConfig.vSyncCount;
+            Time.timeScale = sceneConfig.startTimeScale;
+
             startButton.ButtonAction = LoadGameScene;
             exitButton.ButtonAction = Exit;
-            Time.timeScale = 1f;
-            int score = _gameSaver.GetHighScore();
-            scoreTextMeshPro.text = score.ToString();
-            AnimateSceneLoad(loadImage, loadSceneAnimationDuration);
+            scoreTextMeshPro.text = _gameSaver.GetHighScore().ToString();
+            
+            AnimateSceneLoad(loadImage, sceneConfig.loadSceneAnimationDuration);
         }
 
         private void LoadGameScene()
         {
             AnimateSceneQuit();
             StartCoroutine(_uiAnimation.DoActionAfterDelay(
-                () => SceneManager.LoadScene(gameSceneName), loadSceneAnimationDuration));
+                () => SceneManager.LoadScene(sceneConfig.gameSceneName), sceneConfig.loadSceneAnimationDuration));
         }
 
         private void Exit()
         {
             AnimateSceneQuit();
-            StartCoroutine(_uiAnimation.DoActionAfterDelay(Quit, loadSceneAnimationDuration));
+            StartCoroutine(_uiAnimation.DoActionAfterDelay(Quit, sceneConfig.loadSceneAnimationDuration));
         }
 
         private void AnimateSceneLoad(Image fadeImage, float animationDuration)
@@ -60,7 +60,7 @@ namespace App.Scripts.Menu
             Color initialColor = loadImage.color;
             loadImage.color = new Color(initialColor.r, initialColor.g, initialColor.b, 0f);
             loadImage.enabled = true;
-            StartCoroutine(_uiAnimation.FadeAnimation(loadImage, 1f, loadSceneAnimationDuration));
+            StartCoroutine(_uiAnimation.FadeAnimation(loadImage, 1f, sceneConfig.loadSceneAnimationDuration));
         }
 
         private void Quit()

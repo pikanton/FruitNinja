@@ -270,8 +270,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727ae7912d8b4beabf55a60430a872d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonAnimationConfig: {fileID: 11400000, guid: d04a402c5ebde0b46b4219ab7e3dba71, type: 2}
   button: {fileID: 7691841702508332846}
-  scaleMultiplier: 0.9
-  animationDuration: 0.1
-  initialTint: 1
-  pressedTint: 0.8

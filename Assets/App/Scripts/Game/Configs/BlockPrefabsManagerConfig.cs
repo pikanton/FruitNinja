@@ -6,8 +6,8 @@ using Random = UnityEngine.Random;
 
 namespace App.Scripts.Game.Configs
 {
-    [CreateAssetMenu(fileName = "BlockPrefabConfig", menuName = "Configs/BlockPrefabs")]
-    public class BlockPrefabConfig : ScriptableObject
+    [CreateAssetMenu(fileName = "BlockPrefabsManagerConfig", menuName = "Configs/BlockPrefabsManager")]
+    public class BlockPrefabsManagerConfig : ScriptableObject
     {
         [SerializeField] private int maxFreezersOnScreen = 1;
         [SerializeField] private List<BlockPrefab> blockPrefabs = new();

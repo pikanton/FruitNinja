@@ -1,5 +1,9 @@
 ﻿using App.Scripts.Game.Blocks;
 using App.Scripts.Game.Blocks.Models;
+using App.Scripts.Game.Configs;
+using App.Scripts.Game.Configs.Boosters;
+using App.Scripts.Game.Configs.Gameplay;
+using App.Scripts.Game.Configs.View;
 using App.Scripts.Game.SceneManagers;
 using App.Scripts.Game.UISystem.Lives;
 using App.Scripts.Game.UISystem.Scores;
@@ -9,30 +13,23 @@ namespace App.Scripts.Game.Blades
 {
     public class SliceManager : MonoBehaviour
     {
-        [SerializeField] private int scoreAmount = 75;
-        [SerializeField] private float minSliceVelocity = 25f;
-
+        [SerializeField] private SliceConfig sliceConfig;
         [SerializeField] private BlockList spawnedBlocks;
         [SerializeField] private ScoreManager scoreManager;
         [SerializeField] private LiveBar liveBar;
-        [SerializeField] public float explosionForce = 15f;
-        [SerializeField] private float halfBlockInitialSpeed = 6f;
         [SerializeField] private Block blockPrefab;
 
+        [SerializeField] private ObjectOrdersConfig objectOrdersConfig;
+        [SerializeField] private HalfBlockConfig halfBlockConfig;
+        [SerializeField] private BombConfig bombConfig;
         [SerializeField] private FreezeManager freezeManager;
-        
-        [SerializeField] private Fruit fruitPrefab;
-        [SerializeField] private int spawnFruitCount;
-        [SerializeField] private float firstSpawnAngle;
-        [SerializeField] private float secondSpawnAngle;
-        [SerializeField] private float fruitBoxFruitInitialSpeed = 7f;
-        [SerializeField] private float fruitBoxImmortalityTime = 0.2f;
+        [SerializeField] private FruitBoxConfig fruitBoxConfig;
         
         public void CheckBlocksToSlice(Vector3 direction)
         {
             float velocity = direction.magnitude / Time.deltaTime;
             
-            if (velocity > minSliceVelocity)
+            if (velocity > sliceConfig.minSliceVelocity)
             {
                 for (int i = 0; i < spawnedBlocks.spawnedBlocks.Count; i++)
                 {
@@ -82,7 +79,7 @@ namespace App.Scripts.Game.Blades
             float rightBlockOrthogonalAngle = sliceAngle - 90f;
             CreateHalfBlock(blockPrefab, block.blockProperties.blockLeftHalf, leftBlockOrthogonalAngle);
             CreateHalfBlock(blockPrefab, block.blockProperties.blockRightHalf, rightBlockOrthogonalAngle);
-            scoreManager.AddScore(block.transform.position, scoreAmount);
+            scoreManager.AddScore(block.transform.position, sliceConfig.scoreAmount);
         }
         
         private void BombSliced(Block block)
@@ -94,7 +91,7 @@ namespace App.Scripts.Game.Blades
                 float distance = blockToBomb.magnitude;
                 if (distance > 0)
                 {
-                    float force = explosionForce / distance;
+                    float force = bombConfig.explosionForce / distance;
                     Vector3 acceleration = force * blockToBomb.normalized;
                     spawnedBlock.blockMovement.AddVelocity(acceleration);
                 }
@@ -105,7 +102,7 @@ namespace App.Scripts.Game.Blades
                 float distance = blockToBomb.magnitude;
                 if (distance > 0)
                 {
-                    float force = explosionForce / distance;
+                    float force = bombConfig.explosionForce / distance;
                     Vector3 acceleration = force * blockToBomb.normalized;
                     halfBlock.blockMovement.AddVelocity(acceleration);
                 }
@@ -130,7 +127,7 @@ namespace App.Scripts.Game.Blades
             float rightBlockOrthogonalAngle = sliceAngle - 90f;
             CreateHalfBlock(blockPrefab, block.blockProperties.blockLeftHalf, leftBlockOrthogonalAngle);
             CreateHalfBlock(blockPrefab, block.blockProperties.blockRightHalf, rightBlockOrthogonalAngle);
-            for (int i = 0; i < spawnFruitCount; i++)
+            for (int i = 0; i < fruitBoxConfig.spawnFruitCount; i++)
             {
                 SpawnFruit(block);
             }
@@ -141,8 +138,8 @@ namespace App.Scripts.Game.Blades
             var parentBlockTransform = transform;
             var halfBlock = Instantiate(block, parentBlockTransform.position, Quaternion.identity,
                 spawnedBlocks.transform);
-            halfBlock.spriteRenderer.sortingOrder = -100;
-            halfBlock.Initialize(halfBlockInitialSpeed, initialAngle);
+            halfBlock.spriteRenderer.sortingOrder = objectOrdersConfig.halfBlockOrder;
+            halfBlock.Initialize(halfBlockConfig.halfBlockInitialSpeed, initialAngle);
             halfBlock.blockAnimation.transform.rotation = parentBlockTransform.rotation;
             halfBlock.spriteRenderer.sprite = halfBlockSprite;
             halfBlock.shadowAnimation.Initialize();
@@ -152,20 +149,20 @@ namespace App.Scripts.Game.Blades
         
         private void SpawnFruit(Block fruitBoxBlock)
         {
-            Fruit newFruit = Instantiate(fruitPrefab, fruitBoxBlock.transform.position,
+            Fruit newFruit = Instantiate(fruitBoxConfig.fruitPrefab, fruitBoxBlock.transform.position,
                 Quaternion.identity, spawnedBlocks.gameObject.transform);
-            newFruit.Initialize(fruitBoxFruitInitialSpeed, GetRandomAngle());
-            newFruit.SetImmortalityTime(fruitBoxImmortalityTime);
+            newFruit.Initialize(fruitBoxConfig.fruitBoxFruitInitialSpeed, GetRandomAngle());
+            newFruit.SetImmortalityTime(fruitBoxConfig.fruitBoxImmortalityTime);
             spawnedBlocks.spawnedBlocks.Add(newFruit);
         }
         
         private float GetRandomAngle()
         {
             float angle;
-            if (firstSpawnAngle > secondSpawnAngle)
-                angle = Random.Range(firstSpawnAngle, secondSpawnAngle);
+            if (fruitBoxConfig.firstSpawnAngle > fruitBoxConfig.secondSpawnAngle)
+                angle = Random.Range(fruitBoxConfig.firstSpawnAngle, fruitBoxConfig.secondSpawnAngle);
             else
-                angle = Random.Range(firstSpawnAngle, secondSpawnAngle);
+                angle = Random.Range(fruitBoxConfig.firstSpawnAngle, fruitBoxConfig.secondSpawnAngle);
             return angle;
         }
     }

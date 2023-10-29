@@ -1,7 +1,5 @@
-﻿using System;
-using App.Scripts.Game.InputSystem;
+﻿using App.Scripts.Game.InputSystem;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace App.Scripts.Game.Blades
 {

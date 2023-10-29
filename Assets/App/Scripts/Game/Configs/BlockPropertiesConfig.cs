@@ -5,8 +5,8 @@ using Random = UnityEngine.Random;
 
 namespace App.Scripts.Game.Configs
 {
-    [CreateAssetMenu(fileName = "BlockConfig", menuName = "Configs/BlockView", order = 0)]
-    public class BlockConfig : ScriptableObject
+    [CreateAssetMenu(fileName = "BlockPropertiesConfig", menuName = "Configs/BlockProperties")]
+    public class BlockPropertiesConfig : ScriptableObject
     {
         [SerializeField] private List<BlockProperties> blockProperties = new();
         
